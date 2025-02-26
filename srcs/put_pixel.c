@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 15:38:41 by tnedel            #+#    #+#             */
-/*   Updated: 2025/02/25 16:45:26 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/02/26 13:50:52 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	put_pixel(t_data *d, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void	put_square(t_data *d, int x_start, int y_start, int color)
+void	put_square(t_data *d, int x_start, int y_start, int color, int nbr)
 {
 	int	i;
 	int	j;
@@ -31,12 +31,12 @@ void	put_square(t_data *d, int x_start, int y_start, int color)
 	while (i < 2)
 	{
 		j = 0;
-		while (j < d->width / 5)
+		while (j < d->width / nbr - 1)
 		{
 			put_pixel(d, j + x_start, tmp, color);
 			j++;
 		}
-		tmp += (d->height / 5);
+		tmp += (d->height / nbr) - 1;
 		i++;
 	}
 	tmp = x_start;
@@ -44,12 +44,12 @@ void	put_square(t_data *d, int x_start, int y_start, int color)
 	while (i < 2)
 	{
 		j = 0;
-		while (j < d->height / 5)
+		while (j < d->height / nbr - 1)
 		{
 			put_pixel(d, tmp, j + y_start, color);
 			j++;
 		}
-		tmp += (d->width / 5);
+		tmp += (d->width / nbr) - 1;
 		i++;
 	}
 }

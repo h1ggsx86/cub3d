@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 15:03:39 by tnedel            #+#    #+#             */
-/*   Updated: 2025/02/25 16:45:15 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/02/26 13:49:21 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	main(/*int ac, char *av[]*/)
 	int			i;
 	int			j;
 	int			color;
+	int			nbr;
 	t_game		g;
 	t_data		data;
 	t_player	pl;
@@ -24,13 +25,15 @@ int	main(/*int ac, char *av[]*/)
 	struct_init(&g, &data, &pl);
 	game_init(&g);
 	color = 0x54fb08;
+	nbr = 8;
+	put_square(&data, 0, 0, color, 1);
 	i = 0;
-	while (i < 5)
+	while (i < nbr)
 	{
 		j = 0;
-		while (j < 5)
+		while (j < nbr)
 		{
-			put_square(&data, i * (data.width / 5), j * (data.height / 5), color);
+			put_square(&data, i * (data.width / nbr), j * (data.height / nbr), color, nbr);
 			j++;
 		}
 		color += 10;

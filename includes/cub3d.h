@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 15:02:41 by tnedel            #+#    #+#             */
-/*   Updated: 2025/02/25 16:18:13 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/02/26 13:44:07 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,6 @@ void	game_init(t_game *g);
 void	exit_game(t_game *g, int ecode);
 void	struct_init(t_game *new, t_data *data, t_player *pl);
 void	put_pixel(t_data *d, int x, int y, int color);
-void	put_square(t_data *d, int x_start, int y_start, int color);
+void	put_square(t_data *d, int x_start, int y_start, int color, int nbr);
 
 #endif
