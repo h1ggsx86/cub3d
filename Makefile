@@ -6,7 +6,7 @@
 #    By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/24 19:27:15 by tnedel            #+#    #+#              #
-#    Updated: 2025/02/25 15:45:00 by tnedel           ###   ########.fr        #
+#    Updated: 2025/02/27 15:00:12 by tnedel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ SRC_DIR	= srcs
 OBJ_DIR = obj
 SRC		= $(SRC_DIR)/init_game.c $(SRC_DIR)/init_struct.c \
 			$(SRC_DIR)/exit_game.c $(SRC_DIR)/put_pixel.c \
+			$(SRC_DIR)/loop_game.c $(SRC_DIR)/input.c \
 			$(SRC_DIR)/main.c
 SRC_OBJ	= $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 

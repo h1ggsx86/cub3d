@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 15:38:41 by tnedel            #+#    #+#             */
-/*   Updated: 2025/02/26 13:50:52 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/02/28 16:33:01 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,41 +15,90 @@
 void	put_pixel(t_data *d, int x, int y, int color)
 {
 	char	*dst;
+	t_mimg	*img;
 
-	dst = d->addr + (y * d->line_length + x * (d->bpp / 8));
+	if (d->active_img)
+		img = d->img2;
+	else
+		img = d->img1;
+	dst = img->addr + (y * img->line_length + x * (img->bpp / 8));
 	*(unsigned int *)dst = color;
 }
 
-void	put_square(t_data *d, int x_start, int y_start, int color, int nbr)
+void	put_player_square(t_data *d, t_player *pl, int color, int c)
 {
-	int	i;
-	int	j;
-	int	tmp;
+	int	y;
+	int	x;
 
-	tmp = y_start;
-	i = 0;
-	while (i < 2)
+	y = 0;
+	while (y < c)
 	{
-		j = 0;
-		while (j < d->width / nbr - 1)
+		x = 0;
+		while (x < c)
 		{
-			put_pixel(d, j + x_start, tmp, color);
-			j++;
+			put_pixel(d, pl->posX + x, pl->posY + y, color);
+			x++;
 		}
-		tmp += (d->height / nbr) - 1;
-		i++;
+		y++;
 	}
-	tmp = x_start;
-	i = 0;
-	while (i < 2)
+}
+
+void	put_line(t_data *d, t_player *pl, int color, double xy[2])
+{
+	double	x;
+
+	x = -xy[0];
+	while (x < xy[0])
 	{
-		j = 0;
-		while (j < d->height / nbr - 1)
+		put_pixel(d, pl->posX + x, pl->posY + xy[1], color);
+		x++;
+	}
+	x = -xy[0];
+	while (x < xy[0])
+	{
+		put_pixel(d, pl->posX + x, pl->posY - xy[1], color);
+		x++;
+	}
+	x = -xy[1];
+	while (x < xy[1])
+	{
+		put_pixel(d, pl->posX + x, pl->posY + xy[0], color);
+		x++;
+	}
+	x = -xy[1];
+	while (x < xy[1])
+	{
+		put_pixel(d, pl->posX + x, pl->posY - xy[0], color);
+		x++;
+	}
+}
+
+void	put_player_circle(t_data *d, t_player *pl, int color, int r)
+{
+	double	xy[2];
+	double	p;
+
+	xy[1] = -r;
+	p = -r;
+	xy[0] = 0;
+	while (xy[0] < -xy[1])
+	{
+		if (p > 0)
 		{
-			put_pixel(d, tmp, j + y_start, color);
-			j++;
+			xy[1] += 1;
+			p += 2 * (xy[0] + xy[1]) + 1;
 		}
-		tmp += (d->width / nbr) - 1;
-		i++;
+		else
+			p += 2 * xy[0] + 1;
+		put_pixel(d, pl->posX + xy[0], pl->posY + xy[1], color);
+		put_pixel(d, pl->posX - xy[0], pl->posY + xy[1], color);
+		put_pixel(d, pl->posX + xy[0], pl->posY - xy[1], color);
+		put_pixel(d, pl->posX - xy[0], pl->posY - xy[1], color);
+		put_pixel(d, pl->posX + xy[1], pl->posY + xy[0], color);
+		put_pixel(d, pl->posX - xy[1], pl->posY + xy[0], color);
+		put_pixel(d, pl->posX + xy[1], pl->posY - xy[0], color);
+		put_pixel(d, pl->posX - xy[1], pl->posY - xy[0], color);
+		put_line(d, pl, color, xy);
+		xy[0]++;
 	}
 }

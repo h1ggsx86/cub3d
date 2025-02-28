@@ -6,24 +6,45 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:16:20 by tnedel            #+#    #+#             */
-/*   Updated: 2025/02/25 15:53:57 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/02/28 13:27:00 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	data_init(t_data *data)
+int	data_init(t_data *data)
 {
-	data->img = NULL;
+	data->img1 = malloc(sizeof(t_mimg));
+	if (!data->img1)
+		return (EXIT_FAILURE);
+	data->img1->img = NULL;
+	data->img2 = malloc(sizeof(t_mimg));
+	if (!data->img2)
+		return (EXIT_FAILURE);
+	data->img2->img = NULL;
 	data->height = 600;
 	data->width = 800;
+	data->active_img = 1;
+	return (EXIT_SUCCESS);
+}
+
+void	player_init(t_player *pl)
+{
+	pl->posX = 350;
+	pl->posY = 250;
+	pl->dirX = -1;
+	pl->dirY = 0;
+	pl->viewX = 0;
+	pl->viewY = 0.66;
 }
 
 void	struct_init(t_game *new, t_data *data, t_player *pl)
 {
 	new->init = NULL;
 	new->win = NULL;
-	new->data = data;
+	new->d = data;
 	new->pl = pl;
-	data_init(new->data);
+	if (data_init(new->d))
+		exit_game(new, 1);
+	player_init(new->pl);
 }
