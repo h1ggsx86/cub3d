@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 14:49:39 by tnedel            #+#    #+#             */
-/*   Updated: 2025/02/28 16:21:53 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/03 15:57:40 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	redraw_img(t_game *g)
 	img->img = NULL;
 	if (img_init(img, g->d, g->init))
 		exit_game(g, 1);
-	put_player_circle(g->d, g->pl, 0x00f187b3 , 100);
+	put_player_circle(g, g->d->color, 25);
 	if (g->d->active_img)
 		g->d->active_img = 0;
 	else
@@ -38,22 +38,22 @@ void	moves_input(int keycode, t_game *g)
 	pl = g->pl;
 	if (keycode == XK_a || keycode == XK_Left)
 	{
-		pl->posX -= 10;
+		pl->posX -= 25;
 		redraw_img(g);
 	}
 	if (keycode == XK_d || keycode == XK_Right)
 	{
-		pl->posX += 10;
+		pl->posX += 25;
 		redraw_img(g);
 	}
 	if (keycode == XK_s || keycode == XK_Down)
 	{
-		pl->posY += 10;
+		pl->posY += 25;
 		redraw_img(g);
 	}
 	if (keycode == XK_w || keycode == XK_Up)
 	{
-		pl->posY -= 10;
+		pl->posY -= 25;
 		redraw_img(g);
 	}
 }

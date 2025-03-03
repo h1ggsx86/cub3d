@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 15:02:41 by tnedel            #+#    #+#             */
-/*   Updated: 2025/02/28 15:52:57 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/03 15:44:56 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ typedef struct s_data
 	int		active_img;
 	int		height;
 	int		width;
+	int		color;
 }			t_data;
 
 typedef struct s_player
@@ -103,8 +104,8 @@ void	exit_game(t_game *g, int ecode);
 
 /* PUT & PLAYER*/
 void	put_pixel(t_data *d, int x, int y, int color);
-void	put_player_square(t_data *d, t_player *pl, int color, int c);
-void	put_player_circle(t_data *d, t_player *pl, int color, int r);
+void	put_player_square(t_data *d, t_player *pl, int c);
+void	put_player_circle(t_game *g, int color, int r);
 void	moves_input(int keycode, t_game *g);
 
 /* LOOP */

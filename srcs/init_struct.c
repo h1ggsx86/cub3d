@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:16:20 by tnedel            #+#    #+#             */
-/*   Updated: 2025/02/28 13:27:00 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/03 15:28:25 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	data_init(t_data *data)
 	data->height = 600;
 	data->width = 800;
 	data->active_img = 1;
+	data->color = 0x00f187b3;
 	return (EXIT_SUCCESS);
 }
 
