@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 15:02:41 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/03 15:44:56 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/04 14:39:19 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # include <sys/time.h>
 # include <X11/Xlib.h>
 # include <X11/keysym.h>
-# include "../mlx_linux/mlx.h"
-# include "../mlx_linux/mlx_int.h"
+# include "../mlx-linux/mlx.h"
+# include "../mlx-linux/mlx_int.h"
 
 # define MAP_WIDTH 24
 # define MAP_HEIGHT 24
@@ -68,8 +68,8 @@ typedef struct s_mimg
 
 typedef struct s_data
 {
-	t_mimg	*img1;
-	t_mimg	*img2;
+	t_mimg	*img_map;
+	t_mimg	*img_player;
 	int		active_img;
 	int		height;
 	int		width;

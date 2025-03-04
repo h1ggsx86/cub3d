@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 14:49:39 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/03 15:57:40 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/04 14:21:58 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void	redraw_img(t_game *g)
 	t_mimg	*img;
 
 	if (g->d->active_img)
-		img = g->d->img2;
+		img = g->d->img_map + 1;
 	else
-		img = g->d->img1;
+		img = g->d->img_map;
 	mlx_destroy_image(g->init, img->img);
 	img->img = NULL;
 	if (img_init(img, g->d, g->init))

@@ -6,13 +6,13 @@
 #    By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/24 19:27:15 by tnedel            #+#    #+#              #
-#    Updated: 2025/02/27 15:00:12 by tnedel           ###   ########.fr        #
+#    Updated: 2025/03/04 14:38:50 by tnedel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC		= cc
 CFLAGS	= -Wall -Wextra -Werror -g3
-MLXFLAGS= -L/usr/lib -Lmlx_linux -lmlx_Linux -lXext -lX11 -lm -lz -lbsd
+MLXFLAGS= -L/usr/lib -Lmlx-linux -lmlx_Linux -lXext -lX11 -lm -lz -lbsd
 
 NEWLINE	= \033[2K\r
 define title_var
@@ -26,11 +26,11 @@ define title_var
 		@echo
 endef
 
-MLX_DIR = mlx_linux
+MLX_DIR = mlx-linux
 INC_DIR	= includes
 NAME	= cub3d
 
-MLX_LIB = mlx_linux/libmlx_Linux.a
+MLX_LIB = mlx-linux/libmlx_Linux.a
 SRC_DIR	= srcs
 OBJ_DIR = obj
 SRC		= $(SRC_DIR)/init_game.c $(SRC_DIR)/init_struct.c \
@@ -55,7 +55,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
 
 $(MLX_LIB):
 		@echo "Compiling mlx..."
-		@(make --no-print-directory -C mlx_linux)
+		@(make --no-print-directory -C mlx-linux)
 		@echo
 
 $(OBJ_DIR):
@@ -74,7 +74,7 @@ clean: title
 			echo ;\
 		fi
 		@echo "Cleaning mlx..."
-		@(make --no-print-directory -C mlx_linux clean)
+		@(make --no-print-directory -C mlx-linux clean)
 		@echo "\e[0m"
 
 fclean: clean

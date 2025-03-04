@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:16:20 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/03 15:28:25 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/04 14:33:18 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,11 @@
 
 int	data_init(t_data *data)
 {
-	data->img1 = malloc(sizeof(t_mimg));
-	if (!data->img1)
+	data->img_map = malloc(sizeof(t_mimg) * 2);
+	if (!data->img_map)
 		return (EXIT_FAILURE);
-	data->img1->img = NULL;
-	data->img2 = malloc(sizeof(t_mimg));
-	if (!data->img2)
-		return (EXIT_FAILURE);
-	data->img2->img = NULL;
+	data->img_map[0].img = NULL;
+	data->img_map[1].img = NULL;
 	data->height = 600;
 	data->width = 800;
 	data->active_img = 1;

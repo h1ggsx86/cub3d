@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 15:38:41 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/03 15:56:02 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/04 14:23:06 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ void	put_pixel(t_data *d, int x, int y, int color)
 	t_mimg	*img;
 
 	if (d->active_img)
-		img = d->img2;
+		img = d->img_map + 1;
 	else
-		img = d->img1;
+		img = d->img_map;
 	dst = img->addr + (y * img->line_length + x * (img->bpp / 8));
 	*(unsigned int *)dst = color;
 }
