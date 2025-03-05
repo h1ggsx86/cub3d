@@ -1,43 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/05 15:37:30 by arotondo          #+#    #+#             */
-/*   Updated: 2025/03/05 17:45:25 by arotondo         ###   ########.fr       */
+/*   Created: 2025/03/05 17:23:54 by arotondo          #+#    #+#             */
+/*   Updated: 2025/03/05 17:35:28 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void	get_mapper(t_data *d)
+void	err_message(t_game *g, char *arg, char *mess)
 {
-	
-}
-
-void	parse_map(t_game *g)
-{
-	char	*line;
-
-	line = get_next_line(g->map);
-	while (line)
+	ft_putstr_fd("Club3D: ", 2);
+	if (arg)
 	{
-		free(line);
-		line = get_next_line(g->map);
-		if (!line)
-			break ;
-		get_mapper();
+		ft_putstr_fd(arg, 2);
+		write(2, ": ", 2);
 	}
-	get_next_line(-1);
-	close(g->map);
-}
-
-void	parsing_the_thing(t_game *g, char *file)
-{
-	g->map = open(file, O_RDONLY, 0664);
-	if (g->map < 0)
-		exit(1);
-	parse_map(g);
+	if (!mess)
+		perror("");
+	else
+		ft_putendl_fd(mess, 2);
+	if (g->d->img_map)
+		free(g->d->img_map);
+	if (g->map > 0)
+		close(g->map);
+	exit(1);
 }

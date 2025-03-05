@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 15:02:41 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/05 17:01:26 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/05 17:46:57 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ typedef struct s_data
 	t_mimg	*img_map;
 	t_mimg	*img_player;
 	int		active_img;
+	char	**mapper;
 	int		height;
 	int		width;
 	int		color;
@@ -119,5 +120,8 @@ void	the_loop(t_game *g);
 /* parsing */
 void	parsing_the_thing(t_game *g, char *file);
 void	parse_map(t_game *g);
+
+/* error */
+void	err_message(t_data *data, char *arg, char *mess);
 
 #endif
