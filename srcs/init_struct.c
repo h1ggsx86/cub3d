@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:16:20 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/04 14:33:18 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/05 14:46:45 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,17 @@ int	data_init(t_data *data)
 		return (EXIT_FAILURE);
 	data->img_map[0].img = NULL;
 	data->img_map[1].img = NULL;
-	data->height = 600;
-	data->width = 800;
+	data->height = WIN_HEIGHT;
+	data->width = WIN_WIDTH;
 	data->active_img = 1;
-	data->color = 0x00f187b3;
+	data->color = 0x00dadada;
 	return (EXIT_SUCCESS);
 }
 
 void	player_init(t_player *pl)
 {
-	pl->posX = 350;
-	pl->posY = 250;
+	pl->posX = 22;
+	pl->posY = 12;
 	pl->dirX = -1;
 	pl->dirY = 0;
 	pl->viewX = 0;
