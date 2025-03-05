@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:16:20 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/05 14:46:45 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/05 16:40:01 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	player_init(t_player *pl)
 {
 	pl->posX = 22;
 	pl->posY = 12;
+	// pl->posX = 220;
+	// pl->posY = 120;
 	pl->dirX = -1;
 	pl->dirY = 0;
 	pl->viewX = 0;

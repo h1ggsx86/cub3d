@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 15:38:41 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/04 14:23:06 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/05 16:37:06 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,21 +43,30 @@ void	put_player_square(t_data *d, t_player *pl, int c)
 	}
 }
 
+void	put_vline(t_game *g, int y_start, int y_end, int x, int color)
+{
+	while (y_start < y_end)
+	{
+		put_pixel(g->d, x, y_start, color);
+		y_start++;
+	}
+}
+
 void	put_hline(t_game *g, int x_start, int x_end, int y)
 {
 	int	x;
-	t_player	*pl;
+	t_player	pl;
 
-	pl = g->pl;
+	pl = *g->pl;
 	x = x_start;
 	while (x_start < x_end)
 	{
-		put_pixel(g->d, x_start, pl->posY + y, g->d->color);
+		put_pixel(g->d, x_start, pl.posY + y, g->d->color);
 		x_start++;
 	}
 	while (x < x_end)
 	{
-		put_pixel(g->d, x, pl->posY - y, g->d->color);
+		put_pixel(g->d, x, pl.posY - y, g->d->color);
 		x++;
 	}
 }
@@ -68,7 +77,7 @@ void	put_player_circle(t_game *g, int color, int r)
 	double y;
 	double	p;
 
-	t_player *(pl) = g->pl;
+	t_player (pl) = *g->pl;
 	t_data *(d) = g->d;
 	y = -r;
 	p = -r;
@@ -82,16 +91,16 @@ void	put_player_circle(t_game *g, int color, int r)
 		}
 		else
 			p += 2 * x + 1;
-		put_pixel(d, pl->posX + x, pl->posY + y, color);
-		put_pixel(d, pl->posX - x, pl->posY + y, color);
-		put_pixel(d, pl->posX + x, pl->posY - y, color);
-		put_pixel(d, pl->posX - x, pl->posY - y, color);
-		put_pixel(d, pl->posX + y, pl->posY + x, color);
-		put_pixel(d, pl->posX - y, pl->posY + x, color);
-		put_pixel(d, pl->posX + y, pl->posY - x, color);
-		put_pixel(d, pl->posX - y, pl->posY - x, color);
-		put_hline(g, pl->posX - x, pl->posX + x, y);
-		put_hline(g, pl->posX + y, pl->posX - y, x);
+		put_pixel(d, pl.posX + x, pl.posY + y, color);
+		put_pixel(d, pl.posX - x, pl.posY + y, color);
+		put_pixel(d, pl.posX + x, pl.posY - y, color);
+		put_pixel(d, pl.posX - x, pl.posY - y, color);
+		put_pixel(d, pl.posX + y, pl.posY + x, color);
+		put_pixel(d, pl.posX - y, pl.posY + x, color);
+		put_pixel(d, pl.posX + y, pl.posY - x, color);
+		put_pixel(d, pl.posX - y, pl.posY - x, color);
+		put_hline(g, pl.posX - x, pl.posX + x, y);
+		put_hline(g, pl.posX + y, pl.posX - y, x);
 		x++;
 	}
 }
