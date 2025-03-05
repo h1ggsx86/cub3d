@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 13:27:31 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/05 16:12:17 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/05 17:02:11 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,5 +94,7 @@ int	ray_loop(t_game *g, t_player *pl)
 		color = g->d->color;
 		if (side == 1)
 			color = color / 2;
+		put_vline(g, draw_start, draw_end, x, color);
+		x++;
 	}
 }

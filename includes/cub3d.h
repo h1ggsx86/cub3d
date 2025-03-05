@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 15:02:41 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/05 16:23:59 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/05 17:01:26 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ void	exit_game(t_game *g, int ecode);
 void	put_pixel(t_data *d, int x, int y, int color);
 void	put_player_square(t_data *d, t_player *pl, int c);
 void	put_player_circle(t_game *g, int color, int r);
+void	put_vline(t_game *g, int y_start, int y_end, int x, int color);
 void	moves_input(int keycode, t_game *g);
 
 /* LOOP */
