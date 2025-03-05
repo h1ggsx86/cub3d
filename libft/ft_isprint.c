@@ -1,28 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arotondo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/24 15:03:39 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/05 16:12:20 by arotondo         ###   ########.fr       */
+/*   Created: 2024/05/16 16:08:10 by arotondo          #+#    #+#             */
+/*   Updated: 2024/05/25 17:45:14 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
-
-int	main(int argc, char **argv)
+int	ft_isprint(int c)
 {
-	t_game		g;
-	t_data		data;
-	t_player	pl;
-
-	if (argc != 2)
+	if (c > 31 && c < 127)
 		return (1);
-	struct_init(&g, &data, &pl);
-	game_init(&g);
-	parsing_the_thing(&g, argv[1]);
-	the_loop(&g);
-	return (exit_game(&g, 0), EXIT_SUCCESS);
+	else
+		return (0);
 }

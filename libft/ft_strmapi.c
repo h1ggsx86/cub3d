@@ -1,28 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/24 15:03:39 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/05 16:12:20 by arotondo         ###   ########.fr       */
+/*   Created: 2024/06/03 14:01:35 by arotondo          #+#    #+#             */
+/*   Updated: 2024/06/03 14:58:56 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	t_game		g;
-	t_data		data;
-	t_player	pl;
+	char	*ret;
+	size_t	len;
+	size_t	i;
 
-	if (argc != 2)
-		return (1);
-	struct_init(&g, &data, &pl);
-	game_init(&g);
-	parsing_the_thing(&g, argv[1]);
-	the_loop(&g);
-	return (exit_game(&g, 0), EXIT_SUCCESS);
+	ret = NULL;
+	len = ft_strlen(s);
+	ret = ft_calloc((len + 1), sizeof(char));
+	if (!ret)
+		return (NULL);
+	i = 0;
+	while (s[i] != '\0')
+	{
+		ret[i] = f(i, s[i]);
+		i++;
+	}
+	return (ret);
 }
+/*
+int	main(void)
+{
+	char const	*str;
+
+	str = "Will you rage ??";
+	printf("%s\n", ft_strmapi(str, ))
+}*/

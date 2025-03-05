@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   exit_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:31:18 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/04 14:32:50 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/05 16:11:55 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../includes/cub3d.h"
 
 void	free_img(void *init, t_mimg *img)
 {

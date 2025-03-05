@@ -1,28 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/24 15:03:39 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/05 16:12:20 by arotondo         ###   ########.fr       */
+/*   Created: 2024/05/21 17:53:57 by arotondo          #+#    #+#             */
+/*   Updated: 2024/10/09 19:04:00 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+void	ft_bzero(void *s, size_t n)
 {
-	t_game		g;
-	t_data		data;
-	t_player	pl;
+	unsigned char	*s_conv;
+	size_t			i;
 
-	if (argc != 2)
-		return (1);
-	struct_init(&g, &data, &pl);
-	game_init(&g);
-	parsing_the_thing(&g, argv[1]);
-	the_loop(&g);
-	return (exit_game(&g, 0), EXIT_SUCCESS);
+	if (!s)
+		return ;
+	s_conv = (unsigned char *)s;
+	i = 0;
+	while (i < n)
+	{
+		s_conv[i] = 0;
+		i++;
+	}
 }
+/*
+int	main(void)
+{
+	char	str[5] = "22222";
+
+	ft_bzero(&str, 4);
+	return (0);
+}*/

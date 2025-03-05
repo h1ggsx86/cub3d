@@ -1,28 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/24 15:03:39 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/05 16:12:20 by arotondo         ###   ########.fr       */
+/*   Created: 2024/05/16 17:20:10 by arotondo          #+#    #+#             */
+/*   Updated: 2024/06/06 12:43:55 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+int	ft_atoi(const char *str)
+{
+	int	i;
+	int	signe;
+	int	value;
 
+	i = 0;
+	signe = 0;
+	value = 0;
+	while (str[i] == 32 || (str[i] > 8 && str[i] < 14))
+		i++;
+	if (str[i] == 45 || str[i] == 43)
+	{
+		if (str[i] == 45)
+			signe++;
+		i++;
+	}
+	while (str[i] > 47 && str[i] < 58)
+	{
+		value *= 10;
+		value += str[i] - 48;
+		i++;
+	}
+	if (signe % 2 == 1)
+		value *= -1;
+	return (value);
+}
+/*
+#include <stdio.h>
 int	main(int argc, char **argv)
 {
-	t_game		g;
-	t_data		data;
-	t_player	pl;
-
 	if (argc != 2)
 		return (1);
-	struct_init(&g, &data, &pl);
-	game_init(&g);
-	parsing_the_thing(&g, argv[1]);
-	the_loop(&g);
-	return (exit_game(&g, 0), EXIT_SUCCESS);
-}
+	printf("%d\n", ft_atoi(argv[1]));
+	return (0);
+}*/

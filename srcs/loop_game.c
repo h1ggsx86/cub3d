@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   loop_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 10:30:37 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/04 14:22:45 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/05 16:12:13 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../includes/cub3d.h"
 
 int	input_handler(int keycode, t_game *g)
 {

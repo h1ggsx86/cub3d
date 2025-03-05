@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_swap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/24 15:03:39 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/05 16:12:20 by arotondo         ###   ########.fr       */
+/*   Created: 2024/10/30 15:25:13 by arotondo          #+#    #+#             */
+/*   Updated: 2024/10/30 15:25:30 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+void	ft_swap(int	*a, int *b)
 {
-	t_game		g;
-	t_data		data;
-	t_player	pl;
+	int	tmp;
 
-	if (argc != 2)
-		return (1);
-	struct_init(&g, &data, &pl);
-	game_init(&g);
-	parsing_the_thing(&g, argv[1]);
-	the_loop(&g);
-	return (exit_game(&g, 0), EXIT_SUCCESS);
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
 }

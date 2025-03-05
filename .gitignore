@@ -1,0 +1,5 @@
+.vscode/settings.json
+*.o
+*.a
+*.txt
+cub3d

@@ -1,28 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/24 15:03:39 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/05 16:12:20 by arotondo         ###   ########.fr       */
+/*   Created: 2024/05/16 15:57:41 by arotondo          #+#    #+#             */
+/*   Updated: 2024/05/28 14:43:42 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
-
+int	ft_isalnum(int c)
+{
+	if (c > 47 && c < 58)
+		return (1);
+	else if (c > 64 && c < 91)
+		return (1);
+	else if (c > 96 && c < 123)
+		return (1);
+	else
+		return (0);
+}
+/*
+#include <stdio.h>
 int	main(int argc, char **argv)
 {
-	t_game		g;
-	t_data		data;
-	t_player	pl;
-
-	if (argc != 2)
+	if (argc < 2)
 		return (1);
-	struct_init(&g, &data, &pl);
-	game_init(&g);
-	parsing_the_thing(&g, argv[1]);
-	the_loop(&g);
-	return (exit_game(&g, 0), EXIT_SUCCESS);
-}
+	printf("%d\n", ft_isalnum(*argv[1]));
+	return (0);
+}*/

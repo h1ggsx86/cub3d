@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+         #
+#    By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/24 19:27:15 by tnedel            #+#    #+#              #
-#    Updated: 2025/03/04 14:38:50 by tnedel           ###   ########.fr        #
+#    Updated: 2025/03/05 16:39:18 by arotondo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,9 +26,10 @@ define title_var
 		@echo
 endef
 
+NAME = cub3d
 MLX_DIR = mlx-linux
 INC_DIR	= includes
-NAME	= cub3d
+LIBFT_DIR = libft
 
 MLX_LIB = mlx-linux/libmlx_Linux.a
 SRC_DIR	= srcs
@@ -36,7 +37,8 @@ OBJ_DIR = obj
 SRC		= $(SRC_DIR)/init_game.c $(SRC_DIR)/init_struct.c \
 			$(SRC_DIR)/exit_game.c $(SRC_DIR)/put_pixel.c \
 			$(SRC_DIR)/loop_game.c $(SRC_DIR)/input.c \
-			$(SRC_DIR)/main.c
+			$(SRC_DIR)/main.c $(SRC_DIR)/parsing.c \
+			$(SRC_DIR)/loop_raycast.c
 SRC_OBJ	= $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 all: title $(NAME)
@@ -44,12 +46,13 @@ all: title $(NAME)
 		@echo "$(NEWLINE)\e[0;32mCompilation Done !\e[0m"
 		@echo
 
-$(NAME): $(MLX_LIB) $(SRC_OBJ)
-		@$(CC) $(CFLAGS) -I$(INC_DIR) -o $@ $^ $(MLXFLAGS)
+$(NAME): $(MLX_LIB) $(SRC_OBJ) libft/libft.a
+		@make -C $(LIBFT_DIR)
+		@$(CC) $(CFLAGS) -I $(INC_DIR) -I $(LIBFT_DIR) -o $@ $^ $(MLXFLAGS)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
 		@echo -n "Compilings..."
-		@$(CC) $(CFLAGS) -I $(INC_DIR) -I $(MLX_DIR) -O3 -c $< -o $@
+		@$(CC) $(CFLAGS) -I $(INC_DIR) -I $(LIBFT_DIR) -I $(MLX_DIR) -O3 -c $< -o $@
 		@echo -n "$< "
 		@echo "-> \e[0;32m[OK]\e[0m"
 
@@ -65,6 +68,7 @@ title:
 		@$(call title_var)
 
 clean: title
+		@make -C $(LIBFT_DIR) clean
 		@echo "$(NEWLINE)\e[0;33mRemoving obj..."
 		@if [ ! -d "$(OBJ_DIR)" ]; \
 		then \
@@ -78,6 +82,7 @@ clean: title
 		@echo "\e[0m"
 
 fclean: clean
+		@make -C $(LIBFT_DIR) fclean
 		@echo "\e[0;33mRemoving executable..."
 		@if [ -f "$(NAME)" ]; \
 		then \
