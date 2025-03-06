@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:16:20 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/06 16:31:52 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/06 16:39:12 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@ int	data_init(t_data *data)
 {
 	data->img_map = malloc(sizeof(t_mimg) * 2);
 	if (!data->img_map)
-		return (EXIT_FAILURE);
+		return (1);
 	data->img_map[0].img = NULL;
 	data->img_map[1].img = NULL;
 	data->height = WIN_HEIGHT;
 	data->width = WIN_WIDTH;
 	data->active_img = 1;
 	data->color = 0x00dadada;
-	return (EXIT_SUCCESS);
+	return (0);
 }
 
 void	player_init(t_player *pl)

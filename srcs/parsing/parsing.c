@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 15:37:30 by arotondo          #+#    #+#             */
-/*   Updated: 2025/03/06 10:34:24 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/06 16:40:02 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,11 @@ void	parse_map(t_game *g)
 	line = get_next_line(g->map);
 	while (line)
 	{
+		free(line);
 		line = get_next_line(g->map);
+		if (!line)
+			break ;
+		get_mapper();
 	}
 	get_next_line(-1);
 	close(g->map);
