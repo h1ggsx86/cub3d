@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+         #
+#    By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/24 19:27:15 by tnedel            #+#    #+#              #
-#    Updated: 2025/03/05 16:39:18 by arotondo         ###   ########.fr        #
+#    Updated: 2025/03/06 10:06:36 by tnedel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ INC_DIR	= includes
 LIBFT_DIR = libft
 
 MLX_LIB = mlx-linux/libmlx_Linux.a
+LIBFT_LIB = libft/libft.a
 SRC_DIR	= srcs
 OBJ_DIR = obj
 SRC		= $(SRC_DIR)/init_game.c $(SRC_DIR)/init_struct.c \
@@ -46,8 +47,7 @@ all: title $(NAME)
 		@echo "$(NEWLINE)\e[0;32mCompilation Done !\e[0m"
 		@echo
 
-$(NAME): $(MLX_LIB) $(SRC_OBJ) libft/libft.a
-		@make -C $(LIBFT_DIR)
+$(NAME): $(MLX_LIB) $(LIBFT_LIB) $(SRC_OBJ)
 		@$(CC) $(CFLAGS) -I $(INC_DIR) -I $(LIBFT_DIR) -o $@ $^ $(MLXFLAGS)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
@@ -58,7 +58,12 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
 
 $(MLX_LIB):
 		@echo "Compiling mlx..."
-		@(make --no-print-directory -C mlx-linux)
+		@(make --no-print-directory -C $(MLX_DIR))
+		@echo
+
+$(LIBFT_LIB):
+		@echo "Compiling libft..."
+		@(make --no-print-directory -C $(LIBFT_DIR))
 		@echo
 
 $(OBJ_DIR):
