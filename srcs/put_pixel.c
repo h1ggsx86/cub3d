@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   put_pixel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 15:38:41 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/05 17:02:03 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/06 16:22:57 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	put_player_square(t_data *d, t_player *pl, int c)
 		x = 0;
 		while (x < c)
 		{
-			put_pixel(d, pl->posX + x, pl->posY + y, d->color);
+			put_pixel(d, pl->posX * 5 + x, pl->posY * 5 + y, d->color);
 			x++;
 		}
 		y++;
@@ -103,4 +103,99 @@ void	put_player_circle(t_game *g, int color, int r)
 		put_hline(g, pl.posX + y, pl.posX - y, x);
 		x++;
 	}
+}
+
+void	put_lineH(t_game *g, int vpos[2], int vend[2])
+{
+	int	x;
+	int	y;
+	int	p;
+	int	dy;
+	int	dx;
+	int	dir;
+
+	if (vpos[0] > vend[0])
+	{
+		x = vend[0];
+		vend[0] = vpos[0];
+		vpos[0] = x;
+	}
+	dy = vend[1] - vpos[1];
+	dx = vend[0] - vpos[0];
+	if (dy < 0)
+		dir = -1;
+	else
+		dir = 1;
+	dy *= dir;
+	y = vpos[1];
+	p = 2 * dy - dx;
+	x = 0;
+	while (x < dx)
+	{
+		put_pixel(g->d, vpos[0] + x, y, 0x00dadada);
+		if (p > 0)
+		{
+			y += dir;
+			p = p - 2 * (dy - dx);
+		}
+		else
+			p = p + 2 * dy;
+		x++;
+	}
+}
+
+void	put_lineV(t_game *g, int vpos[2], int vend[2])
+{
+	int	x;
+	int	y;
+	int	p;
+	int	dy;
+	int	dx;
+	int	dir;
+
+	if (vpos[1] > vend[1])
+	{
+		x = vend[1];
+		vend[1] = vpos[1];
+		vpos[1] = x;
+	}
+	dy = vend[1] - vpos[1];
+	dx = vend[0] - vpos[0];
+	if (dx < 0)
+		dir = -1;
+	else
+		dir = 1;
+	dx *= dir;
+	y = vpos[0];
+	p = 2 * dy - dx;
+	x = 0;
+	while (x < dx)
+	{
+		put_pixel(g->d, y, vpos[1] + x, 0x00dadada);
+		if (p >= 0)
+		{
+			y += dir;
+			p = p - 2 * (dx - dy);
+		}
+		else
+			p = p + 2 * dx;
+		x++;
+	}
+}
+
+void	put_player_line(t_game *g, int x, int y)
+{
+	int			vpos[2];
+	int			vend[2];
+	t_player	p;
+
+	p = *g->pl;
+	vpos[0] = p.posX;
+	vpos[1] = p.posY;
+	vend[0] = x;
+	vend[1] = y;
+	if (abs(x - (int)p.posX) > abs(y - (int)p.posY))
+		put_lineH(g, vpos, vend);
+	else
+		put_lineV(g, vpos, vend);
 }

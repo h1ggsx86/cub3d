@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop_raycast.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 13:27:31 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/05 17:02:11 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/06 15:41:50 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,14 @@ int	ray_loop(t_game *g, t_player *pl)
 		cameraX = 2 * x / (double)WIN_WIDTH - 1;
 		ray_dirX = pl->dirX + pl->viewX * cameraX;
 		ray_dirY = pl->dirY + pl->viewY * cameraX;
+		if (ray_dirX == 0)
+			ray_dirX = 1e30;
+		if (ray_dirY == 0)
+			ray_dirY = 1e30;
+		printf("[DEBUG] ray_dirX :\t%f | ray_dirY :\t%f\n", ray_dirX, ray_dirY);
 
-		delta_distX = abs(1 / ray_dirX);
-		delta_distY = abs(1 / ray_dirY);
+		delta_distX = fabs(1 / ray_dirX);
+		delta_distY = fabs(1 / ray_dirY);
 
 		if (ray_dirX < 0)
 		{
@@ -59,6 +64,7 @@ int	ray_loop(t_game *g, t_player *pl)
 			side_distY = (mapY + 1.0 - pl->posY) * delta_distY;
 		}
 
+
 		while (!hit)
 		{
 			if (side_distX < side_distY)
@@ -78,6 +84,8 @@ int	ray_loop(t_game *g, t_player *pl)
 				hit = 1;
 		}
 
+		printf("[DEBUG] side_distX :\t%f | side_distY :\t%f\n", side_distX, side_distY);
+
 		if (!side)
 			wall_dist = (side_distX - delta_distX);
 		else
@@ -95,6 +103,8 @@ int	ray_loop(t_game *g, t_player *pl)
 		if (side == 1)
 			color = color / 2;
 		put_vline(g, draw_start, draw_end, x, color);
+		//put_player_line(g, (pl->posX + wall_dist) * 5, (pl->posY + wall_dist) * 5);
 		x++;
 	}
+	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 #    By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/24 19:27:15 by tnedel            #+#    #+#              #
-#    Updated: 2025/03/06 10:06:36 by tnedel           ###   ########.fr        #
+#    Updated: 2025/03/06 10:16:02 by tnedel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,7 +73,6 @@ title:
 		@$(call title_var)
 
 clean: title
-		@make -C $(LIBFT_DIR) clean
 		@echo "$(NEWLINE)\e[0;33mRemoving obj..."
 		@if [ ! -d "$(OBJ_DIR)" ]; \
 		then \
@@ -82,12 +81,14 @@ clean: title
 			rm -rfv $(OBJ_DIR); \
 			echo ;\
 		fi
+		@echo "Cleaning libft..."
+		@(make --no-print-directory -C $(LIBFT_DIR) fclean)
+		@echo
 		@echo "Cleaning mlx..."
 		@(make --no-print-directory -C mlx-linux clean)
 		@echo "\e[0m"
 
 fclean: clean
-		@make -C $(LIBFT_DIR) fclean
 		@echo "\e[0;33mRemoving executable..."
 		@if [ -f "$(NAME)" ]; \
 		then \
@@ -96,6 +97,9 @@ fclean: clean
 		else \
 			echo "Executable already removed\e[0m"; echo ; \
 		fi
+		@echo "\e[0;33mRemoving archive..."
+		@(make --no-print-directory -C $(LIBFT_DIR) fclean)
+		@echo "\e[0m"
 
 re: fclean all
 

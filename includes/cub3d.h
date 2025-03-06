@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 15:02:41 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/06 10:02:45 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/06 12:49:03 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,11 @@ void	put_pixel(t_data *d, int x, int y, int color);
 void	put_player_square(t_data *d, t_player *pl, int c);
 void	put_player_circle(t_game *g, int color, int r);
 void	put_vline(t_game *g, int y_start, int y_end, int x, int color);
+void	put_player_line(t_game *g, int x, int y);
 void	moves_input(int keycode, t_game *g);
 
 /* LOOP */
+int		ray_loop(t_game *g, t_player *pl);
 void	the_loop(t_game *g);
 
 /* parsing */
