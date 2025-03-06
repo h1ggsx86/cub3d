@@ -6,16 +6,16 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 15:37:30 by arotondo          #+#    #+#             */
-/*   Updated: 2025/03/05 17:45:25 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/05 18:00:35 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void	get_mapper(t_data *d)
-{
+// void	get_mapper(t_data *d)
+// {
 	
-}
+// }
 
 void	parse_map(t_game *g)
 {
