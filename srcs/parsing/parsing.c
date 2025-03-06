@@ -6,11 +6,16 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 15:37:30 by arotondo          #+#    #+#             */
-/*   Updated: 2025/03/05 16:26:03 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/05 18:00:35 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+// void	get_mapper(t_data *d)
+// {
+	
+// }
 
 void	parse_map(t_game *g)
 {
@@ -19,7 +24,11 @@ void	parse_map(t_game *g)
 	line = get_next_line(g->map);
 	while (line)
 	{
+		free(line);
 		line = get_next_line(g->map);
+		if (!line)
+			break ;
+		get_mapper();
 	}
 	get_next_line(-1);
 	close(g->map);
