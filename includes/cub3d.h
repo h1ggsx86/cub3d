@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 15:02:41 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/06 16:38:51 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/06 18:55:02 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,6 @@ void	parsing_the_thing(t_game *g, char *file);
 void	parse_map(t_game *g);
 
 /* error */
-void	err_message(t_data *data, char *arg, char *mess);
+void	err_message(t_game *g, char *arg, char *mess);
 
 #endif
