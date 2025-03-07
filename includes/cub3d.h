@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 15:02:41 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/06 18:55:02 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/07 19:41:51 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdbool.h>
 # include <sys/stat.h>
 # include <math.h>
 # include <fcntl.h>
@@ -52,6 +53,13 @@ typedef struct s_data
 	int		height;
 	int		width;
 	int		color;
+	int		i_text;
+	bool	all_text;
+	bool	all_colors;
+	char	*north_path;
+	char	*south_path;
+	char	*west_path;
+	char	*east_path;
 }			t_data;
 
 typedef struct s_player
@@ -96,6 +104,9 @@ void	the_loop(t_game *g);
 /* parsing */
 void	parsing_the_thing(t_game *g, char *file);
 void	parse_map(t_game *g);
+
+/* parsing_utils */
+int		is_indicator(t_data *d, char *line);
 
 /* error */
 void	err_message(t_game *g, char *arg, char *mess);
