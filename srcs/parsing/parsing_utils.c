@@ -6,7 +6,7 @@
 /*   By: xenon <xenon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 19:26:41 by arotondo          #+#    #+#             */
-/*   Updated: 2025/03/08 20:06:25 by xenon            ###   ########.fr       */
+/*   Updated: 2025/03/10 18:34:24 by xenon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +56,13 @@ int	is_indicator(t_data *d, char *line)
 	return (1);
 }
 
-
 void	get_color(t_data *d, char *line, int i)
 {
 	while (line[i] && !ft_isspace(line[i]))
 		i++;
 	while (ft_isdigit(line[i]))
 	{
-		ft_strlcpy(d->colors->r, )
+		d->colors->r = line[i];
 		i++;
 	}
 }
@@ -73,7 +72,7 @@ int		is_color(t_data *d, char *line)
 	int	i;
 
 	i = 0;
-	while (line[i]
+	while (line[i])
 	{
 		if (!ft_isspace(line[i]))
 			i++;
