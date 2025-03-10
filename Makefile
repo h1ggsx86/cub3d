@@ -6,7 +6,7 @@
 #    By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/24 19:27:15 by tnedel            #+#    #+#              #
-#    Updated: 2025/03/06 16:37:29 by tnedel           ###   ########.fr        #
+#    Updated: 2025/03/06 19:42:33 by tnedel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,8 +38,9 @@ OBJ_DIR = obj
 SRC		= $(SRC_DIR)/init_game.c $(SRC_DIR)/init_struct.c \
 			$(SRC_DIR)/exit_game.c $(SRC_DIR)/put_pixel.c \
 			$(SRC_DIR)/loop_game.c $(SRC_DIR)/input.c \
-			$(SRC_DIR)/main.c $(SRC_DIR)/parsing/parsing.c \
-			$(SRC_DIR)/loop_raycast.c $(SRC_DIR)/utils/error.c \
+			$(SRC_DIR)/loop_raycast.c \
+			$(SRC_DIR)/main.c $(SRC_DIR)/utils/error.c \
+			$(SRC_DIR)/parsing/parsing.c 
 SRC_OBJ	= $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 all: title $(NAME)
@@ -48,10 +49,11 @@ all: title $(NAME)
 		@echo
 
 $(NAME): $(MLX_LIB) $(LIBFT_LIB) $(SRC_OBJ)
-		@$(CC) $(CFLAGS) -I $(INC_DIR) -I $(LIBFT_DIR) -o $@ $^ $(MLXFLAGS)
+		@$(CC) $(CFLAGS) -I $(INC_DIR) -I $(LIBFT_DIR) -o $@ $^ $(MLXFLAGS) $(LIBFT_LIB)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
-		@echo -n "Compilings..."
+		@echo -n "Compiling..."
+		@mkdir -p $(dir $@)
 		@$(CC) $(CFLAGS) -I $(INC_DIR) -I $(LIBFT_DIR) -I $(MLX_DIR) -O3 -c $< -o $@
 		@echo -n "$< "
 		@echo "-> \e[0;32m[OK]\e[0m"
