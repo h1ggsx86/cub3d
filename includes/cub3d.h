@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: xenon <xenon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 15:02:41 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/07 19:41:51 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/08 19:58:32 by xenon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,14 @@
 
 extern int	worldMap[MAP_WIDTH][MAP_HEIGHT];
 
+
+typedef struct s_color
+{
+	unsigned char	r;
+	unsigned char	g;
+	unsigned char	b;
+}			t_color;
+
 typedef struct s_mimg
 {
 	void	*img;
@@ -46,21 +54,23 @@ typedef struct s_mimg
 
 typedef struct s_data
 {
-	t_mimg	*img_map;
-	t_mimg	*img_player;
-	int		active_img;
-	char	**mapper;
-	int		height;
-	int		width;
-	int		color;
-	int		i_text;
-	bool	all_text;
-	bool	all_colors;
-	char	*north_path;
-	char	*south_path;
-	char	*west_path;
-	char	*east_path;
-}			t_data;
+	t_mimg		*img_map;
+	t_mimg		*img_player;
+	t_color		*colors;
+	int			active_img;
+	char		**mapper;
+	int			height;
+	int			width;
+	int			i_text;
+	u_int32_t	ground_color;
+	u_int32_t	roof_color;
+	bool		all_text;
+	bool		all_colors;
+	char		*north_path;
+	char		*south_path;
+	char		*west_path;
+	char		*east_path;
+}				t_data;
 
 typedef struct s_player
 {

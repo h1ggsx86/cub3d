@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 19:26:41 by arotondo          #+#    #+#             */
-/*   Updated: 2025/03/07 19:46:31 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/12 16:23:49 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,29 @@ int	is_indicator(t_data *d, char *line)
 	if (d->i_text == 4)
 		d->all_text == true;
 	return (1);
+}
+
+void	get_color(t_data *d, char *line, int i)
+{
+	while (line[i] && !ft_isspace(line[i]))
+		i++;
+	while (ft_isdigit(line[i]))
+	{
+		d->colors->r = line[i];
+		i++;
+	}
+}
+
+int		is_color(t_data *d, char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i])
+	{
+		if (!ft_isspace(line[i]))
+			i++;
+		else if (line[i] == 'F' &&)
+			get_color(d, line, i++);
+	}
 }
