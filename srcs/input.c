@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 14:49:39 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/06 16:28:11 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/12 15:36:17 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 void	redraw_img(t_game *g)
 {
+	t_player	p;
 	t_mimg	*img;
 
+	p = *g->pl;
 	if (g->d->active_img)
 		img = g->d->img_map + 1;
 	else
@@ -24,9 +26,10 @@ void	redraw_img(t_game *g)
 	img->img = NULL;
 	if (img_init(img, g->d, g->init))
 		exit_game(g, 1);
-	ray_loop(g, g->pl);
-	// put_player_circle(g, g->d->color, 10);
-	// put_player_line(g, g->pl->posX + g->pl->dirX * 50, g->pl->posY + g->pl->dirY * 50);
+	draw_map(g);
+	ray_loop(g, *g->pl);
+	put_player_circle(g, g->d->color, 5);
+	put_player_line(g, p.posX + p.pdx * 5, p.posY + p.pdy * 5);
 	if (g->d->active_img)
 		g->d->active_img = 0;
 	else
@@ -35,58 +38,51 @@ void	redraw_img(t_game *g)
 
 void	moves_input(int keycode, t_game *g)
 {
-	double	old_dirX, old_viewX;
-	t_player	*pl;
+	t_player	*p;
 
-	pl = g->pl;
-	old_dirX = pl->dirX;
-	old_viewX = pl->viewX;
+	p = g->pl;
+	if (keycode == XK_Right)
+	{
+		p->pa += 0.1;
+		if (p->pa < 0)
+			p->pa -= 2 * PI;
+		p->pdx = cosf(p->pa) * 5;
+		p->pdy = sinf(p->pa) * 5;
+		// printf("[DEBUG] pa :\t%f | pdx :\t%f | pdy :\t%f\n", p->pa, p->pdx, p->pdy);
+		redraw_img(g);
+	}
+	else if (keycode == XK_Left)
+	{
+		p->pa -= 0.1;
+		if (p->pa < 0)
+			p->pa += 2 * PI;
+		p->pdx = cosf(p->pa) * 5;
+		p->pdy = sinf(p->pa) * 5;
+		// printf("[DEBUG] pa :\t%f | pdx :\t%f | pdy :\t%f\n", p->pa, p->pdx, p->pdy);
+		redraw_img(g);
+	}
+	else if (keycode == XK_s)
+	{
+		p->posX -= p->pdx * 5;
+		p->posY -= p->pdy * 5;
+		// printf("[DEBUG] pa :\t%f | pdx :\t%f | pdy :\t%f\n", p->pa, p->pdx, p->pdy);
+		redraw_img(g);
+	}
+	else if (keycode == XK_w)
+	{
+		p->posX += p->pdx * 5;
+		p->posY += p->pdy * 5;
+		// printf("[DEBUG] pa :\t%f | pdx :\t%f | pdy :\t%f\n", p->pa, p->pdx, p->pdy);
+		redraw_img(g);
+	}
 	// if (keycode == XK_a || keycode == XK_Left)
 	// {
 	// 	pl->posX -= 25;
 	// 	redraw_img(g);
 	// }
-	if (keycode == XK_Left)
-	{
-		pl->dirX = pl->dirX * cosf(-3) - pl->dirY * sinf(-3);
-		pl->dirY = old_dirX * sinf(-3) + pl->dirY * cosf(-3);
-		pl->viewX = pl->viewX * cosf(-3) - pl->viewY * sinf(-3);
-		pl->viewY = old_viewX * sinf(-3) + pl->viewY * cosf(-3);
-		printf("[DEBUG] dirX :\t%f\t| dirY :\t%f\n", pl->dirX, pl->dirY);
-		redraw_img(g);
-	}
 	// else if (keycode == XK_d || keycode == XK_Right)
 	// {
 	// 	pl->posX += 25;
 	// 	redraw_img(g);
 	// }
-	else if (keycode == XK_Right)
-	{
-		pl->dirX = pl->dirX * cosf(3) - pl->dirY * sinf(3);
-		pl->dirY = old_dirX * sinf(3) + pl->dirY * cosf(3);
-		pl->viewX = pl->viewX * cosf(3) - pl->viewY * sinf(3);
-		pl->viewY = old_viewX * sinf(3) + pl->viewY * cosf(3);
-		printf("[DEBUG] dirX :\t%f\t| dirY :\t%f\n", pl->dirX, pl->dirY);
-		redraw_img(g);
-	}
-	else if (keycode == XK_s || keycode == XK_Down)
-	{
-		if (!worldMap[(int)(pl->posX - pl->dirX * 00.33)][(int)pl->posY])
-			pl->posX -= pl->dirX * 00.33;
-		if (!worldMap[(int)pl->posX][(int)(pl->posY - pl->dirY * 00.33)])
-			pl->posY -= pl->dirY * 00.33;
-		// pl->posX -= pl->dirX * 5;
-		// pl->posY -= pl->dirY * 5;
-		redraw_img(g);
-	}
-	else if (keycode == XK_w || keycode == XK_Up)
-	{
-		if (!worldMap[(int)(pl->posX + pl->dirX * 00.33)][(int)pl->posY])
-			pl->posX += pl->dirX * 00.33;
-		if (!worldMap[(int)pl->posX][(int)(pl->posY + pl->dirY * 00.33)])
-			pl->posY += pl->dirY * 00.33;
-		// pl->posX += pl->dirX * 5;
-		// pl->posY += pl->dirY * 5;
-		redraw_img(g);
-	}
 }

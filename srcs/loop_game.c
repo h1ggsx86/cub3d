@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 10:30:37 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/06 15:57:28 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/10 14:59:50 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,11 @@ void	the_loop(t_game *g)
 {
 	printf("img1 at %p\n", g->d->img_map);
 	printf("img2 at %p\n", g->d->img_map + 1);
+	draw_map(g);
+	put_player_circle(g, g->d->color, 5);
+	g->d->active_img = 0;
+	draw_map(g);
+	put_player_circle(g, g->d->color, 5);
 	mlx_loop_hook(g->init, &handle_no_event, g);
 	mlx_hook(g->win, KeyPress, KeyPressMask, &input_handler, g);
 	mlx_hook(g->win, DestroyNotify, NoEventMask, &close_win_pointer, g);

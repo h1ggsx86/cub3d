@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 15:38:41 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/06 16:22:57 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/10 15:10:18 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	put_pixel(t_data *d, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void	put_player_square(t_data *d, t_player *pl, int c)
+void	put_square(t_data *d, int xc, int yc, int c)
 {
 	int	y;
 	int	x;
@@ -36,7 +36,7 @@ void	put_player_square(t_data *d, t_player *pl, int c)
 		x = 0;
 		while (x < c)
 		{
-			put_pixel(d, pl->posX * 5 + x, pl->posY * 5 + y, d->color);
+			put_pixel(d, xc + x, yc + y, d->color);
 			x++;
 		}
 		y++;
@@ -105,97 +105,110 @@ void	put_player_circle(t_game *g, int color, int r)
 	}
 }
 
-void	put_lineH(t_game *g, int vpos[2], int vend[2])
+void	put_lineL(t_game *g, int x0, int y0, int x1, int y1)
 {
-	int	x;
-	int	y;
-	int	p;
-	int	dy;
 	int	dx;
-	int	dir;
+	int	dy;
+	int	yi;
+	int	D;
 
-	if (vpos[0] > vend[0])
-	{
-		x = vend[0];
-		vend[0] = vpos[0];
-		vpos[0] = x;
-	}
-	dy = vend[1] - vpos[1];
-	dx = vend[0] - vpos[0];
+	dx = x1 - x0;
+	dy = y1 - y0;
+	yi = 1;
 	if (dy < 0)
-		dir = -1;
-	else
-		dir = 1;
-	dy *= dir;
-	y = vpos[1];
-	p = 2 * dy - dx;
-	x = 0;
-	while (x < dx)
 	{
-		put_pixel(g->d, vpos[0] + x, y, 0x00dadada);
-		if (p > 0)
+		yi = -1;
+		dy = -dy;
+	}
+	D = (2 * dy) - dx;
+	while (x0 <= x1)
+	{
+		put_pixel(g->d, x0, y0, g->d->color);
+		if (D > 0)
 		{
-			y += dir;
-			p = p - 2 * (dy - dx);
+			y0 += yi;
+			D += (2 * (dy - dx));
 		}
 		else
-			p = p + 2 * dy;
-		x++;
+			D += 2 * dy;
+		x0++;
 	}
 }
 
-void	put_lineV(t_game *g, int vpos[2], int vend[2])
+void	put_lineH(t_game *g, int x0, int y0, int x1, int y1)
 {
-	int	x;
-	int	y;
-	int	p;
-	int	dy;
 	int	dx;
-	int	dir;
+	int	dy;
+	int	xi;
+	int	D;
 
-	if (vpos[1] > vend[1])
-	{
-		x = vend[1];
-		vend[1] = vpos[1];
-		vpos[1] = x;
-	}
-	dy = vend[1] - vpos[1];
-	dx = vend[0] - vpos[0];
+	dx = x1 - x0;
+	dy = y1 - y0;
+	xi = 1;
 	if (dx < 0)
-		dir = -1;
-	else
-		dir = 1;
-	dx *= dir;
-	y = vpos[0];
-	p = 2 * dy - dx;
-	x = 0;
-	while (x < dx)
 	{
-		put_pixel(g->d, y, vpos[1] + x, 0x00dadada);
-		if (p >= 0)
+		xi = -1;
+		dx = -dx;
+	}
+	D = (2 * dx) - dy;
+	while (y0 <= y1)
+	{
+		put_pixel(g->d, x0, y0, g->d->color);
+		if (D > 0)
 		{
-			y += dir;
-			p = p - 2 * (dx - dy);
+			x0 += xi;
+			D += (2 * (dx - dy));
 		}
 		else
-			p = p + 2 * dx;
-		x++;
+			D += 2 * dx;
+		y0++;
 	}
 }
 
 void	put_player_line(t_game *g, int x, int y)
 {
-	int			vpos[2];
-	int			vend[2];
 	t_player	p;
 
 	p = *g->pl;
-	vpos[0] = p.posX;
-	vpos[1] = p.posY;
-	vend[0] = x;
-	vend[1] = y;
 	if (abs(x - (int)p.posX) > abs(y - (int)p.posY))
-		put_lineH(g, vpos, vend);
+	{
+		if (p.posX > x)
+			put_lineL(g, x, y, p.posX, p.posY);
+		else
+			put_lineL(g, p.posX, p.posY, x, y);
+	}
 	else
-		put_lineV(g, vpos, vend);
+	{
+		if (p.posY > y)
+			put_lineH(g, x, y, p.posX, p.posY);
+		else
+			put_lineH(g, p.posX, p.posY, x, y);
+	}
+}
+
+void	draw_map(t_game *g)
+{
+	int	x;
+	int	y;
+	int	xo;
+	int	yo;
+
+	y = 0;
+	while (y < MAP_HEIGHT)
+	{
+		x = 0;
+		while (x < MAP_WIDTH)
+		{
+			if (worldMap[y * MAP_WIDTH + x] == 0)
+				g->d->color = 0x00565656;
+			else
+				g->d->color = 0x00dadada;
+			xo = x * MAP_SIZE;
+			yo = y * MAP_SIZE;
+			put_square(g->d, xo, yo, MAP_SIZE - 1);
+			x++;
+		}
+		y++;
+	}
+	g->d->color = 0x00dadada;
 }
