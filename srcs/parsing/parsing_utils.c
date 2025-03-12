@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 19:26:41 by arotondo          #+#    #+#             */
-/*   Updated: 2025/03/07 19:45:36 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/07 19:46:31 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,7 @@ int	is_indicator(t_data *d, char *line)
 		d->i_text++;
 		return (0);
 	}
+	if (d->i_text == 4)
+		d->all_text == true;
 	return (1);
 }
