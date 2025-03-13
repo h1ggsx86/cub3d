@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xenon <xenon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 15:02:41 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/08 19:58:32 by xenon            ###   ########.fr       */
+/*   Updated: 2025/03/13 17:43:44 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ typedef struct s_data
 	int			height;
 	int			width;
 	int			i_text;
+	int			i_colors;
 	u_int32_t	ground_color;
 	u_int32_t	roof_color;
 	bool		all_text;
@@ -91,15 +92,15 @@ typedef struct s_game
 	t_player	*pl;
 }				t_game;
 
-/* INIT */
+/* init */
 int		img_init(t_mimg *img, t_data *d, void *init);
 void	game_init(t_game *g);
 void	struct_init(t_game *new, t_data *data, t_player *pl);
 
-/* EXIT */
+/* exit */
 void	exit_game(t_game *g, int ecode);
 
-/* PUT & PLAYER*/
+/* put & player */
 void	put_pixel(t_data *d, int x, int y, int color);
 void	put_player_square(t_data *d, t_player *pl, int c);
 void	put_player_circle(t_game *g, int color, int r);
@@ -107,16 +108,9 @@ void	put_vline(t_game *g, int y_start, int y_end, int x, int color);
 void	put_player_line(t_game *g, int x, int y);
 void	moves_input(int keycode, t_game *g);
 
-/* LOOP */
+/* loop */
 int		ray_loop(t_game *g, t_player *pl);
 void	the_loop(t_game *g);
-
-/* parsing */
-void	parsing_the_thing(t_game *g, char *file);
-void	parse_map(t_game *g);
-
-/* parsing_utils */
-int		is_indicator(t_data *d, char *line);
 
 /* error */
 void	err_message(t_game *g, char *arg, char *mess);
