@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:16:20 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/13 17:43:06 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/14 12:56:39 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	data_init(t_data *data)
 	data->height = WIN_HEIGHT;
 	data->width = WIN_WIDTH;
 	data->active_img = 1;
-	data->color = 0x00dadada;
+	// data->color = 0x00dadada;
 	data->i_text = 0;
 	data->all_text = false;
 	data->all_colors = false;

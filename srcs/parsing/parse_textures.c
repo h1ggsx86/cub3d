@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 16:01:40 by arotondo          #+#    #+#             */
-/*   Updated: 2025/03/13 17:37:37 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/14 12:56:52 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	get_textures(t_data *d, char *line, int idc)
 	else if (idc == 69)
 		get_east_or_west(d, line, i, 69);
 	if (d->i_text == 4)
-		d->all_text == true;
+		d->all_text = true;
 }
 
 int	is_indicator(t_game *g, char *line)

@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 15:02:41 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/13 17:43:44 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/14 11:58:49 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,8 @@ extern int	worldMap[MAP_WIDTH][MAP_HEIGHT];
 
 typedef struct s_color
 {
-	unsigned char	r;
-	unsigned char	g;
-	unsigned char	b;
+	unsigned char	**rgb;
+	unsigned int	*int_rgb;
 }			t_color;
 
 typedef struct s_mimg

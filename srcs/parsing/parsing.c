@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 15:37:30 by arotondo          #+#    #+#             */
-/*   Updated: 2025/03/13 17:37:49 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/14 13:00:53 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,9 @@ void	parsing_the_thing(t_game *g, char *file)
 			break ;
 		if (g->d->all_text == false)
 			is_indicator(g, line);
-		// else if (g->d->all_colors == false)
-			// parse_colors(line);
+		else if (g->d->all_colors == false)
+			parse_colors(g, line);
+		else
+			parse_map(g, line);
 	}
-	parse_map(g);
 }
