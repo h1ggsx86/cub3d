@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 15:02:41 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/14 11:58:49 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/17 18:47:50 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # include "../mlx-linux/mlx.h"
 # include "../mlx-linux/mlx_int.h"
 # include "../libft/libft.h"
+# include "../includes/parsing.h"
 
 # define MAP_WIDTH 24
 # define MAP_HEIGHT 24
@@ -62,6 +63,7 @@ typedef struct s_data
 	int			width;
 	int			i_text;
 	int			i_colors;
+	int			color;
 	u_int32_t	ground_color;
 	u_int32_t	roof_color;
 	bool		all_text;

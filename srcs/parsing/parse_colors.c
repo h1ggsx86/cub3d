@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 16:01:10 by arotondo          #+#    #+#             */
-/*   Updated: 2025/03/14 12:59:42 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/17 18:42:33 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 u_int32_t	bitshift_op(t_game *g)
 {
-	u_int32_t	ret;
-	int			i;
+	int	i;
 
+	i = 0;
 	while (i < 3)
 	{
-		if (g->d->colors->int_rgb > 255)
+		if (g->d->colors->int_rgb[i] > 255)
 			err_message(g, "colors", "color range between 0 and 255");
 		i++;
 	}
@@ -36,10 +36,10 @@ void	get_color(t_game *g, char *line, int i, int idc)
 	{
 		while (ft_isdigit(line[i]))
 		{
-			g->d->colors->rgb[j] = line[i];
+			g->d->colors->rgb[j][i] = line[i];
 			i++;
 		}
-		g->d->colors->int_rgb[j] = ft_atoi(g->d->colors->rgb[j]);
+		g->d->colors->int_rgb[j] = ft_atoi((const char *)g->d->colors->rgb[j]);
 		j++;
 		if (line[i] == ',' || !ft_isspace(line[i]))
 			i++;
@@ -52,7 +52,7 @@ void	get_color(t_game *g, char *line, int i, int idc)
 		g->d->ground_color = bitshift_op(g);
 	g->d->i_colors++;
 	if (g->d->i_colors == 2)
-		g->d->all_colors == true;
+		g->d->all_colors = true;
 }
 
 int	is_color(t_game *g, char *line, int i)

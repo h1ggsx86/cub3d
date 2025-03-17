@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 16:16:04 by arotondo          #+#    #+#             */
-/*   Updated: 2025/03/14 12:59:10 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/17 18:50:21 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,14 @@
 
 # include "cub3d.h"
 
+typedef struct s_color	t_color;
+typedef struct s_mimg	t_mimg;
+typedef struct s_data	t_data;
+typedef struct s_player	t_player;
+typedef struct s_game	t_game;
+
 /* parsing */
+void	parsing_the_thing(t_game *g, char *file);
 
 /* parsing_utils */
 
@@ -26,7 +33,11 @@ void		get_textures(t_data *d, char *line, int idc);
 int			is_indicator(t_game *g, char *line);
 
 /* parse_map */
-void		parse_map(t_game *game, char *line);
+int			is_inside(t_game *g, bool player, int j);
+int			is_a_side(t_game *g, int j);
+int			is_pos_player(int c);
+int			is_line_correct(t_game *g, int j);
+void		parse_map(t_game *game, char *line, int j);
 
 /* parse_colors */
 u_int32_t	bitshift_op(t_game *g);
