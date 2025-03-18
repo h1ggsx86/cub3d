@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 16:16:04 by arotondo          #+#    #+#             */
-/*   Updated: 2025/03/17 18:50:21 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/18 15:28:04 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int			is_inside(t_game *g, bool player, int j);
 int			is_a_side(t_game *g, int j);
 int			is_pos_player(int c);
 int			is_line_correct(t_game *g, int j);
-void		parse_map(t_game *game, char *line, int j);
+void		parse_map(t_game *g, char *line, int j);
 
 /* parse_colors */
 u_int32_t	bitshift_op(t_game *g);

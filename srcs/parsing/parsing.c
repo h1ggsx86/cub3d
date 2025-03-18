@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 15:37:30 by arotondo          #+#    #+#             */
-/*   Updated: 2025/03/17 19:45:30 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/18 18:46:19 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,15 @@ void	init_my_map(t_game *g, char *file)
 	int		i;
 	bool	in_map;
 
-	line = NULL;
 	i = 0;
 	in_map = false;
 	g->map = open(file, O_RDONLY, 0664);
 	if (g->map < 0)
 		exit(1);
-	line = get_next_line(g->map);
+	perror("CLOSE");
+	line = malloc(sizeof(char) * 1);
+	if (!line)
+		exit(1);
 	while (line)
 	{
 		free(line);
@@ -34,12 +36,16 @@ void	init_my_map(t_game *g, char *file)
 		if (line[0] == '1' || line[0] == ' ' || line[0] == '\t')
 			in_map = true;
 		if (in_map == true && line[0] == '\n')
-			in_map = false;
-		else if (in_map == true)
+			break ;
+		if (in_map == true)
 			i++;
 	}
 	g->d->height = i;
 	printf("height = %d\n", g->d->height);
+	close(g->map);
+	g->d->mapper = (char **)ft_calloc(sizeof(char *), g->d->height);
+	if (!g->d->mapper)
+		exit(1);
 }
 
 void	parsing_the_thing(t_game *g, char *file)
@@ -52,7 +58,10 @@ void	parsing_the_thing(t_game *g, char *file)
 	g->map = open(file, O_RDONLY, 0664);
 	if (g->map < 0)
 		exit(1);
-	line = get_next_line(g->map);
+	line = malloc(1 * sizeof(char));
+	if (!line)
+		exit(1);
+	perror("BEFORE");
 	while (line)
 	{
 		free(line);
@@ -67,4 +76,6 @@ void	parsing_the_thing(t_game *g, char *file)
 		parse_map(g, line, i);
 		i++;
 	}
+	close(g->map);
+	printf("\n");
 }
