@@ -6,50 +6,74 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 16:01:40 by arotondo          #+#    #+#             */
-/*   Updated: 2025/03/17 18:52:58 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/19 12:31:51 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/parsing.h"
 
-void	get_north_or_south(t_data *d, char *line, int i, int idc)
+void	get_north_or_south(t_data *d, char *line, int idc)
 {
-	int	j;
+	int	i;
 
-	j = i;
+	i = 0;
 	if (idc == 78)
 	{
-		while (line[j] && ft_isspace(line[j]))
-			j++;
-		d->north_path = ft_substr(line, i, j);
+		while (line[i] && ft_isspace(line[i]))
+			i++;
+		line[i] = '\0';
+		d->north_path = ft_strdup(line);
+		if (!d->north_path)
+			exit(1);
+		printf("NO => %s\n", d->north_path);
+		// if (access(d->north_path, R_OK | X_OK))
+		// 	exit(1); // implenter sortie et free
 		d->i_text++;
 	}
 	else if (idc == 83)
 	{
-		while (line[j] && ft_isspace(line[j]))
-			j++;
-		d->south_path = ft_substr(line, i, j);
+		while (line[i] && ft_isspace(line[i]))
+			i++;
+		line[i] = '\0';
+		d->south_path = ft_strdup(line);
+		if (!d->south_path)
+			exit(1);
+		printf("SO => %s\n", d->south_path);
+		// if (access(d->south_path, R_OK | X_OK))
+		// 	exit(1); // implenter sortie et free
 		d->i_text++;
 	}
 }
 
-void	get_east_or_west(t_data *d, char *line, int i, int idc)
+void	get_east_or_west(t_data *d, char *line, int idc)
 {
-	int	j;
+	int	i;
 
-	j = i;
+	i = 0;
 	if (idc == 87)
 	{
-		while (line[j] && ft_isspace(line[j]))
-			j++;
-		d->west_path = ft_substr(line, i, j);
+		while (line[i] && ft_isspace(line[i]))
+			i++;
+		line[i] = '\0';
+		d->west_path = ft_strdup(line);
+		if (!d->west_path)
+			exit(1);
+		printf("WE => %s\n", d->west_path);
+		// if (access(d->west_path, R_OK | X_OK))
+		// 	exit(1); // implenter sortie et free
 		d->i_text++;
 	}
 	else if (idc == 69)
 	{
-		while (line[j] && ft_isspace(line[j]))
-			j++;
-		d->east_path = ft_substr(line, i, j);
+		while (line[i] && ft_isspace(line[i]))
+			i++;
+		line[i] = '\0';
+		d->east_path = ft_strdup(line);
+		if (!d->east_path)
+			exit(1);
+		printf("EA => %s\n", d->east_path);
+		// if (access(d->east_path, R_OK | X_OK))
+		// 	exit(1); // implenter sortie et free
 		d->i_text++;
 	}
 }
@@ -59,16 +83,16 @@ void	get_textures(t_data *d, char *line, int idc)
 	int	i;
 
 	i = 0;
-	while (line[i] && (line[i] != '.' || line[i] != '/'))
+	while (line[i] && (line[i] != '.' && line[i] != '/'))
 		i++;
 	if (idc == 78)
-		get_north_or_south(d, line, i, 78);
+		get_north_or_south(d, line + i, 78);
 	else if (idc == 83)
-		get_north_or_south(d, line, i, 83);
+		get_north_or_south(d, line + i, 83);
 	else if (idc == 87)
-		get_east_or_west(d, line, i, 87);
+		get_east_or_west(d, line + i, 87);
 	else if (idc == 69)
-		get_east_or_west(d, line, i, 69);
+		get_east_or_west(d, line + i, 69);
 	if (d->i_text == 4)
 		d->all_text = true;
 }
@@ -78,7 +102,7 @@ int	is_indicator(t_game *g, char *line)
 	int	i;
 
 	i = 0;
-	while (!ft_isspace(line[i]))
+	while (line[i] && !ft_isspace(line[i]))
 		i++;
 	if (line[i] == 'N' && !g->d->north_path)
 		get_textures(g->d, line, 78);

@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 15:37:30 by arotondo          #+#    #+#             */
-/*   Updated: 2025/03/18 18:46:19 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/19 12:32:36 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	init_my_map(t_game *g, char *file)
 	g->map = open(file, O_RDONLY, 0664);
 	if (g->map < 0)
 		exit(1);
-	perror("CLOSE");
 	line = malloc(sizeof(char) * 1);
 	if (!line)
 		exit(1);
@@ -41,9 +40,9 @@ void	init_my_map(t_game *g, char *file)
 			i++;
 	}
 	g->d->height = i;
-	printf("height = %d\n", g->d->height);
 	close(g->map);
-	g->d->mapper = (char **)ft_calloc(sizeof(char *), g->d->height);
+	get_next_line(-1);
+	g->d->mapper = (char **)ft_calloc(sizeof(char *), g->d->height + 1);
 	if (!g->d->mapper)
 		exit(1);
 }
@@ -61,21 +60,19 @@ void	parsing_the_thing(t_game *g, char *file)
 	line = malloc(1 * sizeof(char));
 	if (!line)
 		exit(1);
-	perror("BEFORE");
 	while (line)
 	{
 		free(line);
 		line = get_next_line(g->map);
 		if (!line)
 			break ;
-		// if (g->d->all_text == false)
-		// 	is_indicator(g, line);
-		// else if (g->d->all_colors == false)
-		// 	parse_colors(g, line);
-		// else
-		parse_map(g, line, i);
+		if (g->d->all_text == false)
+			is_indicator(g, line);
+		else if (g->d->all_colors == false)
+			parse_colors(g, line);
+		else
+			parse_map(g, line, i);
 		i++;
 	}
 	close(g->map);
-	printf("\n");
 }

@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 16:00:46 by arotondo          #+#    #+#             */
-/*   Updated: 2025/03/18 18:43:02 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/19 15:33:59 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,20 +92,6 @@ int	check_sides(t_game *g)
 	return (0);
 }
 
-int	is_a_side(t_game *g, int j)
-{
-	int	i;
-
-	i = 0;
-	while (g->d->mapper[j][i])
-	{
-		if (g->d->mapper[j][i] != '1' && g->d->mapper[j][i] != ' ')
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
 int	is_pos_player(int c)
 {
 	if (c == 'N')
@@ -120,26 +106,6 @@ int	is_pos_player(int c)
 		return (0);
 }
 
-int	is_line_correct(t_game *g, int j)
-{
-	int		i;
-	bool	player;
-
-	i = 0;
-	player = false;
-	while (g->d->mapper[j][i])
-	{
-		// if (is_a_side(g, j))
-		// 	err_message(g, "side", "must be closed");
-		// if (is_pos_player(g->d->mapper[j][i]) && player == false)
-		// 	player = true;
-		// else if (is_pos_player(g->d->mapper[j][i]) && player == true)
-		// 	return (1);
-		i++;
-	}
-	return (0);
-}
-
 void	parse_map(t_game *g, char *line, int j)
 {
 	int	i;
@@ -150,7 +116,6 @@ void	parse_map(t_game *g, char *line, int j)
 		exit(1);
 	while (line[i])
 	{
-		perror("HERE2");
 		g->d->mapper[j][i] = line[i];
 		printf("%c", g->d->mapper[j][i]);
 		i++;

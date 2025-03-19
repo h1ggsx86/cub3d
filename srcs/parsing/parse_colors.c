@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 16:01:10 by arotondo          #+#    #+#             */
-/*   Updated: 2025/03/17 18:42:33 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/19 16:19:12 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,40 +27,73 @@ u_int32_t	bitshift_op(t_game *g)
 	(g->d->colors->int_rgb[1] << 8) | (g->d->colors->int_rgb[2]));
 }
 
-void	get_color(t_game *g, char *line, int i, int idc)
+int	get_color(t_game *g, char *line, int n)
 {
+	int	i;
+	
+	i = 0;
+	while (ft_isdigit(line[i]))
+		i++;
+	// printf("line + i -> %s\n", line);
+	g->d->colors->rgb = ft_calloc(sizeof(char), i + 1);
+	if (!g->d->colors->rgb)
+		exit_game(g, 3);
+	ft_strlcpy((char *)g->d->colors->rgb, line, i + 1);
+	printf("color->rgb[%d] = %s\n", n, g->d->colors->rgb);
+	if (n < 3)
+		g->d->colors->int_rgb[n] = ft_atoi((const char *)g->d->colors->rgb);
+	else
+		exit_game(g, 3);
+	free(g->d->colors->rgb);
+	return (i);
+}
+
+void	cut_color(t_game *g, char *line, int idc)
+{
+	int	i;
 	int	j;
 
+	i = 0;
 	j = 0;
-	while (line[i])
+	while (line[i] && j < 3)
 	{
-		while (ft_isdigit(line[i]))
-		{
-			g->d->colors->rgb[j][i] = line[i];
-			i++;
-		}
-		g->d->colors->int_rgb[j] = ft_atoi((const char *)g->d->colors->rgb[j]);
+		i += get_color(g, line + i, j);
 		j++;
-		if (line[i] == ',' || !ft_isspace(line[i]))
+		while (line[i] && (line[i] == ',' || !ft_isspace(line[i])))
 			i++;
-		else
-			break ;
 	}
 	if (idc == 'F')
+	{
 		g->d->roof_color = bitshift_op(g);
+		printf("F = %" PRIx32 "\n", g->d->roof_color);
+	}
 	else
+	{
 		g->d->ground_color = bitshift_op(g);
+		printf("C = %" PRIx32 "\n", g->d->ground_color);
+	}
 	g->d->i_colors++;
 	if (g->d->i_colors == 2)
 		g->d->all_colors = true;
 }
 
-int	is_color(t_game *g, char *line, int i)
+int	is_color(t_game *g, char *line)
 {
+	int	i;
+
+	i = 0;
 	if (line[i] == 'F' && !g->d->roof_color)
-		get_color(g, line, i, 'F');
+	{
+		while (!ft_isdigit(line[i]))
+			i++;
+		cut_color(g, line + i, 'F');
+	}
 	else if (line[i] == 'C' && !g->d->ground_color)
-		get_color(g, line, i, 'C');
+	{
+		while (!ft_isdigit(line[i]))
+			i++;
+		cut_color(g, line + i, 'C');
+	}
 	else
 		return (1);
 	return (0);
@@ -71,11 +104,11 @@ void	parse_colors(t_game *g, char *line)
 	int	i;
 
 	i = 0;
-	while (line[i])
-	{
-		while (!ft_isspace(line[i]))
-			i++;
-		if (is_color(g, line, i))
-			err_message(g, "colors", "invalid indicator");
-	}
+	// if (g->d->all_text == false)
+	// 	return ;
+	while (line[i] && !ft_isspace(line[i]))
+		i++;
+	if (is_color(g, line + i))
+		return ;
+		// err_message(g, "colors", "invalid indicator");
 }

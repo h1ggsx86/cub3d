@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 15:02:41 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/17 18:47:50 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/19 16:06:04 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,10 @@
 # include <stdlib.h>
 # include <stdbool.h>
 # include <sys/stat.h>
+# include <string.h>
+# include <inttypes.h>
 # include <math.h>
 # include <fcntl.h>
-# include <string.h>
 # include <sys/time.h>
 # include <X11/Xlib.h>
 # include <X11/keysym.h>
@@ -39,8 +40,8 @@ extern int	worldMap[MAP_WIDTH][MAP_HEIGHT];
 
 typedef struct s_color
 {
-	unsigned char	**rgb;
-	unsigned int	*int_rgb;
+	unsigned char	*rgb;
+	unsigned int	int_rgb[3];
 }			t_color;
 
 typedef struct s_mimg

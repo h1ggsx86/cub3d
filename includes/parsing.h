@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 16:16:04 by arotondo          #+#    #+#             */
-/*   Updated: 2025/03/18 15:28:04 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/19 15:54:49 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,27 +22,31 @@ typedef struct s_player	t_player;
 typedef struct s_game	t_game;
 
 /* parsing */
+void	init_my_map(t_game *g, char *file);
 void	parsing_the_thing(t_game *g, char *file);
 
 /* parsing_utils */
 
 /* parse_textures */
-void		get_north_or_south(t_data *d, char *line, int i, int idc);
-void		get_east_or_west(t_data *d, char *line, int i, int idc);
+void		get_north_or_south(t_data *d, char *line, int idc);
+void		get_east_or_west(t_data *d, char *line, int idc);
 void		get_textures(t_data *d, char *line, int idc);
 int			is_indicator(t_game *g, char *line);
 
 /* parse_map */
 int			is_inside(t_game *g, bool player, int j);
-int			is_a_side(t_game *g, int j);
+void		choose_left_right(t_game *g, int *i, int *j);
+void		choose_top_bottom(t_game *g, int *i, int *j);
+void		if_finish(t_game *g, int i, int j, bool *done);
+int			check_sides(t_game *g);
 int			is_pos_player(int c);
-int			is_line_correct(t_game *g, int j);
 void		parse_map(t_game *g, char *line, int j);
 
 /* parse_colors */
 u_int32_t	bitshift_op(t_game *g);
-void		get_color(t_game *g, char *line, int i, int idc);
-int			is_color(t_game *g, char *line, int i);
+int			get_color(t_game *g, char *line, int n);
+void		cut_color(t_game *g, char *line, int idc);
+int			is_color(t_game *g, char *line);
 void		parse_colors(t_game *g, char *line);
 
 # endif

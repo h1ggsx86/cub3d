@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:16:20 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/17 19:02:31 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/19 13:46:31 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int	data_init(t_data *data)
 	data->south_path = NULL;
 	data->west_path = NULL;
 	data->east_path = NULL;
+	data->roof_color = 0;
+	data->ground_color = 0;
 	return (0);
 }
 
@@ -47,6 +49,17 @@ void	player_init(t_player *pl)
 	pl->viewY = 0.66;
 }
 
+int	color_init(t_data *data)
+{
+	t_color *color;
+
+	color = malloc(sizeof(t_color ));
+	if (!color)
+		return (1);
+	data->colors = color;
+	return (0);
+}
+
 void	struct_init(t_game *new, t_data *data, t_player *pl)
 {
 	new->init = NULL;
@@ -54,6 +67,8 @@ void	struct_init(t_game *new, t_data *data, t_player *pl)
 	new->d = data;
 	new->pl = pl;
 	if (data_init(new->d))
+		exit_game(new, 1);
+	if (color_init(new->d))
 		exit_game(new, 1);
 	player_init(new->pl);
 }
