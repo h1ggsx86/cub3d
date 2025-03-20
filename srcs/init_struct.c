@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:16:20 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/19 13:46:31 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/20 15:29:07 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	data_init(t_data *data)
 	data->i_text = 0;
 	data->all_text = false;
 	data->all_colors = false;
+	data->map_parsed = false;
 	data->north_path = NULL;
 	data->south_path = NULL;
 	data->west_path = NULL;

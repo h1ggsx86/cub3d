@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 15:37:30 by arotondo          #+#    #+#             */
-/*   Updated: 2025/03/19 12:32:36 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/20 16:51:12 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,17 @@ void	init_my_map(t_game *g, char *file)
 		exit(1);
 }
 
+void	check_map(t_game *g)
+{
+	if (check_sides(g))
+		exit_game(g, 4);
+}
+
 void	parsing_the_thing(t_game *g, char *file)
 {
 	char	*line;
 	int		i;
 
-	i = 0;
 	init_my_map(g, file);
 	g->map = open(file, O_RDONLY, 0664);
 	if (g->map < 0)
@@ -60,6 +65,7 @@ void	parsing_the_thing(t_game *g, char *file)
 	line = malloc(1 * sizeof(char));
 	if (!line)
 		exit(1);
+	i = 0;
 	while (line)
 	{
 		free(line);
@@ -71,8 +77,10 @@ void	parsing_the_thing(t_game *g, char *file)
 		else if (g->d->all_colors == false)
 			parse_colors(g, line);
 		else
-			parse_map(g, line, i);
-		i++;
+			parse_map(g, line, &i);
+		if (g->d->map_parsed == true)
+			break ;
 	}
 	close(g->map);
+	check_map(g);
 }

@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 16:01:10 by arotondo          #+#    #+#             */
-/*   Updated: 2025/03/19 16:19:12 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/20 15:12:50 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,10 @@ int	get_color(t_game *g, char *line, int n)
 	i = 0;
 	while (ft_isdigit(line[i]))
 		i++;
-	// printf("line + i -> %s\n", line);
 	g->d->colors->rgb = ft_calloc(sizeof(char), i + 1);
 	if (!g->d->colors->rgb)
 		exit_game(g, 3);
 	ft_strlcpy((char *)g->d->colors->rgb, line, i + 1);
-	printf("color->rgb[%d] = %s\n", n, g->d->colors->rgb);
 	if (n < 3)
 		g->d->colors->int_rgb[n] = ft_atoi((const char *)g->d->colors->rgb);
 	else
@@ -63,15 +61,9 @@ void	cut_color(t_game *g, char *line, int idc)
 			i++;
 	}
 	if (idc == 'F')
-	{
 		g->d->roof_color = bitshift_op(g);
-		printf("F = %" PRIx32 "\n", g->d->roof_color);
-	}
 	else
-	{
 		g->d->ground_color = bitshift_op(g);
-		printf("C = %" PRIx32 "\n", g->d->ground_color);
-	}
 	g->d->i_colors++;
 	if (g->d->i_colors == 2)
 		g->d->all_colors = true;
@@ -104,11 +96,8 @@ void	parse_colors(t_game *g, char *line)
 	int	i;
 
 	i = 0;
-	// if (g->d->all_text == false)
-	// 	return ;
 	while (line[i] && !ft_isspace(line[i]))
 		i++;
 	if (is_color(g, line + i))
-		return ;
-		// err_message(g, "colors", "invalid indicator");
+		return ; // implementer sortie d erreur
 }

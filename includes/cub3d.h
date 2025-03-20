@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 15:02:41 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/19 16:06:04 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/20 15:28:50 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ typedef struct s_data
 	u_int32_t	roof_color;
 	bool		all_text;
 	bool		all_colors;
+	bool		map_parsed;
 	char		*north_path;
 	char		*south_path;
 	char		*west_path;

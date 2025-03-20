@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 16:01:40 by arotondo          #+#    #+#             */
-/*   Updated: 2025/03/19 12:31:51 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/20 16:49:27 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	get_north_or_south(t_data *d, char *line, int idc)
 		d->north_path = ft_strdup(line);
 		if (!d->north_path)
 			exit(1);
-		printf("NO => %s\n", d->north_path);
 		// if (access(d->north_path, R_OK | X_OK))
 		// 	exit(1); // implenter sortie et free
 		d->i_text++;
@@ -38,7 +37,6 @@ void	get_north_or_south(t_data *d, char *line, int idc)
 		d->south_path = ft_strdup(line);
 		if (!d->south_path)
 			exit(1);
-		printf("SO => %s\n", d->south_path);
 		// if (access(d->south_path, R_OK | X_OK))
 		// 	exit(1); // implenter sortie et free
 		d->i_text++;
@@ -58,7 +56,6 @@ void	get_east_or_west(t_data *d, char *line, int idc)
 		d->west_path = ft_strdup(line);
 		if (!d->west_path)
 			exit(1);
-		printf("WE => %s\n", d->west_path);
 		// if (access(d->west_path, R_OK | X_OK))
 		// 	exit(1); // implenter sortie et free
 		d->i_text++;
@@ -71,7 +68,6 @@ void	get_east_or_west(t_data *d, char *line, int idc)
 		d->east_path = ft_strdup(line);
 		if (!d->east_path)
 			exit(1);
-		printf("EA => %s\n", d->east_path);
 		// if (access(d->east_path, R_OK | X_OK))
 		// 	exit(1); // implenter sortie et free
 		d->i_text++;

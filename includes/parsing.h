@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 16:16:04 by arotondo          #+#    #+#             */
-/*   Updated: 2025/03/19 15:54:49 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/20 16:45:46 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ int			is_indicator(t_game *g, char *line);
 int			is_inside(t_game *g, bool player, int j);
 void		choose_left_right(t_game *g, int *i, int *j);
 void		choose_top_bottom(t_game *g, int *i, int *j);
-void		if_finish(t_game *g, int i, int j, bool *done);
+void		is_map_parsed(t_game *g, int i, int j);
 int			check_sides(t_game *g);
 int			is_pos_player(int c);
-void		parse_map(t_game *g, char *line, int j);
+void		parse_map(t_game *g, char *line, int *j);
 
 /* parse_colors */
 u_int32_t	bitshift_op(t_game *g);
