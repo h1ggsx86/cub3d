@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 15:38:41 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/10 15:10:18 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/20 16:46:11 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	put_square(t_data *d, int xc, int yc, int c)
 
 void	put_vline(t_game *g, int y_start, int y_end, int x, int color)
 {
-	while (y_start < y_end)
+	while (y_start <= y_end)
 	{
 		put_pixel(g->d, x, y_start, color);
 		y_start++;
@@ -202,7 +202,7 @@ void	draw_map(t_game *g)
 			if (worldMap[y * MAP_WIDTH + x] == 0)
 				g->d->color = 0x00565656;
 			else
-				g->d->color = 0x00dadada;
+				g->d->color = 0x00ff0000;
 			xo = x * MAP_SIZE;
 			yo = y * MAP_SIZE;
 			put_square(g->d, xo, yo, MAP_SIZE - 1);

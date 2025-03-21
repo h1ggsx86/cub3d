@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 15:02:41 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/12 16:20:45 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/21 13:47:00 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,34 @@
 # define WIN_WIDTH 800
 # define WIN_HEIGHT 600
 # define PI 3.1415926535
+# define PI2 PI/2
+# define PI3 3*PI/2
+# define DR 0.0174533
+# define ANGLE60 WIN_WIDTH
+# define ANGLE30 (ANGLE60 / 2)
+# define ANGLE15 (ANGLE30 / 2)
+# define ANGLE90 (ANGLE30 * 3)
+# define ANGLE180 (ANGLE90 * 2)
+# define ANGLE270 (ANGLE90 * 3)
+# define ANGLE360 (ANGLE60 * 6)
+# define ANGLE0 0
+# define ANGLE5 (ANGLE30 / 6)
+# define ANGLE10 (ANGLE5 * 2)
 
 extern int	worldMap[];
+
+typedef struct s_tables
+{
+	float	sin_table[ANGLE360 + 1];
+	float	isin_table[ANGLE360 + 1];
+	float	cos_table[ANGLE360 + 1];
+	float	icos_table[ANGLE360 + 1];
+	float	tan_table[ANGLE360 + 1];
+	float	itan_table[ANGLE360 + 1];
+	float	fish_table[ANGLE360 + 1];
+	float	xstep_table[ANGLE360 + 1];
+	float	ystep_table[ANGLE360 + 1];
+}			t_tables;
 
 typedef struct s_mimg
 {
@@ -60,6 +86,10 @@ typedef struct s_player
 {
 	double	posX;
 	double	posY;
+	double	dirX;
+	double	dirY;
+	double	viewX;
+	double	viewY;
 	double	pa;
 	double	pdx;
 	double	pdy;
@@ -72,12 +102,13 @@ typedef struct s_game
 	void		*win;
 	t_data		*d;
 	t_player	*pl;
+	t_tables	t;
 }				t_game;
 
 /* INIT */
 int		img_init(t_mimg *img, t_data *d, void *init);
 void	game_init(t_game *g);
-void	struct_init(t_game *new, t_data *data, t_player *pl);
+void	struct_init(t_game *new, t_data *data, t_player *pl, t_tables *t);
 
 /* EXIT */
 void	exit_game(t_game *g, int ecode);
