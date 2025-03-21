@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:16:20 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/21 13:51:23 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/21 15:02:06 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,22 @@ int	data_init(t_data *data)
 		return (1);
 	data->img_map[0].img = NULL;
 	data->img_map[1].img = NULL;
-	data->height = WIN_HEIGHT;
-	data->width = WIN_WIDTH;
+	data->height = MAP_HEIGHT;
+	data->width = MAP_WIDTH;
+	data->mapper = NULL;
 	data->active_img = 1;
 	data->color = 0x00dadada;
+	data->i_colors = 0;
+	data->i_text = 0;
+	data->all_text = false;
+	data->all_colors = false;
+	data->map_parsed = false;
+	data->north_path = NULL;
+	data->south_path = NULL;
+	data->west_path = NULL;
+	data->east_path = NULL;
+	data->roof_color = 0;
+	data->ground_color = 0;
 	return (0);
 }
 
@@ -90,6 +102,17 @@ void	player_init(t_player *pl)
 	pl->viewY = 0.66;
 }
 
+int	color_init(t_data *data)
+{
+	t_color *color;
+
+	color = malloc(sizeof(t_color ));
+	if (!color)
+		return (1);
+	data->colors = color;
+	return (0);
+}
+
 void	struct_init(t_game *new, t_data *data, t_player *pl, t_tables *t)
 {
 	new->init = NULL;
@@ -99,6 +122,8 @@ void	struct_init(t_game *new, t_data *data, t_player *pl, t_tables *t)
 	tables_init(t);
 	new->t = *t;
 	if (data_init(new->d))
+		exit_game(new, 1);
+	if (color_init(new->d))
 		exit_game(new, 1);
 	player_init(new->pl);
 }

@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 15:03:39 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/21 13:48:30 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/21 15:03:04 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,18 @@ int	worldMap[] =
 	1,1,1,1,1,1,1,1
 };
 
-int	main(/*int argc, char **argv*/)
+int	main(int argc, char **argv)
 {
 	t_game		g;
 	t_data		data;
 	t_player	pl;
 	t_tables	t;
 
-	// if (argc != 2)
-	// 	return (1);
-	struct_init(&g, &data, &pl, &t);
+	if (argc != 2)
+		return (1);
+	struct_init(&g, &data, &pl);
 	game_init(&g);
-	perror("ERNO");
-	// parsing_the_thing(&g, argv[1]);
+	parsing_the_thing(&g, argv[1]);
 	the_loop(&g);
 	return (exit_game(&g, 0), EXIT_SUCCESS);
 }

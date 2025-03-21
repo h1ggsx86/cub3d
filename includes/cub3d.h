@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 15:02:41 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/21 13:47:00 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/21 15:01:09 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,28 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdbool.h>
 # include <sys/stat.h>
+# include <string.h>
+# include <inttypes.h>
 # include <math.h>
 # include <fcntl.h>
-# include <string.h>
 # include <sys/time.h>
 # include <X11/Xlib.h>
 # include <X11/keysym.h>
 # include "../mlx-linux/mlx.h"
 # include "../mlx-linux/mlx_int.h"
 # include "../libft/libft.h"
+# include "../includes/parsing.h"
 
 # define MAP_WIDTH 8
 # define MAP_HEIGHT 8
 # define MAP_SIZE 64
 # define WIN_WIDTH 800
 # define WIN_HEIGHT 600
+
+extern int	worldMap[MAP_WIDTH][MAP_HEIGHT];
+
 # define PI 3.1415926535
 # define PI2 PI/2
 # define PI3 3*PI/2
@@ -48,6 +54,12 @@
 # define ANGLE10 (ANGLE5 * 2)
 
 extern int	worldMap[];
+
+typedef struct s_color
+{
+	unsigned char	*rgb;
+	unsigned int	int_rgb[3];
+}			t_color;
 
 typedef struct s_tables
 {
@@ -73,14 +85,26 @@ typedef struct s_mimg
 
 typedef struct s_data
 {
-	t_mimg	*img_map;
-	t_mimg	*img_player;
-	int		active_img;
-	char	**mapper;
-	int		height;
-	int		width;
-	int		color;
-}			t_data;
+	t_mimg		*img_map;
+	t_mimg		*img_player;
+	t_color		*colors;
+	int			active_img;
+	char		**mapper;
+	int			height;
+	size_t		width;
+	int			i_text;
+	int			i_colors;
+	int			color;
+	u_int32_t	ground_color;
+	u_int32_t	roof_color;
+	bool		all_text;
+	bool		all_colors;
+	bool		map_parsed;
+	char		*north_path;
+	char		*south_path;
+	char		*west_path;
+	char		*east_path;
+}				t_data;
 
 typedef struct s_player
 {
@@ -105,15 +129,15 @@ typedef struct s_game
 	t_tables	t;
 }				t_game;
 
-/* INIT */
+/* init */
 int		img_init(t_mimg *img, t_data *d, void *init);
 void	game_init(t_game *g);
 void	struct_init(t_game *new, t_data *data, t_player *pl, t_tables *t);
 
-/* EXIT */
+/* exit */
 void	exit_game(t_game *g, int ecode);
 
-/* PUT & PLAYER*/
+/* put & player */
 void	put_pixel(t_data *d, int x, int y, int color);
 void	put_square(t_data *d, int xc, int yc, int c);
 void	put_player_circle(t_game *g, int color, int r);
@@ -125,10 +149,6 @@ void	draw_map(t_game *g);
 /* LOOP */
 int		ray_loop(t_game *g, t_player p);
 void	the_loop(t_game *g);
-
-/* parsing */
-void	parsing_the_thing(t_game *g, char *file);
-void	parse_map(t_game *g);
 
 /* error */
 void	err_message(t_game *g, char *arg, char *mess);

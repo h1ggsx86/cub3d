@@ -6,11 +6,11 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 17:23:54 by arotondo          #+#    #+#             */
-/*   Updated: 2025/03/05 17:35:28 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/06 18:54:37 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
 void	err_message(t_game *g, char *arg, char *mess)
 {
