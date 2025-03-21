@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 15:02:41 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/21 14:49:44 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/21 15:01:09 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,19 +30,49 @@
 # include "../libft/libft.h"
 # include "../includes/parsing.h"
 
-# define MAP_WIDTH 24
-# define MAP_HEIGHT 24
+# define MAP_WIDTH 8
+# define MAP_HEIGHT 8
+# define MAP_SIZE 64
 # define WIN_WIDTH 800
 # define WIN_HEIGHT 600
 
 extern int	worldMap[MAP_WIDTH][MAP_HEIGHT];
 
+# define PI 3.1415926535
+# define PI2 PI/2
+# define PI3 3*PI/2
+# define DR 0.0174533
+# define ANGLE60 WIN_WIDTH
+# define ANGLE30 (ANGLE60 / 2)
+# define ANGLE15 (ANGLE30 / 2)
+# define ANGLE90 (ANGLE30 * 3)
+# define ANGLE180 (ANGLE90 * 2)
+# define ANGLE270 (ANGLE90 * 3)
+# define ANGLE360 (ANGLE60 * 6)
+# define ANGLE0 0
+# define ANGLE5 (ANGLE30 / 6)
+# define ANGLE10 (ANGLE5 * 2)
+
+extern int	worldMap[];
 
 typedef struct s_color
 {
 	unsigned char	*rgb;
 	unsigned int	int_rgb[3];
 }			t_color;
+
+typedef struct s_tables
+{
+	float	sin_table[ANGLE360 + 1];
+	float	isin_table[ANGLE360 + 1];
+	float	cos_table[ANGLE360 + 1];
+	float	icos_table[ANGLE360 + 1];
+	float	tan_table[ANGLE360 + 1];
+	float	itan_table[ANGLE360 + 1];
+	float	fish_table[ANGLE360 + 1];
+	float	xstep_table[ANGLE360 + 1];
+	float	ystep_table[ANGLE360 + 1];
+}			t_tables;
 
 typedef struct s_mimg
 {
@@ -84,6 +114,9 @@ typedef struct s_player
 	double	dirY;
 	double	viewX;
 	double	viewY;
+	double	pa;
+	double	pdx;
+	double	pdy;
 }			t_player;
 
 typedef struct s_game
@@ -93,29 +126,35 @@ typedef struct s_game
 	void		*win;
 	t_data		*d;
 	t_player	*pl;
+	t_tables	t;
 }				t_game;
 
 /* init */
 int		img_init(t_mimg *img, t_data *d, void *init);
 void	game_init(t_game *g);
-void	struct_init(t_game *new, t_data *data, t_player *pl);
+void	struct_init(t_game *new, t_data *data, t_player *pl, t_tables *t);
 
 /* exit */
 void	exit_game(t_game *g, int ecode);
 
 /* put & player */
 void	put_pixel(t_data *d, int x, int y, int color);
-void	put_player_square(t_data *d, t_player *pl, int c);
+void	put_square(t_data *d, int xc, int yc, int c);
 void	put_player_circle(t_game *g, int color, int r);
 void	put_vline(t_game *g, int y_start, int y_end, int x, int color);
 void	put_player_line(t_game *g, int x, int y);
 void	moves_input(int keycode, t_game *g);
+void	draw_map(t_game *g);
 
-/* loop */
-int		ray_loop(t_game *g, t_player *pl);
+/* LOOP */
+int		ray_loop(t_game *g, t_player p);
 void	the_loop(t_game *g);
 
 /* error */
 void	err_message(t_game *g, char *arg, char *mess);
+
+/* MATH STUFF*/
+int		fix_angle(int a);
+float	deg_to_rad(int a);
 
 #endif

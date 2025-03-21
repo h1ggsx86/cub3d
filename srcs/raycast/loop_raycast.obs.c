@@ -6,13 +6,13 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 13:27:31 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/06 15:41:50 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/21 11:08:50 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int	ray_loop(t_game *g, t_player *pl)
+int	ray_loop(t_game *g, t_player p)
 {
 	int	x;
 	int	hit = 0;
@@ -21,7 +21,7 @@ int	ray_loop(t_game *g, t_player *pl)
 	int	color;
 	int	draw_start, draw_end;
 	int	stepX, stepY;
-	int	mapX = (int)pl->posX, mapY = (int)pl->posY;
+	int	mapX, mapY;
 	double	cameraX;
 	double	wall_dist;
 	double	ray_dirX, ray_dirY;
@@ -31,39 +31,46 @@ int	ray_loop(t_game *g, t_player *pl)
 	x = 0;
 	while (x < WIN_WIDTH)
 	{
-		cameraX = 2 * x / (double)WIN_WIDTH - 1;
-		ray_dirX = pl->dirX + pl->viewX * cameraX;
-		ray_dirY = pl->dirY + pl->viewY * cameraX;
+		cameraX = 2 * (double)x / (double)WIN_WIDTH - 1;
+		ray_dirX = (p.dirX + p.viewX * cameraX);
+		ray_dirY = (p.dirY + p.viewY * cameraX);
+		mapX = (int)p.posX;
+		mapY = (int)p.posY;
+		printf("mapX -> %d\t| mapY -> %d\n", mapX, mapY);
 		if (ray_dirX == 0)
-			ray_dirX = 1e30;
+			delta_distX = 1e30;
+		else
+			delta_distX = fabs(1 / ray_dirX);
 		if (ray_dirY == 0)
-			ray_dirY = 1e30;
-		printf("[DEBUG] ray_dirX :\t%f | ray_dirY :\t%f\n", ray_dirX, ray_dirY);
+			delta_distY = 1e30;
+		else
+			delta_distY = fabs(1 / ray_dirY);
+		printf("[DEBUG] ray_dirX    :\t%f | ray_dirY    :\t%f\n", ray_dirX, ray_dirY);
+		printf("[DEBUG] delta_distX :\t%f | delta_distY :\t%f\n", delta_distX, delta_distY);
 
-		delta_distX = fabs(1 / ray_dirX);
-		delta_distY = fabs(1 / ray_dirY);
 
 		if (ray_dirX < 0)
 		{
 			stepX = -1;
-			side_distX = (pl->posX - mapX) * delta_distX;
+			side_distX = (p.posX - (double)mapX) * delta_distX;
 		}
 		else
 		{
 			stepX = 1;
-			side_distX = (mapX + 1.0 - pl->posX) * delta_distX;
+			side_distX = ((double)mapX + 1.0 - p.posX) * delta_distX;
 		}
 		if (ray_dirY < 0)
 		{
 			stepY = -1;
-			side_distY = (pl->posY - mapY) * delta_distY;
+			side_distY = (p.posY - (double)mapY) * delta_distY;
 		}
 		else
 		{
 			stepY = 1;
-			side_distY = (mapY + 1.0 - pl->posY) * delta_distY;
+			side_distY = ((double)mapY + 1.0 - p.posY) * delta_distY;
 		}
 
+		printf("[DEBUG] side_distX :\t%f | side_distY :\t%f\n", side_distX, side_distY);
 
 		while (!hit)
 		{
@@ -84,7 +91,7 @@ int	ray_loop(t_game *g, t_player *pl)
 				hit = 1;
 		}
 
-		printf("[DEBUG] side_distX :\t%f | side_distY :\t%f\n", side_distX, side_distY);
+		printf("[DEBUG] FINAL side_distX :\t%f | side_distY :\t%f\n", side_distX, side_distY);
 
 		if (!side)
 			wall_dist = (side_distX - delta_distX);
@@ -103,7 +110,7 @@ int	ray_loop(t_game *g, t_player *pl)
 		if (side == 1)
 			color = color / 2;
 		put_vline(g, draw_start, draw_end, x, color);
-		//put_player_line(g, (pl->posX + wall_dist) * 5, (pl->posY + wall_dist) * 5);
+		// put_player_line(g, (p.posX + wall_dist) * 5, (p.posY + wall_dist) * 5);
 		x++;
 	}
 	return (EXIT_SUCCESS);

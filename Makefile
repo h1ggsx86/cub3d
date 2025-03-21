@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/07/24 19:27:15 by tnedel            #+#    #+#              #
+#    Updated: 2025/03/21 14:58:16 by tnedel           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 CC		= cc
 CFLAGS	= -Wall -Wextra -Werror -g3
 MLXFLAGS= -L/usr/lib -Lmlx-linux -lmlx_Linux -lXext -lX11 -lm -lz -lbsd
@@ -29,8 +41,9 @@ SRC		= $(SRC_DIR)/init_game.c $(SRC_DIR)/init_struct.c \
 			$(SRC_DIR)/parsing/parsing.c $(SRC_DIR)/parsing/parsing_utils.c \
 			$(SRC_DIR)/parsing/parse_textures.c $(SRC_DIR)/parsing/parse_map.c \
 			$(SRC_DIR)/parsing/parse_colors.c \
-			$(SRC_DIR)/loop_raycast.c $(SRC_DIR)/utils/error.c \
-			$(SRC_DIR)/main.c
+			$(SRC_DIR)/raycast/loop_raycast.c \
+			$(SRC_DIR)/main.c $(SRC_DIR)/utils/error.c \
+			$(SRC_DIR)/parsing/parsing.c 
 SRC_OBJ	= $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 all: title $(NAME)
@@ -39,7 +52,7 @@ all: title $(NAME)
 		@echo
 
 $(NAME): $(MLX_LIB) $(LIBFT_LIB) $(SRC_OBJ)
-		@$(CC) $(CFLAGS) -I $(INC_DIR) -I $(LIBFT_DIR) -o $@ $^ $(MLXFLAGS) -Llibft -lft
+		@$(CC) $(CFLAGS) -I $(INC_DIR) -I $(LIBFT_DIR) -o $@ $^ $(MLXFLAGS) $(LIBFT_LIB)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
 		@echo -n "Compilings..."
