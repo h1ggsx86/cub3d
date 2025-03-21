@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 15:02:41 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/21 15:12:02 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/21 15:22:14 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,6 @@
 # define MAP_SIZE 64
 # define WIN_WIDTH 800
 # define WIN_HEIGHT 600
-
-extern int	worldMap[];
-
 # define PI 3.1415926535
 # define PI2 PI/2
 # define PI3 3*PI/2
@@ -120,6 +117,8 @@ typedef struct s_player
 typedef struct s_game
 {
 	int			map;
+	int			win_height;
+	int			win_width;
 	void		*init;
 	void		*win;
 	t_data		*d;
