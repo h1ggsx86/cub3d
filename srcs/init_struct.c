@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:16:20 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/21 15:02:06 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/21 15:16:36 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,8 @@ void	struct_init(t_game *new, t_data *data, t_player *pl, t_tables *t)
 	new->win = NULL;
 	new->d = data;
 	new->pl = pl;
+	new->win_height = WIN_HEIGHT;
+	new->win_width = WIN_WIDTH;
 	tables_init(t);
 	new->t = *t;
 	if (data_init(new->d))
