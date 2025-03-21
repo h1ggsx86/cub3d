@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:16:20 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/21 15:02:06 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/21 15:16:05 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ int	data_init(t_data *data)
 		return (1);
 	data->img_map[0].img = NULL;
 	data->img_map[1].img = NULL;
-	data->height = MAP_HEIGHT;
-	data->width = MAP_WIDTH;
+	data->height = 0;
+	data->width = 0;
 	data->mapper = NULL;
 	data->active_img = 1;
 	data->color = 0x00dadada;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 15:02:41 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/21 15:01:09 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/21 15:12:02 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 # define WIN_WIDTH 800
 # define WIN_HEIGHT 600
 
-extern int	worldMap[MAP_WIDTH][MAP_HEIGHT];
+extern int	worldMap[];
 
 # define PI 3.1415926535
 # define PI2 PI/2
@@ -52,8 +52,6 @@ extern int	worldMap[MAP_WIDTH][MAP_HEIGHT];
 # define ANGLE0 0
 # define ANGLE5 (ANGLE30 / 6)
 # define ANGLE10 (ANGLE5 * 2)
-
-extern int	worldMap[];
 
 typedef struct s_color
 {
