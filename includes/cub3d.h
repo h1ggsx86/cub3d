@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 15:02:41 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/21 15:22:14 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/21 15:25:15 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@
 # define ANGLE0 0
 # define ANGLE5 (ANGLE30 / 6)
 # define ANGLE10 (ANGLE5 * 2)
+
+extern int	worldMap[];
 
 typedef struct s_color
 {
@@ -127,7 +129,7 @@ typedef struct s_game
 }				t_game;
 
 /* init */
-int		img_init(t_mimg *img, t_data *d, void *init);
+int		img_init(t_mimg *img, t_game *g, void *init);
 void	game_init(t_game *g);
 void	struct_init(t_game *new, t_data *data, t_player *pl, t_tables *t);
 

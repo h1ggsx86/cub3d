@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 16:00:46 by arotondo          #+#    #+#             */
-/*   Updated: 2025/03/21 14:49:57 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/21 17:57:23 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,23 +29,31 @@ int	is_inside(t_game *g, bool player, int j)
 
 void	choose_left_right(t_game *g, int *i, int *j)
 {
-	// printf("mapper[%d][%d]\n", *j, *i);
-	// printf("len de mapper[j] = %d\n", (int)ft_strlen(g->d->mapper[*j]));
-	// perror("HERE");
 	if (!g->d->mapper[*j])
 		return ;
-	if ((*i) < (int)ft_strlen(g->d->mapper[*j])) // go right
+	printf("i = %d\n", *i);
+	printf("len de line = %zu\n", ft_strlen(g->d->mapper[*j]));
+	if ((*i) < (int)ft_strlen(g->d->mapper[*j]) - 2) // go right
 	{
-		while (g->d->mapper[*j][*i] && (!g->d->mapper[*j + 1][*i] || \
-			g->d->mapper[*j + 1][*i] != '1'))
-			{printf("RIGHT mapper[%d][%d] = %c\n", *j, *i, g->d->mapper[*j][*i]); (*i)++;}
+		while (g->d->mapper[*j][*i] && (!g->d->mapper[*j - 1][*i] || \
+		g->d->mapper[*j - 1][*i] != '1'))
+		{
+			printf("RIGHT mapper[%d][%d] = %c\n", *j, *i, g->d->mapper[*j][*i]);
+			if ((*i) == (int)ft_strlen(g->d->mapper[*j]))
+				break ;
+			(*i)++;
+		}
 	}
 	else // go left
 	{
-		// perror("LEFT");
 		while (g->d->mapper[*j][*i] && (!g->d->mapper[*j + 1][*i] || \
-			g->d->mapper[*j + 1][*i] != '1'))
-			{printf("LEFT mapper[%d][%d] = %c\n", *j, *i, g->d->mapper[*j][*i]); (*i)--;}
+		g->d->mapper[*j + 1][*i] != '1'))
+		{
+			printf("LEFT mapper[%d][%d] = %c\n", *j, *i, g->d->mapper[*j][*i]);
+			if ((*i) == 0 || g->d->mapper[*j][*i] == ' ')
+				break ;
+			(*i)--;
+		}
 	}
 }
 
@@ -53,26 +61,25 @@ void	choose_top_bottom(t_game *g, int *i, int *j)
 {
 	if (!g->d->mapper[*j])
 		return ;
+	// printf("LASTg->d->mapper[%d][%d] = %d\n", *j, *i, g->d->mapper[*j][*i]);
 	if (*j < g->d->height) // go bottom
 	{
-		while (g->d->mapper[*j][*i] && (g->d->mapper[*j][*i] != '\n' \
-			|| g->d->mapper[*j][*i] == '1'))
-			{
-				printf("BOTTOM mapper[%d][%d] = %c // char = %d\n", *j, *i, g->d->mapper[*j][*i], g->d->mapper[*j][*i]); 
-				(*j)++;
-			}
-			// if (*j >= g->d->height || g->d->mapper[*j][*i] == '\0')
-			// 	break ;
-			// printf("add mapper[%d][%d] = %p", *j, *i, &g->d->mapper[*j][*i]);
+		while (g->d->mapper[*j][*i] && g->d->mapper[*j][*i] == '1')
+		{
+			printf("BOTTOM mapper[%d][%d] = %c\n", *j, *i, g->d->mapper[*j][*i]);
+			if (!g->d->mapper[*j + 1][*i])
+				break ;
+			(*j)++;
+		}
 	}
 	else // go top
 	{
 		while (g->d->mapper[*j][*i] && g->d->mapper[*j][*i] == '1')
 		{
-			printf("TOP mapper[%d][%d] = %c\n", *j, *i, g->d->mapper[*j][*i]); (*j)--;
-			(*j)--;
-			if (*j <= 0)
+			printf("TOP mapper[%d][%d] = %c\n", *j, *i, g->d->mapper[*j][*i]);
+			if (!g->d->mapper[*j - 1][*i])
 				break ;
+			(*j)--;
 		}
 	}
 }
@@ -105,6 +112,7 @@ int	check_sides(t_game *g)
 	while (g->d->map_parsed == false)
 	{
 		choose_top_bottom(g, &i, &j);
+		// printf("MIDg->d->mapper[%d][%d] = %d\n", j, i, g->d->mapper[j][i]);
 		choose_left_right(g, &i, &j);
 		is_map_parsed(g, i, j);
 	}
@@ -127,19 +135,20 @@ int	is_pos_player(int c)
 
 void	parse_map(t_game *g, char *line, int *j)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	if (g->d->map_parsed == true)
 		return ;
 	if (!ft_strchr(line, 49))
 		return ;
+	// printf("height = %d\n", g->d->height);
 	if ((*j) > g->d->height)
 		return ;
 	g->d->mapper[*j] = (char *)ft_calloc(sizeof(char), g->d->width + 1);
 	if (!g->d->mapper[*j])
 		exit(1);
-	while (i < (int)g->d->width)
+	while (line[i] && i < g->d->width)
 	{
 		g->d->mapper[*j][i] = line[i];
 		printf("%c", g->d->mapper[*j][i]);
