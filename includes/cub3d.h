@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 15:02:41 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/20 15:28:50 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/21 14:49:44 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ typedef struct s_data
 	int			active_img;
 	char		**mapper;
 	int			height;
-	int			width;
+	size_t		width;
 	int			i_text;
 	int			i_colors;
 	int			color;

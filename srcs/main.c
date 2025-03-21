@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 15:03:39 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/20 16:52:40 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/21 14:53:01 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,6 @@ int	main(int argc, char **argv)
 	struct_init(&g, &data, &pl);
 	game_init(&g);
 	parsing_the_thing(&g, argv[1]);
-	// the_loop(&g);
+	the_loop(&g);
 	return (exit_game(&g, 0), EXIT_SUCCESS);
 }

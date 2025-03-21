@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:16:20 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/20 15:29:07 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/21 14:52:45 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int	data_init(t_data *data)
 		return (1);
 	data->img_map[0].img = NULL;
 	data->img_map[1].img = NULL;
-	data->height = WIN_HEIGHT;
-	data->width = WIN_WIDTH;
+	data->height = MAP_HEIGHT;
+	data->width = MAP_WIDTH;
 	data->mapper = NULL;
 	data->active_img = 1;
 	data->color = 0x00dadada;
