@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop_raycast.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: xenon <xenon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 10:43:07 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/21 13:56:15 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/22 10:42:14 by xenon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int	ray_loop(t_game *g, t_player p)
 
 	float d_h_grid_h, d_v_grid_h;
 
+		d_v_grid_h = 0;
 	ra = p.pa;
 	ra -= ANGLE30;
 	// printf("ra -> %f\n", ra);
@@ -81,7 +82,7 @@ int	ray_loop(t_game *g, t_player p)
 				y_index = h_grid / MAP_SIZE;
 				if ((x_index >= MAP_WIDTH) ||
 					(y_index >= MAP_HEIGHT) ||
-					x_index < 0 | y_index < 0)
+					(x_index < 0) | (y_index < 0))
 				{
 					d_h_grid_h = 9999999;
 					break;
@@ -124,7 +125,7 @@ int	ray_loop(t_game *g, t_player p)
 				y_index = (int)(y_inter / MAP_SIZE);
 				if ((x_index >= MAP_WIDTH) ||
 					(y_index >= MAP_HEIGHT) ||
-					x_index < 0 | y_index < 0)
+					(x_index < 0) | (y_index < 0))
 				{
 					d_h_grid_h = 9999999;
 					break;

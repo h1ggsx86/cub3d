@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: xenon <xenon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 16:00:46 by arotondo          #+#    #+#             */
-/*   Updated: 2025/03/21 17:57:23 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/22 14:52:54 by xenon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ void	choose_left_right(t_game *g, int *i, int *j)
 {
 	if (!g->d->mapper[*j])
 		return ;
-	printf("i = %d\n", *i);
-	printf("len de line = %zu\n", ft_strlen(g->d->mapper[*j]));
+	// printf("i = %d\n", *i);
+	// printf("len de line = %zu\n", ft_strlen(g->d->mapper[*j]));
 	if ((*i) < (int)ft_strlen(g->d->mapper[*j]) - 2) // go right
 	{
 		while (g->d->mapper[*j][*i] && (!g->d->mapper[*j - 1][*i] || \
@@ -50,7 +50,9 @@ void	choose_left_right(t_game *g, int *i, int *j)
 		g->d->mapper[*j + 1][*i] != '1'))
 		{
 			printf("LEFT mapper[%d][%d] = %c\n", *j, *i, g->d->mapper[*j][*i]);
-			if ((*i) == 0 || g->d->mapper[*j][*i] == ' ')
+			if ((*i) == 0)
+				break ;
+			else if (g->d->mapper[*j][*i - 1] == ' ')
 				break ;
 			(*i)--;
 		}
@@ -62,7 +64,7 @@ void	choose_top_bottom(t_game *g, int *i, int *j)
 	if (!g->d->mapper[*j])
 		return ;
 	// printf("LASTg->d->mapper[%d][%d] = %d\n", *j, *i, g->d->mapper[*j][*i]);
-	if (*j < g->d->height) // go bottom
+	if (*j < g->d->height - 1) // go bottom
 	{
 		while (g->d->mapper[*j][*i] && g->d->mapper[*j][*i] == '1')
 		{
@@ -74,11 +76,15 @@ void	choose_top_bottom(t_game *g, int *i, int *j)
 	}
 	else // go top
 	{
-		while (g->d->mapper[*j][*i] && g->d->mapper[*j][*i] == '1')
+		while (g->d->mapper[*j][*i] && (g->d->mapper[*j][*i] == '1' || \
+		g->d->mapper[*j][*i - 1] == ' '))
 		{
 			printf("TOP mapper[%d][%d] = %c\n", *j, *i, g->d->mapper[*j][*i]);
 			if (!g->d->mapper[*j - 1][*i])
 				break ;
+			if (g->d->mapper[*j][*i - 1] == ' ')
+				// if (g->d->mapper[*j][*i + 1] == '1' || g->d->mapper[*j][*i - 1] == '1')
+			// 	break ;
 			(*j)--;
 		}
 	}
