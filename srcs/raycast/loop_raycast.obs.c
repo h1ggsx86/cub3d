@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   loop_raycast.c                                     :+:      :+:    :+:   */
+/*   loop_raycast.obs.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 13:27:31 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/21 11:08:50 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/24 13:29:18 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ int	ray_loop(t_game *g, t_player p)
 			delta_distY = 1e30;
 		else
 			delta_distY = fabs(1 / ray_dirY);
-		printf("[DEBUG] ray_dirX    :\t%f | ray_dirY    :\t%f\n", ray_dirX, ray_dirY);
-		printf("[DEBUG] delta_distX :\t%f | delta_distY :\t%f\n", delta_distX, delta_distY);
+		// printf("[DEBUG] ray_dirX    :\t%f | ray_dirY    :\t%f\n", ray_dirX, ray_dirY);
+		// printf("[DEBUG] delta_distX :\t%f | delta_distY :\t%f\n", delta_distX, delta_distY);
 
 
 		if (ray_dirX < 0)
@@ -70,7 +70,7 @@ int	ray_loop(t_game *g, t_player p)
 			side_distY = ((double)mapY + 1.0 - p.posY) * delta_distY;
 		}
 
-		printf("[DEBUG] side_distX :\t%f | side_distY :\t%f\n", side_distX, side_distY);
+		// printf("[DEBUG] side_distX :\t%f | side_distY :\t%f\n", side_distX, side_distY);
 
 		while (!hit)
 		{
@@ -91,7 +91,7 @@ int	ray_loop(t_game *g, t_player p)
 				hit = 1;
 		}
 
-		printf("[DEBUG] FINAL side_distX :\t%f | side_distY :\t%f\n", side_distX, side_distY);
+		// printf("[DEBUG] FINAL side_distX :\t%f | side_distY :\t%f\n", side_distX, side_distY);
 
 		if (!side)
 			wall_dist = (side_distX - delta_distX);

@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 15:37:30 by arotondo          #+#    #+#             */
-/*   Updated: 2025/03/21 15:28:07 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/24 16:23:45 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,13 @@ void	init_my_map(t_game *g, char *file)
 
 void	check_map(t_game *g)
 {
-	if (check_sides(g))
+	if (check_left_right(g))
 		exit_game(g, 4);
+	if (check_top_bottom(g))
+		exit_game(g, 4);
+	g->d->map_parsed = true;
+	if (check_inside(g))
+		exit_game(g, 5);
 }
 
 void	parsing_the_thing(t_game *g, char *file)

@@ -3,133 +3,111 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xenon <xenon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 16:00:46 by arotondo          #+#    #+#             */
-/*   Updated: 2025/03/22 16:23:45 by xenon            ###   ########.fr       */
+/*   Updated: 2025/03/24 17:13:35 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/parsing.h"
 
-int	is_inside(t_game *g, bool player, int j)
+int	check_inside(t_game *g)
+{
+	bool	is_player;
+	int		j;
+	int		i;
+	int		pos[2];
+
+	is_player = false;
+	j = 0;
+	while (g->d->mapper[j])
+	{
+		i = 0;
+		while(g->d->mapper[j][i] && g->d->mapper[j][i] != '\n') 
+		{
+			if (is_player == true && is_pos_player(g->d->mapper[j][i], &is_player))
+				err_message(g, "player", "only one allowed");
+			else if (is_pos_player(g->d->mapper[j][i], &is_player))
+			{
+				perror("HERE");
+				pos[0] = ft_atoi(g->d->mapper[j]);
+				printf("%d\n", pos[0]);
+				pos[1] = ft_atoi(&g->d->mapper[j][i]);
+				printf("%d\n", pos[1]);
+				g->d->mapper[j][i] = '0';
+			}
+			else if (g->d->mapper[j][i] != '1' && g->d->mapper[j][i] != '0')
+			{
+				perror("EXIT");
+				printf("g->d->mapper[%d][%d] = %d\n", j, i, g->d->mapper[j][i]);
+				return (1);
+			}
+			printf("i = %d\n", i);
+			i++;
+		}
+		j++;
+	}
+	return (0);
+}
+
+int	check_top_bottom(t_game *g)
 {
 	int	i;
+	int	max_hight;
 
 	i = 0;
-	while (g->d->mapper[j][i])
+	while (i < (int)g->d->width)
 	{
-		if (is_pos_player(g->d->mapper[j][i]) && player == true)
-				err_message(g, "player", "only one allowed");
-		else if (g->d->mapper[j][i] != '1' && g->d->mapper[j][i] != '0')
+		max_hight = ft_vert_len(g->d->mapper, i, g->d->height) - 1;
+		if (max_hight <= 0)
 			return (1);
+		if (i == (int)ft_strlen(g->d->mapper[max_hight]) - 1 && g->d->mapper[max_hight][i] == '\n')
+			break ;
+		if (g->d->mapper[0][i] && g->d->mapper[0][i] != '1')
+			return (1);
+		if (g->d->mapper[max_hight][i] && g->d->mapper[max_hight][i] != '1')
+			return (1);
+		// printf("TP BEG== mapper[%d][%d] = %d\n", 0, i, g->d->mapper[0][i]);
+		// printf("TP END == mapper[%d][%d] = %d\n", max_hight, i, g->d->mapper[max_hight][i]);
+		i++;
 	}
 	return (0);
 }
 
-void	choose_left_right(t_game *g, int *i, int *j)
+int	check_left_right(t_game *g)
 {
-	if (!g->d->mapper[*j])
-		return ;
-	// printf("i = %d\n", *i);
-	// printf("len de line = %zu\n", ft_strlen(g->d->mapper[*j]));
-	if ((*i) < (int)ft_strlen(g->d->mapper[*j]) - 2) // go right
-	{
-		while (g->d->mapper[*j][*i] && (!g->d->mapper[*j - 1][*i] || \
-		g->d->mapper[*j][*i + 1] != '1'))
-		{
-			printf("RIGHT mapper[%d][%d] = %c\n", *j, *i, g->d->mapper[*j][*i]);
-			if ((*i) == (int)ft_strlen(g->d->mapper[*j]))
-				break ;
-			(*i)++;
-		}
-	}
-	else // go left
-	{
-		while (g->d->mapper[*j][*i] && (!g->d->mapper[*j + 1][*i] || \
-		g->d->mapper[*j][*i - 1] != '1'))
-		{
-			printf("LEFT mapper[%d][%d] = %c\n", *j, *i, g->d->mapper[*j][*i]);
-			if ((*i) == 0)
-				break ;
-			else if (g->d->mapper[*j][*i - 1] == ' ')
-				break ;
-			(*i)--;
-		}
-	}
-}
+	int	j;
+	int	max_len;
 
-void	choose_top_bottom(t_game *g, int *i, int *j)
-{
-	if (!g->d->mapper[*j])
-		return ;
-	if (*j < g->d->height - 1) // go bottom
-	{
-		while (g->d->mapper[*j][*i] && g->d->mapper[*j][*i] == '1')
-		{
-			printf("BOTTOM mapper[%d][%d] = %c\n", *j, *i, g->d->mapper[*j][*i]);
-			if (!g->d->mapper[*j + 1][*i])
-				break ;
-			(*j)++;
-		}
-	}
-	else // go top
-	{
-		while (g->d->mapper[*j][*i] && (g->d->mapper[*j][*i] == '1'))
-		{
-			printf("TOP mapper[%d][%d] = %c\n", *j, *i, g->d->mapper[*j][*i]);
-			if (!g->d->mapper[*j - 1][*i])
-				break ;
-				// if (g->d->mapper[*j][*i + 1] == '1' || g->d->mapper[*j][*i - 1] == '1')
-			(*j)--;
-		}
-	}
-}
-
-void	is_map_parsed(t_game *g, int i, int j)
-{
-	if (j == '0' && g->d->mapper[j][i] == '1')
-	{
-		perror("HERE");
-		g->d->map_parsed = true;
-	}
-	else if (j == '0' && g->d->mapper[j][i] != '1')
-		return ; // implementer code d erreur
-}
-
-int	check_sides(t_game *g)
-{
-	int	i; // gauche a droit
-	int	j; // haut en bas
-
-	i = 0;
 	j = 0;
-	while (g->d->mapper[j][i] && g->d->mapper[j][i] != '1')
-		i++;
-	while (g->d->mapper[j][i] && g->d->mapper[j][i] == '1')
-		i++;
-	i--;
-	// printf("len de [6][32] = %d\n", (int)ft_strlen(g->d->mapper[6]));
-	// printf("mapper[%d][%d] = %d\n", 6, 32, g->d->mapper[6][32]);
-	while (g->d->map_parsed == false)
+	while (j < g->d->height)
 	{
-		choose_top_bottom(g, &i, &j);
-		// printf("MIDg->d->mapper[%d][%d] = %d\n", j, i, g->d->mapper[j][i]);
-		choose_left_right(g, &i, &j);
-		is_map_parsed(g, i, j);
+		max_len = ft_strlen(g->d->mapper[j]) - 2;
+		if (max_len == 0)
+			return (1);
+		if (g->d->mapper[j] && g->d->mapper[j][0] != '1')
+			return (1);
+		if (g->d->mapper[j] && g->d->mapper[j][max_len] != '1')
+			return (1);
+		// printf("LR BEG == mapper[%d][%d] = %d\n", j, 0, g->d->mapper[j][0]);
+		// printf("LR END == mapper[%d][%d] = %d\n", j, max_len, g->d->mapper[j][max_len]);
+		j++;
 	}
 	return (0);
 }
 
-int	is_pos_player(int c)
+int	is_pos_player(int c, bool *player)
 {
 	if (c == 'N')
-		return (1);
+		*player = true;
 	else if (c == 'S')
-		return (1);
+		*player = true;
 	else if (c == 'E')
-		return (1);
+		*player = true;
 	else if (c == 'W')
+		*player = true;
+	if (*player == true)
 		return (1);
 	else
 		return (0);
@@ -144,7 +122,7 @@ void	parse_map(t_game *g, char *line, int *j)
 		return ;
 	if (!ft_strchr(line, 49))
 		return ;
-	if ((*j) > g->d->height)
+	if ((*j) >= g->d->height)
 		return ;
 	g->d->mapper[*j] = (char *)ft_calloc(sizeof(char), g->d->width + 1);
 	if (!g->d->mapper[*j])
