@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:12:09 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/25 10:56:26 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/25 18:49:00 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../../includes/init.h"
 
 int	img_init(t_mimg *img, t_game *g, void *init)
 {
@@ -22,14 +22,6 @@ int	img_init(t_mimg *img, t_game *g, void *init)
 	return (EXIT_SUCCESS);
 }
 
-static void	data_init(t_game *g, t_data *d)
-{
-	if (img_init(d->img_player, g, g->init))
-		exit_game(g, 1);
-	if (img_init(d->img_player + 1, g, g->init))
-		exit_game(g, 1);
-}
-
 void	game_init(t_game *g)
 {
 	g->init = mlx_init();
@@ -38,5 +30,13 @@ void	game_init(t_game *g)
 	g->win = mlx_new_window(g->init, g->win_width, g->win_height, "CUB3D");
 	if (!g->win)
 		exit_game(g, 1);
-	data_init(g, g->d);
+	init_img_player(g, g->d);
+}
+
+void	init_img_player(t_game *g, t_data *d)
+{
+	if (img_init(d->img_player, g, g->init))
+		exit_game(g, 1);
+	if (img_init(d->img_player + 1, g, g->init))
+		exit_game(g, 1);
 }

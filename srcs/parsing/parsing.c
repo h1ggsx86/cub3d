@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 15:37:30 by arotondo          #+#    #+#             */
-/*   Updated: 2025/03/25 16:43:12 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/25 18:58:58 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ void	init_my_map(t_game *g, char *file)
 		if (in_map == true && ft_strlen(line) > g->d->width)
 			g->d->width = ft_strlen(line);
 	}
+	if (line)
+		free(line);
 	g->d->height = i;
 	close(g->map);
 	get_next_line(-1);

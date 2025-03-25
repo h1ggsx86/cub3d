@@ -6,11 +6,11 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:16:20 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/25 15:19:38 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/25 18:48:56 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../../includes/init.h"
 
 int	data_init(t_data *data)
 {
@@ -38,6 +38,17 @@ int	data_init(t_data *data)
 	return (0);
 }
 
+int	color_init(t_data *data)
+{
+	t_color *color;
+
+	color = malloc(sizeof(t_color ));
+	if (!color)
+		return (1);
+	data->colors = color;
+	return (0);
+}
+
 void	player_init(t_player *pl)
 {
 	pl->posX = 22.5;
@@ -48,17 +59,6 @@ void	player_init(t_player *pl)
 	pl->dirY = 0;
 	pl->viewX = 0.0f;
 	pl->viewY = 0.66;
-}
-
-int	color_init(t_data *data)
-{
-	t_color *color;
-
-	color = malloc(sizeof(t_color ));
-	if (!color)
-		return (1);
-	data->colors = color;
-	return (0);
 }
 
 void	struct_init(t_game *new, t_data *data, t_player *pl)
