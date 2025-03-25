@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xenon <xenon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 15:02:41 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/24 23:17:37 by xenon            ###   ########.fr       */
+/*   Updated: 2025/03/25 14:44:55 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,26 +50,13 @@
 # define ANGLE5 (ANGLE30 / 6)
 # define ANGLE10 (ANGLE5 * 2)
 
-extern int	worldMap[];
+extern int	worldMap[24][24];
 
 typedef struct s_color
 {
 	unsigned char	*rgb;
 	unsigned int	int_rgb[3];
 }			t_color;
-
-typedef struct s_tables
-{
-	float	sin_table[ANGLE360 + 1];
-	float	isin_table[ANGLE360 + 1];
-	float	cos_table[ANGLE360 + 1];
-	float	icos_table[ANGLE360 + 1];
-	float	tan_table[ANGLE360 + 1];
-	float	itan_table[ANGLE360 + 1];
-	float	fish_table[ANGLE360 + 1];
-	float	xstep_table[ANGLE360 + 1];
-	float	ystep_table[ANGLE360 + 1];
-}			t_tables;
 
 typedef struct s_mimg
 {
@@ -87,7 +74,6 @@ typedef struct s_data
 	t_color		*colors;
 	int			active_img;
 	char		**mapper;
-	int			pos_player[2];
 	int			height;
 	size_t		width;
 	int			i_text;
@@ -126,13 +112,12 @@ typedef struct s_game
 	void		*win;
 	t_data		*d;
 	t_player	*pl;
-	t_tables	t;
 }				t_game;
 
 /* init */
 int		img_init(t_mimg *img, t_game *g, void *init);
 void	game_init(t_game *g);
-void	struct_init(t_game *new, t_data *data, t_player *pl, t_tables *t);
+void	struct_init(t_game *new, t_data *data, t_player *pl);
 
 /* exit */
 void	exit_game(t_game *g, int ecode);
