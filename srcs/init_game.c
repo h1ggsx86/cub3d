@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:12:09 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/21 15:17:41 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/25 10:56:26 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ int	img_init(t_mimg *img, t_game *g, void *init)
 
 static void	data_init(t_game *g, t_data *d)
 {
-	if (img_init(d->img_map, g, g->init))
+	if (img_init(d->img_player, g, g->init))
 		exit_game(g, 1);
-	if (img_init(d->img_map + 1, g, g->init))
+	if (img_init(d->img_player + 1, g, g->init))
 		exit_game(g, 1);
 }
 

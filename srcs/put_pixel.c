@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 15:38:41 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/20 16:46:11 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/25 12:07:07 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ void	put_pixel(t_data *d, int x, int y, int color)
 	t_mimg	*img;
 
 	if (d->active_img)
-		img = d->img_map + 1;
+		img = d->img_player + 1;
 	else
-		img = d->img_map;
+		img = d->img_player;
 	dst = img->addr + (y * img->line_length + x * (img->bpp / 8));
 	*(unsigned int *)dst = color;
 }
@@ -61,12 +61,12 @@ void	put_hline(t_game *g, int x_start, int x_end, int y)
 	x = x_start;
 	while (x_start < x_end)
 	{
-		put_pixel(g->d, x_start, pl.posY + y, g->d->color);
+		put_pixel(g->d, x_start, pl.posY * 5 + y, g->d->color);
 		x_start++;
 	}
 	while (x < x_end)
 	{
-		put_pixel(g->d, x, pl.posY - y, g->d->color);
+		put_pixel(g->d, x, pl.posY * 5 - y, g->d->color);
 		x++;
 	}
 }
@@ -78,7 +78,8 @@ void	put_player_circle(t_game *g, int color, int r)
 	double	p;
 
 	t_player (pl) = *g->pl;
-	t_data *(d) = g->d;
+	// t_data *(d) = g->d;
+	(void)color;
 	y = -r;
 	p = -r;
 	x = 0;
@@ -91,16 +92,16 @@ void	put_player_circle(t_game *g, int color, int r)
 		}
 		else
 			p += 2 * x + 1;
-		put_pixel(d, pl.posX + x, pl.posY + y, color);
-		put_pixel(d, pl.posX - x, pl.posY + y, color);
-		put_pixel(d, pl.posX + x, pl.posY - y, color);
-		put_pixel(d, pl.posX - x, pl.posY - y, color);
-		put_pixel(d, pl.posX + y, pl.posY + x, color);
-		put_pixel(d, pl.posX - y, pl.posY + x, color);
-		put_pixel(d, pl.posX + y, pl.posY - x, color);
-		put_pixel(d, pl.posX - y, pl.posY - x, color);
-		put_hline(g, pl.posX - x, pl.posX + x, y);
-		put_hline(g, pl.posX + y, pl.posX - y, x);
+		// put_pixel(d, pl.posX * 10 + x, pl.posY * 10 + y, color);
+		// put_pixel(d, pl.posX * 10 - x, pl.posY * 10 + y, color);
+		// put_pixel(d, pl.posX * 10 + x, pl.posY * 10 - y, color);
+		// put_pixel(d, pl.posX * 10 - x, pl.posY * 10 - y, color);
+		// put_pixel(d, pl.posX * 10 + y, pl.posY * 10 + x, color);
+		// put_pixel(d, pl.posX * 10 - y, pl.posY * 10 + x, color);
+		// put_pixel(d, pl.posX * 10 + y, pl.posY * 10 - x, color);
+		// put_pixel(d, pl.posX * 10 - y, pl.posY * 10 - x, color);
+		put_hline(g, pl.posX * 5 - x, pl.posX * 5 + x, y);
+		put_hline(g, pl.posX * 5 + y, pl.posX * 5 - y, x);
 		x++;
 	}
 }
@@ -167,48 +168,23 @@ void	put_lineH(t_game *g, int x0, int y0, int x1, int y1)
 
 void	put_player_line(t_game *g, int x, int y)
 {
-	t_player	p;
+	double px;
+	double py;
 
-	p = *g->pl;
-	if (abs(x - (int)p.posX) > abs(y - (int)p.posY))
+	px = g->pl->posX * 5;
+	py = g->pl->posY * 5;
+	if (abs(x - (int)px) > abs(y - (int)py))
 	{
-		if (p.posX > x)
-			put_lineL(g, x, y, p.posX, p.posY);
+		if (px > x)
+			put_lineL(g, x, y, px, py);
 		else
-			put_lineL(g, p.posX, p.posY, x, y);
+			put_lineL(g, px, py, x, y);
 	}
 	else
 	{
-		if (p.posY > y)
-			put_lineH(g, x, y, p.posX, p.posY);
+		if (py > y)
+			put_lineH(g, x, y, px, py);
 		else
-			put_lineH(g, p.posX, p.posY, x, y);
+			put_lineH(g, px, py, x, y);
 	}
-}
-
-void	draw_map(t_game *g)
-{
-	int	x;
-	int	y;
-	int	xo;
-	int	yo;
-
-	y = 0;
-	while (y < MAP_HEIGHT)
-	{
-		x = 0;
-		while (x < MAP_WIDTH)
-		{
-			if (worldMap[y * MAP_WIDTH + x] == 0)
-				g->d->color = 0x00565656;
-			else
-				g->d->color = 0x00ff0000;
-			xo = x * MAP_SIZE;
-			yo = y * MAP_SIZE;
-			put_square(g->d, xo, yo, MAP_SIZE - 1);
-			x++;
-		}
-		y++;
-	}
-	g->d->color = 0x00dadada;
 }
