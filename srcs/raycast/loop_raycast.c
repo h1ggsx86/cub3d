@@ -104,8 +104,6 @@ int	ray_loop(t_game *g, t_player p)
 		else
 			wall_dist = (side_distY - delta_distY);
 
-		// printf("wall_dist %f\n", wall_dist);
-		line_height = (int)(WIN_HEIGHT / wall_dist);
 		// printf("line_height %d\n", line_height);
 		draw_start = -line_height / 2 + WIN_HEIGHT / 2;
 		if (draw_start < 0)
