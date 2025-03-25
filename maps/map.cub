@@ -1,7 +1,7 @@
-SO ./path_to_the_south_texture
-EA ./path_to_the_east_texture
-WE ./path_to_the_west_texture
-NO ./path_to_the_north_texture
+SO ./textures/path_to_the_south_texture
+EA ./textures/path_to_the_east_texture
+WE ./textures/path_to_the_west_texture
+NO ./textures/path_to_the_north_texture
 
 F 225, 30, 0
 # couleur du sol en RGB, valeurs en 0 et 255

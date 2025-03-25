@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xenon <xenon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 15:37:30 by arotondo          #+#    #+#             */
-/*   Updated: 2025/03/24 23:24:17 by xenon            ###   ########.fr       */
+/*   Updated: 2025/03/25 16:43:12 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ void	init_my_map(t_game *g, char *file)
 	in_map = false;
 	g->map = open(file, O_RDONLY, 0664);
 	if (g->map < 0)
+	{
+		perror("");
 		exit(1);
+	}
 	line = malloc(sizeof(char) * 1);
 	if (!line)
 		exit(1);
@@ -89,5 +92,6 @@ void	parsing_the_thing(t_game *g, char *file)
 			break ;
 	}
 	close(g->map);
+	get_next_line(-1);
 	check_map(g);
 }

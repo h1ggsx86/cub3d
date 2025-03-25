@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop_raycast.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 13:27:31 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/25 15:01:02 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/25 16:05:47 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ int	ray_loop(t_game *g, t_player p)
 		else
 			wall_dist = (side_distY - delta_distY);
 
-		printf("wall_dist %f\n", wall_dist);
+		// printf("wall_dist %f\n", wall_dist);
 		line_height = (int)(WIN_HEIGHT / wall_dist);
 		// printf("line_height %d\n", line_height);
 		draw_start = -line_height / 2 + WIN_HEIGHT / 2;
