@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xenon <xenon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 16:00:46 by arotondo          #+#    #+#             */
-/*   Updated: 2025/03/25 01:13:05 by xenon            ###   ########.fr       */
+/*   Updated: 2025/03/25 14:38:09 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,6 @@ int	check_top_bottom(t_game *g)
 			return (1);
 		if (g->d->mapper[max_hight][i] && g->d->mapper[max_hight][i] != '1')
 			return (1);
-		// printf("TP BEG== mapper[%d][%d] = %d\n", 0, i, g->d->mapper[0][i]);
-		// printf("TP END == mapper[%d][%d] = %d\n", max_hight, i, g->d->mapper[max_hight][i]);
 		i++;
 	}
 	return (0);
@@ -97,8 +95,6 @@ int	check_left_right(t_game *g)
 			return (1);
 		if (g->d->mapper[j] && g->d->mapper[j][max_len] != '1')
 			return (1);
-		// printf("LR BEG == mapper[%d][%d] = %d\n", j, 0, g->d->mapper[j][0]);
-		// printf("LR END == mapper[%d][%d] = %d\n", j, max_len, g->d->mapper[j][max_len]);
 		j++;
 	}
 	return (0);
