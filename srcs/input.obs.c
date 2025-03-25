@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   input.c                                            :+:      :+:    :+:   */
+/*   input.obs.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 14:49:39 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/10 11:02:00 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/24 13:28:59 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	moves_input(int keycode, t_game *g)
 		pl->dirY = old_dirX * sinf(-3.0) + pl->dirY * cosf(-3.0);
 		pl->viewX = pl->viewX * cosf(-3.0) - pl->viewY * sinf(-3.0);
 		pl->viewY = old_viewX * sinf(-3.0) + pl->viewY * cosf(-3.0);
-		printf("[DEBUG] dirX :\t%f\t| dirY :\t%f\n", pl->dirX, pl->dirY);
+		// printf("[DEBUG] dirX :\t%f\t| dirY :\t%f\n", pl->dirX, pl->dirY);
 		redraw_img(g);
 	}
 	// else if (keycode == XK_d || keycode == XK_Right)
@@ -66,7 +66,7 @@ void	moves_input(int keycode, t_game *g)
 		pl->dirY = old_dirX * sinf(3.0) + pl->dirY * cosf(3.0);
 		pl->viewX = pl->viewX * cosf(3.0) - pl->viewY * sinf(3.0);
 		pl->viewY = old_viewX * sinf(3.0) + pl->viewY * cosf(3.0);
-		printf("[DEBUG] dirX :\t%f\t| dirY :\t%f\n", pl->dirX, pl->dirY);
+		// printf("[DEBUG] dirX :\t%f\t| dirY :\t%f\n", pl->dirX, pl->dirY);
 		redraw_img(g);
 	}
 	else if (keycode == XK_s || keycode == XK_Down)
@@ -77,7 +77,7 @@ void	moves_input(int keycode, t_game *g)
 		// 	pl->posY -= pl->dirY * 00.33;
 		pl->posX -= pl->dirX * 5;
 		pl->posY -= pl->dirY * 5;
-		printf("[DEBUG] posX :\t%f\t| posY :\t%f\n", pl->posX, pl->posY);
+		// printf("[DEBUG] posX :\t%f\t| posY :\t%f\n", pl->posX, pl->posY);
 		redraw_img(g);
 	}
 	else if (keycode == XK_w || keycode == XK_Up)
@@ -88,7 +88,7 @@ void	moves_input(int keycode, t_game *g)
 		// 	pl->posY += pl->dirY * 00.33;
 		pl->posX += pl->dirX * 5;
 		pl->posY += pl->dirY * 5;
-		printf("[DEBUG] posX :\t%f\t| posY :\t%f\n", pl->posX, pl->posY);
+		// printf("[DEBUG] posX :\t%f\t| posY :\t%f\n", pl->posX, pl->posY);
 		redraw_img(g);
 	}
 }

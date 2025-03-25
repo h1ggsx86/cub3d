@@ -3,10 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   loop_raycast.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
+<<<<<<< HEAD
 /*   Created: 2025/02/28 13:27:31 by tnedel            #+#    #+#             */
 /*   Updated: 2025/03/25 12:35:51 by tnedel           ###   ########.fr       */
+=======
+/*   Created: 2025/03/10 10:43:07 by tnedel            #+#    #+#             */
+/*   Updated: 2025/03/24 13:29:08 by arotondo         ###   ########.fr       */
+>>>>>>> origin
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +33,23 @@ int	ray_loop(t_game *g, t_player p)
 	double	side_distX, side_distY;
 	double	delta_distX, delta_distY;
 
+<<<<<<< HEAD
 	x = 0;
 	while (x < WIN_WIDTH)
+=======
+	int	x_index, y_index;
+
+	float d_h_grid_h, d_v_grid_h;
+
+		d_v_grid_h = 0;
+	ra = p.pa;
+	ra -= ANGLE30;
+	// printf("ra -> %f\n", ra);
+	if (ra < 0)
+		ra = ANGLE360 + ra;
+	ray = 0;
+	while (ray < WIN_WIDTH)
+>>>>>>> origin
 	{
 		cameraX = 2 * (double)x / (double)WIN_WIDTH - 1;
 		ray_dirX = (p.dirX + p.viewX * cameraX);
@@ -77,17 +97,61 @@ int	ray_loop(t_game *g, t_player p)
 			// printf("DDA LOOP\n");
 			if (side_distX < side_distY)
 			{
+<<<<<<< HEAD
 				// printf("!!! 0 !!!!!! 1 !!!\n");
 				side_distX += delta_distX;
 				mapX += stepX;
 				side = 0;
+=======
+				x_index = (int)(x_inter / MAP_SIZE);
+				y_index = h_grid / MAP_SIZE;
+				if ((x_index >= MAP_WIDTH) ||
+					(y_index >= MAP_HEIGHT) ||
+					(x_index < 0) | (y_index < 0))
+				{
+					d_h_grid_h = 9999999;
+					break;
+				}
+				else if (worldMap[y_index * MAP_WIDTH + x_index] != 0)
+				{
+					d_h_grid_h = (x_inter - p.posX) * g->t.icos_table[(int)ra];
+					break;
+				}
+				else
+				{
+					x_inter += d_x_inter;
+					y_inter += d_h_grid;
+				}
+>>>>>>> origin
 			}
 			else
 			{
+<<<<<<< HEAD
 				// printf("!!! 2 !!!!!! 0 !!!\n");
 				side_distY += delta_distY;
 				mapY += stepY;
 				side = 1;
+=======
+				x_index = (v_grid / MAP_SIZE);
+				y_index = (int)(y_inter / MAP_SIZE);
+				if ((x_index >= MAP_WIDTH) ||
+					(y_index >= MAP_HEIGHT) ||
+					(x_index < 0) | (y_index < 0))
+				{
+					d_h_grid_h = 9999999;
+					break;
+				}
+				else if (worldMap[y_index * MAP_WIDTH + x_index] != 0)
+				{
+					d_v_grid_h = (y_inter - p.posY) * g->t.isin_table[(int)ra];
+					break;
+				}
+				else
+				{
+					y_inter += d_y_inter;
+					v_grid += d_v_grid;
+				}
+>>>>>>> origin
 			}
 			if (mapY > 24 || mapX > 24)
 				break ;
@@ -101,6 +165,7 @@ int	ray_loop(t_game *g, t_player p)
 		if (!side)
 			wall_dist = (side_distX - delta_distX);
 		else
+<<<<<<< HEAD
 			wall_dist = (side_distY - delta_distY);
 
 		// printf("wall_dist %f\n", wall_dist);
@@ -121,6 +186,28 @@ int	ray_loop(t_game *g, t_player p)
 		// printf("x -> %d\n", x);
 		put_player_line(g, p.posX * 5 + ray_dirX * wall_dist * 5, p.posY  * 5 + ray_dirY * wall_dist * 5);
 		x++;
+=======
+		{
+			dist = d_v_grid_h;
+			color = g->d->color / 2;
+		}
+		int	proj_wall = (int)(MAP_SIZE * (float)277 / dist);
+		bottom_wall = WIN_HEIGHT / 2 + (int)(proj_wall * 0.5f);
+		top_wall = WIN_HEIGHT - bottom_wall;
+		// printf("[DEBUG] bottom_wall -> %d | top_wall -> %d\n", bottom_wall, top_wall);
+		// printf("[DEBUG] ray         -> %d\n", ray);
+		if (bottom_wall >= WIN_HEIGHT)
+			bottom_wall = WIN_HEIGHT - 1;
+		for (int x = 0; x < 5; x++)
+		{
+			// printf("[DEBUG] color     -> %d\n", color);
+			put_vline(g, top_wall, proj_wall, ray + x, color);
+		}
+		ra += 5;
+		if (ra >= ANGLE360)
+			ra -= ANGLE360;
+		ray += 5;
+>>>>>>> origin
 	}
 	return (EXIT_SUCCESS);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: xenon <xenon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 17:23:54 by arotondo          #+#    #+#             */
-/*   Updated: 2025/03/06 18:54:37 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/22 10:45:52 by xenon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	err_message(t_game *g, char *arg, char *mess)
 	if (arg)
 	{
 		ft_putstr_fd(arg, 2);
-		write(2, ": ", 2);
+		ft_putstr_fd(": ", 2);
 	}
 	if (!mess)
 		perror("");

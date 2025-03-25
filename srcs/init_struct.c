@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: xenon <xenon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:16:20 by tnedel            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2025/03/25 10:56:33 by tnedel           ###   ########.fr       */
+=======
+/*   Updated: 2025/03/24 23:20:56 by xenon            ###   ########.fr       */
+>>>>>>> origin
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +21,17 @@ int	data_init(t_data *data)
 	data->img_player = malloc(sizeof(t_mimg) * 2);
 	if (!data->img_player)
 		return (1);
+<<<<<<< HEAD
 	data->img_player[0].img = NULL;
 	data->img_player[1].img = NULL;
 	data->height = MAP_HEIGHT;
 	data->width = MAP_WIDTH;
+=======
+	data->img_map[0].img = NULL;
+	data->img_map[1].img = NULL;
+	data->height = 0;
+	data->width = 0;
+>>>>>>> origin
 	data->mapper = NULL;
 	data->active_img = 1;
 	data->color = 0x00dadada;

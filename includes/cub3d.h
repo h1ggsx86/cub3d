@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 15:02:41 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/25 10:52:07 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/25 14:44:55 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,20 @@
 # define MAP_SIZE 64
 # define WIN_WIDTH 800
 # define WIN_HEIGHT 600
+# define PI 3.1415926535
+# define PI2 PI/2
+# define PI3 3*PI/2
+# define DR 0.0174533
+# define ANGLE60 WIN_WIDTH
+# define ANGLE30 (ANGLE60 / 2)
+# define ANGLE15 (ANGLE30 / 2)
+# define ANGLE90 (ANGLE30 * 3)
+# define ANGLE180 (ANGLE90 * 2)
+# define ANGLE270 (ANGLE90 * 3)
+# define ANGLE360 (ANGLE60 * 6)
+# define ANGLE0 0
+# define ANGLE5 (ANGLE30 / 6)
+# define ANGLE10 (ANGLE5 * 2)
 
 extern int	worldMap[24][24];
 
@@ -84,6 +98,9 @@ typedef struct s_player
 	double	dirY;
 	double	viewX;
 	double	viewY;
+	double	pa;
+	double	pdx;
+	double	pdy;
 }			t_player;
 
 typedef struct s_game

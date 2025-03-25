@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: xenon <xenon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 15:37:30 by arotondo          #+#    #+#             */
-/*   Updated: 2025/03/21 14:48:10 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/24 23:24:17 by xenon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	init_my_map(t_game *g, char *file)
 			break ;
 		if (in_map == true)
 			i++;
-		if (ft_strlen(line) > g->d->width)
+		if (in_map == true && ft_strlen(line) > g->d->width)
 			g->d->width = ft_strlen(line);
 	}
 	g->d->height = i;
@@ -51,8 +51,13 @@ void	init_my_map(t_game *g, char *file)
 
 void	check_map(t_game *g)
 {
-	if (check_sides(g))
+	if (check_left_right(g))
 		exit_game(g, 4);
+	if (check_top_bottom(g))
+		exit_game(g, 4);
+	g->d->map_parsed = true;
+	if (check_inside(g))
+		exit_game(g, 5);
 }
 
 void	parsing_the_thing(t_game *g, char *file)

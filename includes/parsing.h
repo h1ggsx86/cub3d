@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: xenon <xenon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 16:16:04 by arotondo          #+#    #+#             */
-/*   Updated: 2025/03/20 16:45:46 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/25 00:58:41 by xenon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,11 @@ typedef struct s_player	t_player;
 typedef struct s_game	t_game;
 
 /* parsing */
-void	init_my_map(t_game *g, char *file);
-void	parsing_the_thing(t_game *g, char *file);
+void		init_my_map(t_game *g, char *file);
+void		parsing_the_thing(t_game *g, char *file);
 
 /* parsing_utils */
+size_t		ft_vert_len(char **tab, int row, int max);
 
 /* parse_textures */
 void		get_north_or_south(t_data *d, char *line, int idc);
@@ -34,12 +35,10 @@ void		get_textures(t_data *d, char *line, int idc);
 int			is_indicator(t_game *g, char *line);
 
 /* parse_map */
-int			is_inside(t_game *g, bool player, int j);
-void		choose_left_right(t_game *g, int *i, int *j);
-void		choose_top_bottom(t_game *g, int *i, int *j);
-void		is_map_parsed(t_game *g, int i, int j);
-int			check_sides(t_game *g);
-int			is_pos_player(int c);
+int			is_pos_player(int c, int *player);
+int			check_inside(t_game *g);
+int			check_left_right(t_game *g);
+int			check_top_bottom(t_game *g);
 void		parse_map(t_game *g, char *line, int *j);
 
 /* parse_colors */
