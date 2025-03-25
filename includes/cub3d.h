@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 15:02:41 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/25 15:08:09 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/25 18:47:13 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,15 @@
 # include <sys/time.h>
 # include <X11/Xlib.h>
 # include <X11/keysym.h>
+
 # include "../mlx-linux/mlx.h"
 # include "../mlx-linux/mlx_int.h"
 # include "../libft/libft.h"
+
 # include "../includes/parsing.h"
+# include "../includes/utils.h"
+# include "../includes/init.h"
+# include "../includes/raycast.h"
 
 # define MAP_WIDTH 8
 # define MAP_HEIGHT 8
@@ -115,29 +120,12 @@ typedef struct s_game
 	t_player	*pl;
 }				t_game;
 
-/* init */
-int		img_init(t_mimg *img, t_game *g, void *init);
-void	game_init(t_game *g);
-void	struct_init(t_game *new, t_data *data, t_player *pl);
-
-/* exit */
-void	exit_game(t_game *g, int ecode);
-
-/* put & player */
-void	put_pixel(t_data *d, int x, int y, int color);
-void	put_square(t_data *d, int xc, int yc, int c);
-void	put_player_circle(t_game *g, int color, int r);
-void	put_vline(t_game *g, int y_start, int y_end, int x, int color);
-void	put_player_line(t_game *g, int x, int y);
 void	moves_input(int keycode, t_game *g);
 void	draw_map(t_game *g);
 
 /* LOOP */
 int		ray_loop(t_game *g, t_player p);
 void	the_loop(t_game *g);
-
-/* error */
-void	err_message(t_game *g, char *arg, char *mess);
 
 /* MATH STUFF*/
 int		fix_angle(int a);
