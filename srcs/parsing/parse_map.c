@@ -3,47 +3,54 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: xenon <xenon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 16:00:46 by arotondo          #+#    #+#             */
-/*   Updated: 2025/03/24 17:13:35 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/25 01:13:05 by xenon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/parsing.h"
 
+int	is_pos_player(int c, int *player)
+{
+	if (c == 'N')
+		(*player)++;
+	else if (c == 'S')
+		(*player)++;
+	else if (c == 'E')
+		(*player)++;
+	else if (c == 'W')
+		(*player)++;
+	if (*player)
+		return (1);
+	else
+		return (0);
+}
+
 int	check_inside(t_game *g)
 {
-	bool	is_player;
+	int		n_player;
 	int		j;
 	int		i;
-	int		pos[2];
 
-	is_player = false;
+	n_player = 0;
 	j = 0;
 	while (g->d->mapper[j])
 	{
 		i = 0;
-		while(g->d->mapper[j][i] && g->d->mapper[j][i] != '\n') 
+		while(g->d->mapper[j][i] && g->d->mapper[j][i] != '\n')
 		{
-			if (is_player == true && is_pos_player(g->d->mapper[j][i], &is_player))
-				err_message(g, "player", "only one allowed");
-			else if (is_pos_player(g->d->mapper[j][i], &is_player))
+			if (!n_player && is_pos_player(g->d->mapper[j][i], &n_player))
 			{
-				perror("HERE");
-				pos[0] = ft_atoi(g->d->mapper[j]);
-				printf("%d\n", pos[0]);
-				pos[1] = ft_atoi(&g->d->mapper[j][i]);
-				printf("%d\n", pos[1]);
+				g->d->pos_player[0] = j;
+				g->d->pos_player[1] = i;
 				g->d->mapper[j][i] = '0';
 			}
+			else if (is_pos_player(g->d->mapper[j][i], &n_player) && n_player > 1)
+				err_message(g, "player", "only one allowed");
 			else if (g->d->mapper[j][i] != '1' && g->d->mapper[j][i] != '0')
-			{
-				perror("EXIT");
-				printf("g->d->mapper[%d][%d] = %d\n", j, i, g->d->mapper[j][i]);
 				return (1);
-			}
-			printf("i = %d\n", i);
 			i++;
 		}
 		j++;
@@ -95,22 +102,6 @@ int	check_left_right(t_game *g)
 		j++;
 	}
 	return (0);
-}
-
-int	is_pos_player(int c, bool *player)
-{
-	if (c == 'N')
-		*player = true;
-	else if (c == 'S')
-		*player = true;
-	else if (c == 'E')
-		*player = true;
-	else if (c == 'W')
-		*player = true;
-	if (*player == true)
-		return (1);
-	else
-		return (0);
 }
 
 void	parse_map(t_game *g, char *line, int *j)

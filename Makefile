@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+         #
+#    By: xenon <xenon@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/24 19:27:15 by tnedel            #+#    #+#              #
-#    Updated: 2025/03/21 14:58:16 by tnedel           ###   ########.fr        #
+#    Updated: 2025/03/24 23:34:04 by xenon            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ define title_var
 		@echo
 endef
 
-NAME = cub3d
+NAME = Cub3d
 MLX_DIR = mlx-linux
 INC_DIR	= includes
 LIBFT_DIR = libft
