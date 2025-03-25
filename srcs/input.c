@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 14:49:39 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/21 15:02:32 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/21 15:25:37 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	redraw_img(t_game *g)
 		img = g->d->img_map;
 	mlx_destroy_image(g->init, img->img);
 	img->img = NULL;
-	if (img_init(img, g->d, g->init))
+	if (img_init(img, g, g->init))
 		exit_game(g, 1);
 	draw_map(g);
 	ray_loop(g, *g->pl);

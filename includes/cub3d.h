@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: xenon <xenon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 15:02:41 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/21 15:15:45 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/24 23:17:37 by xenon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ typedef struct s_data
 	t_color		*colors;
 	int			active_img;
 	char		**mapper;
+	int			pos_player[2];
 	int			height;
 	size_t		width;
 	int			i_text;
@@ -129,7 +130,7 @@ typedef struct s_game
 }				t_game;
 
 /* init */
-int		img_init(t_mimg *img, t_data *d, void *init);
+int		img_init(t_mimg *img, t_game *g, void *init);
 void	game_init(t_game *g);
 void	struct_init(t_game *new, t_data *data, t_player *pl, t_tables *t);
 
