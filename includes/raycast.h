@@ -6,14 +6,12 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 18:45:27 by arotondo          #+#    #+#             */
-/*   Updated: 2025/03/25 18:49:29 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/26 11:03:09 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RAYCAST_H
 # define RAYCAST_H
-
-# include "cub3d.h"
 
 typedef struct s_color	t_color;
 typedef struct s_mimg	t_mimg;

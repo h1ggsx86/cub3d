@@ -6,11 +6,11 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:12:09 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/25 18:49:00 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/26 10:58:21 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/init.h"
+#include "../../includes/cub3d.h"
 
 int	img_init(t_mimg *img, t_game *g, void *init)
 {

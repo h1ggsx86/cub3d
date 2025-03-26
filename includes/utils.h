@@ -6,14 +6,12 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 18:26:43 by arotondo          #+#    #+#             */
-/*   Updated: 2025/03/25 18:31:39 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/26 11:36:52 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef UTILS_H
 # define UTILS_H
-
-# include "cub3d.h"
 
 typedef struct s_color	t_color;
 typedef struct s_mimg	t_mimg;
@@ -22,7 +20,7 @@ typedef struct s_player	t_player;
 typedef struct s_game	t_game;
 
 /* exit_game */
-void	err_message(t_game *g, char *arg, char *mess);
+void	err_message(t_game *g, char *arg, char *mess, int ecode);
 void	free_img(void *init, t_mimg *img);
 void	exit_game(t_game *g, int ecode);
 

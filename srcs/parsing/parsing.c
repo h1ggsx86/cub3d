@@ -6,11 +6,11 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 15:37:30 by arotondo          #+#    #+#             */
-/*   Updated: 2025/03/25 18:58:58 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/26 11:02:41 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/parsing.h"
+#include "../../includes/cub3d.h"
 
 void	init_my_map(t_game *g, char *file)
 {
@@ -93,6 +93,8 @@ void	parsing_the_thing(t_game *g, char *file)
 		if (g->d->map_parsed == true)
 			break ;
 	}
+	if (!g->d->all_text || !g->d->all_colors)
+		exit_game(g, 6);
 	close(g->map);
 	get_next_line(-1);
 	check_map(g);
