@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xenon <xenon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 14:49:39 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/25 22:32:33 by xenon            ###   ########.fr       */
+/*   Updated: 2025/03/26 12:43:44 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "cub3d.h"
 
 void	redraw_img(t_game *g)
 {
@@ -68,19 +68,19 @@ void	moves_input(int keycode, t_game *g)
 	}
 	else if (keycode == XK_w)
 	{
-		if (worldMap[(int)(p->posX + p->dirX * move_speed)][(int)p->posY] != 1)
-			p->posX += p->dirX * move_speed;
-		if (worldMap[(int)p->posX][(int)(p->posY + p->dirY * move_speed)] != 1)
-			p->posY += p->dirY * move_speed;
+		if (g->d->mapper[(int)(p->x + p->dirX * move_speed)][(int)p->y] != 1)
+			p->x += p->dirX * move_speed;
+		if (g->d->mapper[(int)p->x][(int)(p->y + p->dirY * move_speed)] != 1)
+			p->y += p->dirY * move_speed;
 		// printf("[DEBUG] pa :\t%f | pdx :\t%f | pdy :\t%f\n", p->pa, p->pdx, p->pdy);
 		redraw_img(g);
 	}
 	else if (keycode == XK_s)
 	{
-		if (worldMap[(int)(p->posX - p->dirX * move_speed)][(int)p->posY] != 1)
-			p->posX -= p->dirX * move_speed;
-		if (worldMap[(int)p->posX][(int)(p->posY - p->dirY * move_speed)] != 1)
-			p->posY -= p->dirY * move_speed;
+		if (g->d->mapper[(int)(p->x - p->dirX * move_speed)][(int)p->y] != 1)
+			p->x -= p->dirX * move_speed;
+		if (g->d->mapper[(int)p->x][(int)(p->y - p->dirY * move_speed)] != 1)
+			p->y -= p->dirY * move_speed;
 		// printf("[DEBUG] pa :\t%f | pdx :\t%f | pdy :\t%f\n", p->pa, p->pdx, p->pdy);
 		redraw_img(g);
 	}

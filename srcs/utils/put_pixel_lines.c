@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   put_pixel_lines.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 18:29:22 by arotondo          #+#    #+#             */
-/*   Updated: 2025/03/26 11:02:54 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/26 12:43:25 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ void	put_hline(t_game *g, int x_start, int x_end, int y)
 	x = x_start;
 	while (x_start < x_end)
 	{
-		put_pixel(g->d, x_start, pl.posY * 5 + y, g->d->color);
+		put_pixel(g->d, x_start, pl.y * 5 + y, g->d->color);
 		x_start++;
 	}
 	while (x < x_end)
 	{
-		put_pixel(g->d, x, pl.posY * 5 - y, g->d->color);
+		put_pixel(g->d, x, pl.y * 5 - y, g->d->color);
 		x++;
 	}
 }

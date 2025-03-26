@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 15:02:41 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/25 18:47:13 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/26 12:27:41 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,22 +40,28 @@
 # define MAP_SIZE 64
 # define WIN_WIDTH 800
 # define WIN_HEIGHT 600
-# define PI 3.1415926535
-# define PI2 PI/2
-# define PI3 3*PI/2
-# define DR 0.0174533
-# define ANGLE60 WIN_WIDTH
-# define ANGLE30 (ANGLE60 / 2)
-# define ANGLE15 (ANGLE30 / 2)
-# define ANGLE90 (ANGLE30 * 3)
-# define ANGLE180 (ANGLE90 * 2)
-# define ANGLE270 (ANGLE90 * 3)
-# define ANGLE360 (ANGLE60 * 6)
-# define ANGLE0 0
-# define ANGLE5 (ANGLE30 / 6)
-# define ANGLE10 (ANGLE5 * 2)
 
 extern int	worldMap[24][24];
+
+typedef struct s_ray
+{
+	int		side;
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
+	int		mapX;
+	int		mapY;
+	int		stepX;
+	int		stepY;
+	double	cameraX;
+	double	wall_dist;
+	double	ray_x;
+	double	ray_y;
+	double	side_distX;
+	double	side_distY;
+	double	delta_distX;
+	double	delta_distY;
+}			t_ray;
 
 typedef struct s_color
 {
@@ -79,7 +85,6 @@ typedef struct s_data
 	t_color		*colors;
 	int			active_img;
 	char		**mapper;
-	int			pos_player[2];
 	int			height;
 	size_t		width;
 	int			i_text;
@@ -98,15 +103,12 @@ typedef struct s_data
 
 typedef struct s_player
 {
-	double	posX;
-	double	posY;
+	double	x;
+	double	y;
 	double	dirX;
 	double	dirY;
 	double	viewX;
 	double	viewY;
-	double	pa;
-	double	pdx;
-	double	pdy;
 }			t_player;
 
 typedef struct s_game
@@ -118,13 +120,13 @@ typedef struct s_game
 	void		*win;
 	t_data		*d;
 	t_player	*pl;
+	t_ray		*r;
 }				t_game;
 
 void	moves_input(int keycode, t_game *g);
 void	draw_map(t_game *g);
 
 /* LOOP */
-int		ray_loop(t_game *g, t_player p);
 void	the_loop(t_game *g);
 
 /* MATH STUFF*/

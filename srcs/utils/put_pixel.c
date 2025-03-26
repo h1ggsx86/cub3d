@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   put_pixel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 15:38:41 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/26 11:02:58 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/26 12:43:31 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void	put_player_circle(t_game *g, int color, int r)
 	double	p;
 
 	t_player (pl) = *g->pl;
-	// t_data *(d) = g->d;
 	(void)color;
 	y = -r;
 	p = -r;
@@ -64,16 +63,8 @@ void	put_player_circle(t_game *g, int color, int r)
 		}
 		else
 			p += 2 * x + 1;
-		// put_pixel(d, pl.posX * 10 + x, pl.posY * 10 + y, color);
-		// put_pixel(d, pl.posX * 10 - x, pl.posY * 10 + y, color);
-		// put_pixel(d, pl.posX * 10 + x, pl.posY * 10 - y, color);
-		// put_pixel(d, pl.posX * 10 - x, pl.posY * 10 - y, color);
-		// put_pixel(d, pl.posX * 10 + y, pl.posY * 10 + x, color);
-		// put_pixel(d, pl.posX * 10 - y, pl.posY * 10 + x, color);
-		// put_pixel(d, pl.posX * 10 + y, pl.posY * 10 - x, color);
-		// put_pixel(d, pl.posX * 10 - y, pl.posY * 10 - x, color);
-		put_hline(g, pl.posX * 5 - x, pl.posX * 5 + x, y);
-		put_hline(g, pl.posX * 5 + y, pl.posX * 5 - y, x);
+		put_hline(g, pl.x * 5 - x, pl.x * 5 + x, y);
+		put_hline(g, pl.x * 5 + y, pl.x * 5 - y, x);
 		x++;
 	}
 }
@@ -83,8 +74,8 @@ void	put_player_line(t_game *g, int x, int y)
 	double px;
 	double py;
 
-	px = g->pl->posX * 5;
-	py = g->pl->posY * 5;
+	px = g->pl->x * 5;
+	py = g->pl->y * 5;
 	if (abs(x - (int)px) > abs(y - (int)py))
 	{
 		if (px > x)
