@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 16:00:46 by arotondo          #+#    #+#             */
-/*   Updated: 2025/03/25 14:38:09 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/26 12:27:37 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ int	check_inside(t_game *g)
 		{
 			if (!n_player && is_pos_player(g->d->mapper[j][i], &n_player))
 			{
-				g->d->pos_player[0] = j;
-				g->d->pos_player[1] = i;
+				g->pl->x = (double)j;
+				g->pl->y = (double)i;
 				g->d->mapper[j][i] = '0';
 			}
 			else if (is_pos_player(g->d->mapper[j][i], &n_player) && n_player > 1)

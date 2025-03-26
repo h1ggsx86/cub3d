@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 13:27:31 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/26 12:06:22 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/26 12:21:56 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,9 +104,9 @@ int	ray_loop(t_game *g, t_player p)
 				r->mapY += r->stepY;
 				r->side = 1;
 			}
-			if (r->mapY > 24 || r->mapX > 24)
+			if (r->mapY > (int)g->d->height || r->mapX > (int)g->d->width)
 				break ;
-			if (worldMap[r->mapX][r->mapY] > 0)
+			if (g->d->mapper[r->mapX][r->mapY] > 0)
 				hit = 1;
 		}
 		draw_wall(g, r, p, x);

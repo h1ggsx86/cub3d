@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 15:02:41 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/26 11:34:33 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/26 12:27:41 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ typedef struct s_data
 	t_color		*colors;
 	int			active_img;
 	char		**mapper;
-	int			pos_player[2];
 	int			height;
 	size_t		width;
 	int			i_text;

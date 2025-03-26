@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 14:49:39 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/26 11:25:55 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/26 12:21:33 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,18 +68,18 @@ void	moves_input(int keycode, t_game *g)
 	}
 	else if (keycode == XK_w)
 	{
-		if (worldMap[(int)(p->x + p->dirX * move_speed)][(int)p->y] != 1)
+		if (g->d->mapper[(int)(p->x + p->dirX * move_speed)][(int)p->y] != 1)
 			p->x += p->dirX * move_speed;
-		if (worldMap[(int)p->x][(int)(p->y + p->dirY * move_speed)] != 1)
+		if (g->d->mapper[(int)p->x][(int)(p->y + p->dirY * move_speed)] != 1)
 			p->y += p->dirY * move_speed;
 		// printf("[DEBUG] pa :\t%f | pdx :\t%f | pdy :\t%f\n", p->pa, p->pdx, p->pdy);
 		redraw_img(g);
 	}
 	else if (keycode == XK_s)
 	{
-		if (worldMap[(int)(p->x - p->dirX * move_speed)][(int)p->y] != 1)
+		if (g->d->mapper[(int)(p->x - p->dirX * move_speed)][(int)p->y] != 1)
 			p->x -= p->dirX * move_speed;
-		if (worldMap[(int)p->x][(int)(p->y - p->dirY * move_speed)] != 1)
+		if (g->d->mapper[(int)p->x][(int)(p->y - p->dirY * move_speed)] != 1)
 			p->y -= p->dirY * move_speed;
 		// printf("[DEBUG] pa :\t%f | pdx :\t%f | pdy :\t%f\n", p->pa, p->pdx, p->pdy);
 		redraw_img(g);
