@@ -6,11 +6,11 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 16:00:46 by arotondo          #+#    #+#             */
-/*   Updated: 2025/03/25 14:38:09 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/26 12:30:11 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/parsing.h"
+#include "../../includes/cub3d.h"
 
 int	is_pos_player(int c, int *player)
 {
@@ -48,7 +48,7 @@ int	check_inside(t_game *g)
 				g->d->mapper[j][i] = '0';
 			}
 			else if (is_pos_player(g->d->mapper[j][i], &n_player) && n_player > 1)
-				err_message(g, "player", "only one allowed");
+				err_message(g, "player", "only one allowed", 6);
 			else if (g->d->mapper[j][i] != '1' && g->d->mapper[j][i] != '0')
 				return (1);
 			i++;

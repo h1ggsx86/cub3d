@@ -6,13 +6,13 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:31:18 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/25 18:48:29 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/26 11:37:09 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/utils.h"
+#include "../../includes/cub3d.h"
 
-void	err_message(t_game *g, char *arg, char *mess)
+void	err_message(t_game *g, char *arg, char *mess, int ecode)
 {
 	ft_putstr_fd("Club3D: ", 2);
 	if (arg)
@@ -28,6 +28,7 @@ void	err_message(t_game *g, char *arg, char *mess)
 	// 	free(g->d->img_map);
 	if (g->map > 0)
 		close(g->map);
+	exit_game(g, ecode);
 }
 
 void	free_img(void *init, t_mimg *img)

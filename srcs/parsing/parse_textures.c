@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parse_textures.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xenon <xenon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 16:01:40 by arotondo          #+#    #+#             */
-/*   Updated: 2025/03/25 22:45:11 by xenon            ###   ########.fr       */
+/*   Updated: 2025/03/26 12:29:55 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/parsing.h"
+#include "../../includes/cub3d.h"
 
 void	get_north_or_south(t_data *d, char *line, int idc)
 {
@@ -101,20 +101,14 @@ int	is_indicator(t_game *g, char *line)
 	while (line[i] && !ft_isspace(line[i]))
 		i++;
 	if (line[i] == 'N' && !g->d->north_path)
-	{
-		perror("NORTH");	
 		get_textures(g->d, line, 78);
-	}
 	else if (line[i] == 'S' && !g->d->south_path)
 		get_textures(g->d, line, 83);
 	else if (line[i] == 'W' && !g->d->west_path)
-	{
-		perror("WEST");
 		get_textures(g->d, line, 87);
-	}
 	else if (line[i] == 'E' && !g->d->east_path)
 		get_textures(g->d, line, 69);
 	else
-		err_message(g, "textures", "not found");
+		err_message(g, "textures", "not found", 5);
 	return (0);
 }

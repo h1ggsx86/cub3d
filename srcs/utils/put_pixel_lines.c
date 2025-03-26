@@ -6,11 +6,11 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 18:29:22 by arotondo          #+#    #+#             */
-/*   Updated: 2025/03/25 18:30:10 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/26 11:02:54 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/utils.h"
+#include "../../includes/cub3d.h"
 
 void	put_vline(t_game *g, int y_start, int y_end, int x, int color)
 {

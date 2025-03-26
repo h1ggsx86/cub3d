@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   loop_raycast.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xenon <xenon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 13:27:31 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/25 22:29:43 by xenon            ###   ########.fr       */
+/*   Updated: 2025/03/26 11:02:12 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/raycast.h"
+#include "../../includes/cub3d.h"
 
 int	ray_loop(t_game *g, t_player p)
 {
@@ -105,6 +105,7 @@ int	ray_loop(t_game *g, t_player p)
 			wall_dist = (side_distY - delta_distY);
 
 		// printf("line_height %d\n", line_height);
+		line_height = (int)(WIN_HEIGHT / wall_dist);
 		draw_start = -line_height / 2 + WIN_HEIGHT / 2;
 		if (draw_start < 0)
 			draw_start = 0;
