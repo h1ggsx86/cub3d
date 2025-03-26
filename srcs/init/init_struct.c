@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:16:20 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/25 18:48:56 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/26 11:29:24 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,8 @@ int	color_init(t_data *data)
 
 void	player_init(t_player *pl)
 {
-	pl->posX = 22.5;
-	pl->posY = 12.5;
-	// pl->posX = 4 * 64;
-	// pl->posY = 4 * 64;
+	pl->x = 22;
+	pl->y = 12;
 	pl->dirX = -1;
 	pl->dirY = 0;
 	pl->viewX = 0.0f;
@@ -69,6 +67,9 @@ void	struct_init(t_game *new, t_data *data, t_player *pl)
 	new->pl = pl;
 	new->win_height = WIN_HEIGHT;
 	new->win_width = WIN_WIDTH;
+	new->r = malloc(sizeof(t_ray));
+	if (!new->r)
+		exit_game(new, 1);
 	if (data_init(new->d))
 		exit_game(new, 1);
 	if (color_init(new->d))

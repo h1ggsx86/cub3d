@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:31:18 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/25 18:48:29 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/26 11:30:00 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ void	free_img(void *init, t_mimg *img)
 void	exit_game(t_game *g, int ecode)
 {
 	free_img(g->init, g->d->img_player);
+	if (g->r)
+		free(g->r);
 	if (g->win)
 		mlx_destroy_window(g->init, g->win);
 	if (g->init)
