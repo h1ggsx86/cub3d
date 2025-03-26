@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 16:00:46 by arotondo          #+#    #+#             */
-/*   Updated: 2025/03/26 12:41:09 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/26 18:28:11 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,13 +103,13 @@ int	check_left_right(t_game *g)
 void	parse_map(t_game *g, char *line, int *j)
 {
 	size_t	i;
-
+ 
 	i = 0;
 	if (g->d->map_parsed == true)
 		return ;
-	if (!ft_strchr(line, 49))
-		return ;
 	if ((*j) >= g->d->height)
+		return ;
+	if (!ft_strchr(line, 49) && !(*j))
 		return ;
 	g->d->mapper[*j] = (char *)ft_calloc(sizeof(char), g->d->width + 1);
 	if (!g->d->mapper[*j])

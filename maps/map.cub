@@ -4,9 +4,7 @@ WE ./textures/path_to_the_west_texture
 NO ./textures/path_to_the_north_texture
 
 F 225, 30, 0
-# couleur du sol en RGB, valeurs en 0 et 255
 C 186, 199, 45
-# couleur du plafond en RGB, valeurs comprises en 0 et 255
 
         1111111111111111111111111
         1000000000110000000000001

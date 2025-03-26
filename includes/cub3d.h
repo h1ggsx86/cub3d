@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 15:02:41 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/26 12:27:41 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/26 18:22:59 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,10 @@ typedef struct s_data
 	char		*south_path;
 	char		*west_path;
 	char		*east_path;
+	int			n_text;
+	int			s_text;
+	int			w_text;
+	int			e_text;
 }				t_data;
 
 typedef struct s_player
