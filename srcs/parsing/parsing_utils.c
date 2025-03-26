@@ -6,7 +6,7 @@
 /*   By: xenon <xenon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 19:26:41 by arotondo          #+#    #+#             */
-/*   Updated: 2025/03/24 23:40:48 by xenon            ###   ########.fr       */
+/*   Updated: 2025/03/25 22:41:52 by xenon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@ size_t	ft_vert_len(char **tab, int row, int max)
 {
 	size_t	i;
 
+	perror("");
+	printf("row = %d\n", row);
+	printf("tab[0][%d] = %d\n", row, tab[0][row]);
 	if (!tab[0][row])
 		return (0);
 	else if (tab[0][row] == '\n')

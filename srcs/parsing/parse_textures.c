@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_textures.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: xenon <xenon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 16:01:40 by arotondo          #+#    #+#             */
-/*   Updated: 2025/03/25 18:19:23 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/25 22:45:11 by xenon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,6 @@ int	is_indicator(t_game *g, char *line)
 	else if (line[i] == 'E' && !g->d->east_path)
 		get_textures(g->d, line, 69);
 	else
-		err_message(g, "textures", "Invalid indicator");
+		err_message(g, "textures", "not found");
 	return (0);
 }

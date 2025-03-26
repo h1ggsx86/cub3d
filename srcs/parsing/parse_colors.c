@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_colors.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: xenon <xenon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 16:01:10 by arotondo          #+#    #+#             */
-/*   Updated: 2025/03/20 15:12:50 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/25 22:55:47 by xenon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,5 +99,8 @@ void	parse_colors(t_game *g, char *line)
 	while (line[i] && !ft_isspace(line[i]))
 		i++;
 	if (is_color(g, line + i))
-		return ; // implementer sortie d erreur
+	{
+		err_message(g, "colors", "invalid format");
+		exit_game(g, 255);
+	}
 }
