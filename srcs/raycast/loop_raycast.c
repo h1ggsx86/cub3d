@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 13:27:31 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/26 12:43:07 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/26 15:07:55 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ static void	draw_wall(t_game *g, t_ray *r, t_player p, int x)
 		r->wall_dist = (r->side_distX - r->delta_distX);
 	else
 		r->wall_dist = (r->side_distY - r->delta_distY);
-
 	r->line_height = (int)(WIN_HEIGHT / r->wall_dist);
 	r->draw_start = -r->line_height / 2 + WIN_HEIGHT / 2;
 	if (r->draw_start < 0)
@@ -69,7 +68,6 @@ static void	draw_wall(t_game *g, t_ray *r, t_player p, int x)
 	r->draw_end = r->line_height / 2 + WIN_HEIGHT / 2;
 	if (r->draw_end >= WIN_HEIGHT)
 		r->draw_end = WIN_HEIGHT - 1;
-
 	color = g->d->color;
 	if (r->side == 1)
 		color = color / 2;
@@ -104,9 +102,9 @@ int	ray_loop(t_game *g, t_player p)
 				r->mapY += r->stepY;
 				r->side = 1;
 			}
-			if (r->mapY > (int)g->d->height || r->mapX > (int)g->d->width)
-				break ;
-			if (g->d->mapper[r->mapX][r->mapY] > 0)
+			// if (r->mapY > (int)g->d->height || r->mapX > (int)g->d->width)
+			// 	break ;
+			if (g->d->mapper[r->mapY][r->mapX] == '1')
 				hit = 1;
 		}
 		draw_wall(g, r, p, x);

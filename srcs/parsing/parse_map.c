@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 16:00:46 by arotondo          #+#    #+#             */
-/*   Updated: 2025/03/26 12:41:09 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/26 12:54:37 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ int	check_inside(t_game *g)
 		{
 			if (!n_player && is_pos_player(g->d->mapper[j][i], &n_player))
 			{
-				g->pl->x = (double)j;
-				g->pl->y = (double)i;
+				g->pl->y = (double)j;
+				g->pl->x = (double)i;
 				g->d->mapper[j][i] = '0';
 			}
 			else if (is_pos_player(g->d->mapper[j][i], &n_player) && n_player > 1)

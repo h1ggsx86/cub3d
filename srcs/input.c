@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 14:49:39 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/26 12:43:44 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/26 15:28:23 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ void	moves_input(int keycode, t_game *g)
 	double	move_speed;
 	t_player	*p;
 
-	rot_speed = 0.07f;
-	move_speed = 0.1f;
+	rot_speed = 0.09f;
+	move_speed = 0.2f;
 	p = g->pl;
 	if (keycode == XK_Left)
 	{
@@ -63,35 +63,38 @@ void	moves_input(int keycode, t_game *g)
 		double oldPlaneX = p->viewX;
 		p->viewX = p->viewX * cosf(-rot_speed) - p->viewY * sinf(-rot_speed);
 		p->viewY = oldPlaneX * sinf(-rot_speed) + p->viewY * cosf(-rot_speed);
-		// printf("[DEBUG] pa :\t%f | pdx :\t%f | pdy :\t%f\n", p->pa, p->pdx, p->pdy);
 		redraw_img(g);
 	}
 	else if (keycode == XK_w)
 	{
-		if (g->d->mapper[(int)(p->x + p->dirX * move_speed)][(int)p->y] != 1)
-			p->x += p->dirX * move_speed;
-		if (g->d->mapper[(int)p->x][(int)(p->y + p->dirY * move_speed)] != 1)
+		if (g->d->mapper[(int)(p->y + p->dirY * move_speed)][(int)p->x] != '1')
 			p->y += p->dirY * move_speed;
-		// printf("[DEBUG] pa :\t%f | pdx :\t%f | pdy :\t%f\n", p->pa, p->pdx, p->pdy);
+		if (g->d->mapper[(int)p->y][(int)(p->x + p->dirX * move_speed)] != '1')
+			p->x += p->dirX * move_speed;
 		redraw_img(g);
 	}
 	else if (keycode == XK_s)
 	{
-		if (g->d->mapper[(int)(p->x - p->dirX * move_speed)][(int)p->y] != 1)
-			p->x -= p->dirX * move_speed;
-		if (g->d->mapper[(int)p->x][(int)(p->y - p->dirY * move_speed)] != 1)
+		if (g->d->mapper[(int)(p->y - p->dirY * move_speed)][(int)p->x] != '1')
 			p->y -= p->dirY * move_speed;
-		// printf("[DEBUG] pa :\t%f | pdx :\t%f | pdy :\t%f\n", p->pa, p->pdx, p->pdy);
+		if (g->d->mapper[(int)p->y][(int)(p->x - p->dirX * move_speed)] != '1')
+			p->x -= p->dirX * move_speed;
 		redraw_img(g);
 	}
-	// if (keycode == XK_a || keycode == XK_Left)
-	// {
-	// 	pl->posX -= 25;
-	// 	redraw_img(g);
-	// }
-	// else if (keycode == XK_d || keycode == XK_Right)
-	// {
-	// 	pl->posX += 25;
-	// 	redraw_img(g);
-	// }
+	else if (keycode == XK_a)
+	{
+		if (g->d->mapper[(int)(p->y + p->dirX * move_speed)][(int)p->x] != '1')
+			p->y += p->dirX * move_speed;
+		if (g->d->mapper[(int)p->y][(int)(p->x - p->dirY * move_speed)] != '1')
+			p->x -= p->dirY * move_speed;
+		redraw_img(g);
+	}
+	else if (keycode == XK_d)
+	{
+		if (g->d->mapper[(int)(p->y - p->dirX * move_speed)][(int)p->x] != '1')
+			p->y -= p->dirX * move_speed;
+		if (g->d->mapper[(int)p->y][(int)(p->x + p->dirY * move_speed)] != '1')
+			p->x += p->dirY * move_speed;
+		redraw_img(g);
+	}
 }

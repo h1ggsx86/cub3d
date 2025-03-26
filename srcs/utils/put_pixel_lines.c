@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 18:29:22 by arotondo          #+#    #+#             */
-/*   Updated: 2025/03/26 12:43:25 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/26 15:34:52 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,23 @@
 
 void	put_vline(t_game *g, int y_start, int y_end, int x, int color)
 {
-	while (y_start <= y_end)
+	int	y;
+
+	y = 0;
+	while (y < WIN_HEIGHT)
 	{
-		put_pixel(g->d, x, y_start, color);
-		y_start++;
+		while (y <= y_start)
+		{
+			put_pixel(g->d, x, y, g->d->roof_color);
+			y++;
+		}
+		while (y <= y_end)
+		{
+			put_pixel(g->d, x, y, color);
+			y++;
+		}
+		put_pixel(g->d, x, y, g->d->ground_color);
+		y++;
 	}
 }
 
