@@ -6,13 +6,13 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 16:01:40 by arotondo          #+#    #+#             */
-/*   Updated: 2025/03/26 12:29:55 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/26 18:27:16 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void	get_north_or_south(t_data *d, char *line, int idc)
+void	get_north_or_south(t_game *g, char *line, int idc)
 {
 	int	i;
 
@@ -22,28 +22,30 @@ void	get_north_or_south(t_data *d, char *line, int idc)
 		while (line[i] && ft_isspace(line[i]))
 			i++;
 		line[i] = '\0';
-		d->north_path = ft_strdup(line);
-		if (!d->north_path)
-			exit(1);
-		// if (access(d->north_path, R_OK | X_OK))
-		// 	exit(1); // implenter sortie et free
-		d->i_text++;
+		g->d->north_path = ft_strdup(line);
+		if (!g->d->north_path)
+			err_message(g, g->d->north_path, NULL, 5);
+		g->d->n_text = open(g->d->north_path, O_RDONLY, 0664);
+		if (g->d->n_text < 0)
+			err_message(g, g->d->north_path, NULL, 5);
+		g->d->i_text++;
 	}
 	else if (idc == 83)
 	{
 		while (line[i] && ft_isspace(line[i]))
 			i++;
 		line[i] = '\0';
-		d->south_path = ft_strdup(line);
-		if (!d->south_path)
-			exit(1);
-		// if (access(d->south_path, R_OK | X_OK))
-		// 	exit(1); // implenter sortie et free
-		d->i_text++;
+		g->d->south_path = ft_strdup(line);
+		if (!g->d->south_path)
+			err_message(g, g->d->south_path, NULL, 5);
+		g->d->s_text = open(g->d->south_path, O_RDONLY, 0664);
+		if (g->d->s_text < 0)
+			err_message(g, g->d->south_path, NULL, 5);
+		g->d->i_text++;
 	}
 }
 
-void	get_east_or_west(t_data *d, char *line, int idc)
+void	get_east_or_west(t_game *g, char *line, int idc)
 {
 	int	i;
 
@@ -53,28 +55,30 @@ void	get_east_or_west(t_data *d, char *line, int idc)
 		while (line[i] && ft_isspace(line[i]))
 			i++;
 		line[i] = '\0';
-		d->west_path = ft_strdup(line);
-		if (!d->west_path)
-			exit(1);
-		// if (access(d->west_path, R_OK | X_OK))
-		// 	exit(1); // implenter sortie et free
-		d->i_text++;
+		g->d->west_path = ft_strdup(line);
+		if (!g->d->west_path)
+			err_message(g, g->d->west_path, NULL, 5);
+		g->d->w_text = open(g->d->west_path, O_RDONLY, 0664);
+		if (g->d->w_text < 0)
+			err_message(g, g->d->west_path, NULL, 5);
+		g->d->i_text++;
 	}
 	else if (idc == 69)
 	{
 		while (line[i] && ft_isspace(line[i]))
 			i++;
 		line[i] = '\0';
-		d->east_path = ft_strdup(line);
-		if (!d->east_path)
-			exit(1);
-		// if (access(d->east_path, R_OK | X_OK))
-		// 	exit(1); // implenter sortie et free
-		d->i_text++;
+		g->d->east_path = ft_strdup(line);
+		if (!g->d->east_path)
+			err_message(g, g->d->east_path, NULL, 5);
+		g->d->e_text = open(g->d->east_path, O_RDONLY, 0664);
+		if (g->d->e_text < 0)
+			err_message(g, g->d->east_path, NULL, 5);
+		g->d->i_text++;
 	}
 }
 
-void	get_textures(t_data *d, char *line, int idc)
+void	get_textures(t_game *g, char *line, int idc)
 {
 	int	i;
 
@@ -82,15 +86,15 @@ void	get_textures(t_data *d, char *line, int idc)
 	while (line[i] && (line[i] != '.' && line[i] != '/'))
 		i++;
 	if (idc == 78)
-		get_north_or_south(d, line + i, 78);
+		get_north_or_south(g, line + i, 78);
 	else if (idc == 83)
-		get_north_or_south(d, line + i, 83);
+		get_north_or_south(g, line + i, 83);
 	else if (idc == 87)
-		get_east_or_west(d, line + i, 87);
+		get_east_or_west(g, line + i, 87);
 	else if (idc == 69)
-		get_east_or_west(d, line + i, 69);
-	if (d->i_text == 4)
-		d->all_text = true;
+		get_east_or_west(g, line + i, 69);
+	if (g->d->i_text == 4)
+		g->d->all_text = true;
 }
 
 int	is_indicator(t_game *g, char *line)
@@ -101,13 +105,13 @@ int	is_indicator(t_game *g, char *line)
 	while (line[i] && !ft_isspace(line[i]))
 		i++;
 	if (line[i] == 'N' && !g->d->north_path)
-		get_textures(g->d, line, 78);
+		get_textures(g, line, 78);
 	else if (line[i] == 'S' && !g->d->south_path)
-		get_textures(g->d, line, 83);
+		get_textures(g, line, 83);
 	else if (line[i] == 'W' && !g->d->west_path)
-		get_textures(g->d, line, 87);
+		get_textures(g, line, 87);
 	else if (line[i] == 'E' && !g->d->east_path)
-		get_textures(g->d, line, 69);
+		get_textures(g, line, 69);
 	else
 		err_message(g, "textures", "not found", 5);
 	return (0);

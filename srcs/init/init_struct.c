@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:16:20 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/26 12:42:22 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/26 18:24:04 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,10 @@ int	data_init(t_data *data)
 	data->south_path = NULL;
 	data->west_path = NULL;
 	data->east_path = NULL;
+	data->n_text = 0;
+	data->s_text = 0;
+	data->w_text = 0;
+	data->e_text = 0;
 	data->roof_color = 0;
 	data->ground_color = 0;
 	return (0);

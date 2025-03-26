@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 15:37:30 by arotondo          #+#    #+#             */
-/*   Updated: 2025/03/26 11:02:41 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/26 18:11:42 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,10 @@ void	init_my_map(t_game *g, char *file)
 	in_map = false;
 	g->map = open(file, O_RDONLY, 0664);
 	if (g->map < 0)
-	{
-		perror("");
-		exit(1);
-	}
+			err_message(g, file, "invalid fd", 1);
 	line = malloc(sizeof(char) * 1);
 	if (!line)
-		exit(1);
+		err_message(g, "line", "memory allocation failed", 2);
 	while (line)
 	{
 		free(line);
@@ -51,15 +48,15 @@ void	init_my_map(t_game *g, char *file)
 	get_next_line(-1);
 	g->d->mapper = (char **)ft_calloc(sizeof(char *), g->d->height + 1);
 	if (!g->d->mapper)
-		exit(1);
+		err_message(g, "mapper", "memory allocation failed", 2);
 }
 
 void	check_map(t_game *g)
 {
 	if (check_left_right(g))
-		exit_game(g, 4);
+		err_message(g, "map", "invalid", 4);
 	if (check_top_bottom(g))
-		exit_game(g, 4);
+		err_message(g, "map", "invalid", 4);
 	g->d->map_parsed = true;
 	if (check_inside(g))
 		exit_game(g, 5);
@@ -73,10 +70,10 @@ void	parsing_the_thing(t_game *g, char *file)
 	init_my_map(g, file);
 	g->map = open(file, O_RDONLY, 0664);
 	if (g->map < 0)
-		exit(1);
+		err_message(g, file, "invalid fd", 2);
 	line = malloc(1 * sizeof(char));
 	if (!line)
-		exit(1);
+		err_message(g, "line", "memory allocation failed", 2);
 	i = 0;
 	while (line)
 	{
@@ -93,9 +90,9 @@ void	parsing_the_thing(t_game *g, char *file)
 		if (g->d->map_parsed == true)
 			break ;
 	}
-	if (!g->d->all_text || !g->d->all_colors)
-		exit_game(g, 6);
 	close(g->map);
 	get_next_line(-1);
+	if (!g->d->all_text || !g->d->all_colors || !g->d->map_parsed)
+		exit_game(g, 6);
 	check_map(g);
 }

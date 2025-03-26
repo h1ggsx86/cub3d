@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 16:16:04 by arotondo          #+#    #+#             */
-/*   Updated: 2025/03/26 11:03:28 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/26 18:15:44 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ void		parsing_the_thing(t_game *g, char *file);
 size_t		ft_vert_len(char **tab, int row, int max);
 
 /* parse_textures */
-void		get_north_or_south(t_data *d, char *line, int idc);
-void		get_east_or_west(t_data *d, char *line, int idc);
-void		get_textures(t_data *d, char *line, int idc);
+void		get_north_or_south(t_game *g, char *line, int idc);
+void		get_east_or_west(t_game *g, char *line, int idc);
+void		get_textures(t_game *g, char *line, int idc);
 int			is_indicator(t_game *g, char *line);
 
 /* parse_map */
@@ -43,7 +43,7 @@ void		parse_map(t_game *g, char *line, int *j);
 u_int32_t	bitshift_op(t_game *g);
 int			get_color(t_game *g, char *line, int n);
 void		cut_color(t_game *g, char *line, int idc);
-int			is_color(t_game *g, char *line);
+void		is_color(t_game *g, char *line);
 void		parse_colors(t_game *g, char *line);
 
 # endif
