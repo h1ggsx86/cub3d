@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_textures.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: xenon <xenon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 16:01:40 by arotondo          #+#    #+#             */
-/*   Updated: 2025/03/26 18:27:16 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/27 17:22:41 by xenon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ void	get_north_or_south(t_game *g, char *line, int idc)
 		g->d->north_path = ft_strdup(line);
 		if (!g->d->north_path)
 			err_message(g, g->d->north_path, NULL, 5);
-		g->d->n_text = open(g->d->north_path, O_RDONLY, 0664);
-		if (g->d->n_text < 0)
-			err_message(g, g->d->north_path, NULL, 5);
+		// g->d->n_text = open(g->d->north_path, O_RDONLY, 0664);
+		// if (g->d->n_text < 0)
+		// 	err_message(g, g->d->north_path, NULL, 5);
 		g->d->i_text++;
 	}
 	else if (idc == 83)
@@ -58,9 +58,9 @@ void	get_east_or_west(t_game *g, char *line, int idc)
 		g->d->west_path = ft_strdup(line);
 		if (!g->d->west_path)
 			err_message(g, g->d->west_path, NULL, 5);
-		g->d->w_text = open(g->d->west_path, O_RDONLY, 0664);
-		if (g->d->w_text < 0)
-			err_message(g, g->d->west_path, NULL, 5);
+		// g->d->w_text = open(g->d->west_path, O_RDONLY, 0664);
+		// if (g->d->w_text < 0)
+		// 	err_message(g, g->d->west_path, NULL, 5);
 		g->d->i_text++;
 	}
 	else if (idc == 69)
@@ -71,9 +71,9 @@ void	get_east_or_west(t_game *g, char *line, int idc)
 		g->d->east_path = ft_strdup(line);
 		if (!g->d->east_path)
 			err_message(g, g->d->east_path, NULL, 5);
-		g->d->e_text = open(g->d->east_path, O_RDONLY, 0664);
-		if (g->d->e_text < 0)
-			err_message(g, g->d->east_path, NULL, 5);
+		// g->d->e_text = open(g->d->east_path, O_RDONLY, 0664);
+		// if (g->d->e_text < 0)
+		// 	err_message(g, g->d->east_path, NULL, 5);
 		g->d->i_text++;
 	}
 }

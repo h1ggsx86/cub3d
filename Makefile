@@ -3,15 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+         #
+#    By: xenon <xenon@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/24 19:27:15 by tnedel            #+#    #+#              #
-#    Updated: 2025/03/26 10:59:28 by arotondo         ###   ########.fr        #
+#    Updated: 2025/03/26 21:42:11 by xenon            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC		= cc
-CFLAGS	= -Wall -Wextra -Werror -g3
+CFLAGS	= -Wall -Wextra -g3
 MLXFLAGS= -L/usr/lib -Lmlx-linux -lmlx_Linux -lXext -lX11 -lm -lz -lbsd
 
 NEWLINE	= \033[2K\r

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: xenon <xenon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 15:03:39 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/25 16:38:51 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/27 17:35:34 by xenon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int	check_arg(char **argv)
 		ft_putendl_fd("Bad file format : '.cub' is expected", 2);
 		exit(1);
 	}
-	// printf("argv[1][i] = %s\n", argv[1] + i);
 	return (0);
 }
 

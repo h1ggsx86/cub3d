@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: xenon <xenon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:16:20 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/26 18:24:04 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/27 17:57:28 by xenon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	color_init(t_data *data)
 {
 	t_color *color;
 
-	color = malloc(sizeof(t_color ));
+	color = malloc(sizeof(t_color));
 	if (!color)
 		return (1);
 	data->colors = color;
