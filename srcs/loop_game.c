@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 10:30:37 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/25 15:16:05 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/27 14:11:42 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 
 int	input_handler(int keycode, t_game *g)
 {
+
 	if (keycode == XK_Escape)
 		exit_game(g, 0);
 	moves_input(keycode, g);
+	mlx_mouse_move(g->init, g->win, g->win_width / 2, g->win_height / 2);
 	return (EXIT_SUCCESS);
 }
 
@@ -28,7 +30,8 @@ int	close_win_pointer(t_game *g)
 
 int	handle_no_event(t_game *g)
 {
-	mlx_clear_window(g->init, g->win);
+	// mlx_clear_window(g->init, g->win);
+	// ray_loop(g, *g->pl);
 	if (g->d->active_img)
 		mlx_put_image_to_window(g->init, g->win, g->d->img_player[0].img, \
 									0, 0);

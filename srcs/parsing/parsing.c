@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 15:37:30 by arotondo          #+#    #+#             */
-/*   Updated: 2025/03/26 18:11:42 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/27 13:33:59 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	parsing_the_thing(t_game *g, char *file)
 	}
 	close(g->map);
 	get_next_line(-1);
+	check_map(g);
 	if (!g->d->all_text || !g->d->all_colors || !g->d->map_parsed)
 		exit_game(g, 6);
-	check_map(g);
 }
