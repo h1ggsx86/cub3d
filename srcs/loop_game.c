@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 10:30:37 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/27 14:11:42 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/27 14:40:48 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,9 @@
 
 int	input_handler(int keycode, t_game *g)
 {
-
 	if (keycode == XK_Escape)
 		exit_game(g, 0);
 	moves_input(keycode, g);
-	mlx_mouse_move(g->init, g->win, g->win_width / 2, g->win_height / 2);
 	return (EXIT_SUCCESS);
 }
 
@@ -30,7 +28,13 @@ int	close_win_pointer(t_game *g)
 
 int	handle_no_event(t_game *g)
 {
-	// mlx_clear_window(g->init, g->win);
+	t_mouse	m;
+
+	m.x = 0;
+	m.y = 0;
+	mlx_mouse_get_pos(g->init, g->win, &m.x, &m.y);
+	if (m.x != g->win_width / 2)
+		mouse_move(g, m);
 	// ray_loop(g, *g->pl);
 	if (g->d->active_img)
 		mlx_put_image_to_window(g->init, g->win, g->d->img_player[0].img, \
@@ -38,6 +42,8 @@ int	handle_no_event(t_game *g)
 	else
 		mlx_put_image_to_window(g->init, g->win, g->d->img_player[1].img, \
 									0, 0);
+	if (m.x != g->win_width / 2)
+		mlx_mouse_move(g->init, g->win, g->win_width / 2, g->win_height / 2);
 	return (EXIT_SUCCESS);
 }
 

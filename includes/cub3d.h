@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 15:02:41 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/27 12:06:34 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/27 14:40:54 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,14 @@
 # define MAP_SIZE 64
 # define WIN_WIDTH 800
 # define WIN_HEIGHT 600
+# define ROT_SPEED 0.09f
+# define MOVE_SPEED 0.2f
+
+typedef struct s_mouse
+{
+	int	x;
+	int	y;
+}		t_mouse;
 
 typedef struct s_ray
 {
@@ -125,7 +133,6 @@ typedef struct s_game
 	t_ray		*r;
 }				t_game;
 
-void	moves_input(int keycode, t_game *g);
 void	draw_map(t_game *g);
 
 /* LOOP */
