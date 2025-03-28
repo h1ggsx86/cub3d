@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 15:38:41 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/28 12:00:45 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/28 19:48:52 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,19 +63,14 @@ void	put_player_circle(t_game *g, int color, int r)
 		}
 		else
 			p += 2 * x + 1;
-		put_hline(g, pl.x - x, pl.x + x, y);
-		put_hline(g, pl.x + y, pl.x - y, x);
+		put_hline(g, pl.x * 10 + 10 - x, pl.x * 10 + 10 + x, y);
+		put_hline(g, pl.x * 10 + 10 + y, pl.x * 10 + 10 - y, x);
 		x++;
 	}
 }
 
-void	put_player_line(t_game *g, int x, int y)
+void	put_player_line(t_game *g, int px, int py, int x, int y)
 {
-	double px;
-	double py;
-
-	px = g->pl->x * 5;
-	py = g->pl->y * 5;
 	if (abs(x - (int)px) > abs(y - (int)py))
 	{
 		if (px > x)

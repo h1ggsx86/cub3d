@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 18:29:22 by arotondo          #+#    #+#             */
-/*   Updated: 2025/03/28 11:53:00 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/28 19:51:39 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	put_lineL(t_game *g, int x0, int y0, int x1, int y1)
 	D = (2 * dy) - dx;
 	while (x0 <= x1)
 	{
-		put_pixel(g->d, x0, y0, g->d->color);
+		put_pixel(g->d, x0, y0, 0x00ff00ff);
 		if (D > 0)
 		{
 			y0 += yi;
@@ -101,7 +101,7 @@ void	put_lineH(t_game *g, int x0, int y0, int x1, int y1)
 	D = (2 * dx) - dy;
 	while (y0 <= y1)
 	{
-		put_pixel(g->d, x0, y0, g->d->color);
+		put_pixel(g->d, x0, y0, 0x00ff00ff);
 		if (D > 0)
 		{
 			x0 += xi;

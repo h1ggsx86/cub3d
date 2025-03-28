@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 18:26:43 by arotondo          #+#    #+#             */
-/*   Updated: 2025/03/28 15:33:03 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/28 19:49:15 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	exit_game(t_game *g, int ecode);
 void	put_pixel(t_data *d, int x, int y, int color);
 void	put_square(t_data *d, int xc, int yc, int c);
 void	put_player_circle(t_game *g, int color, int r);
-void	put_player_line(t_game *g, int x, int y);
+void	put_player_line(t_game *g, int px, int py, int x, int y);
 
 /* put_pixel_lines */
 void	put_vline(t_game *g, int y_start, int y_end, int x, int color);

@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:16:20 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/28 15:16:21 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/28 19:17:09 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	player_init(t_player *pl)
 	pl->dirX = -1;
 	pl->dirY = 0;
 	pl->viewX = 0.0f;
-	pl->viewY = 0.66;
+	pl->viewY = -0.66f;
 }
 
 void	struct_init(t_game *new, t_data *data, t_player *pl)

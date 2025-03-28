@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 15:02:41 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/28 16:12:01 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/28 19:14:31 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,20 +40,14 @@
 # define MAP_SIZE 64
 # define WIN_WIDTH 1280
 # define WIN_HEIGHT 720
-# define ROT_SPEED 0.09f
-# define MOVE_SPEED 0.2f
+# define ROT_SPEED 0.08f
+# define MOVE_SPEED 0.15f
 
 typedef struct s_ivector
 {
 	int	x;
 	int	y;
 }		t_ivector;
-
-typedef struct s_fvector
-{
-	double	x;
-	double	y;
-}		t_fvector;
 
 typedef struct s_ray
 {

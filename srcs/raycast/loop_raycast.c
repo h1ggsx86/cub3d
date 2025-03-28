@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 13:27:31 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/26 15:07:55 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/28 19:18:05 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,11 @@ static void	draw_wall(t_game *g, t_ray *r, t_player p, int x)
 {
 	int	color;
 
+	(void)p;
 	if (!r->side)
-		r->wall_dist = (r->side_distX - r->delta_distX);
+		r->wall_dist = (r->side_distX - r->delta_distX) + 0.0001f;
 	else
-		r->wall_dist = (r->side_distY - r->delta_distY);
+		r->wall_dist = (r->side_distY - r->delta_distY) + 0.0001f;
 	r->line_height = (int)(WIN_HEIGHT / r->wall_dist);
 	r->draw_start = -r->line_height / 2 + WIN_HEIGHT / 2;
 	if (r->draw_start < 0)
@@ -72,7 +73,7 @@ static void	draw_wall(t_game *g, t_ray *r, t_player p, int x)
 	if (r->side == 1)
 		color = color / 2;
 	put_vline(g, r->draw_start, r->draw_end, x, color);
-	put_player_line(g, p.x * 5 + r->ray_x * r->wall_dist * 5, p.y * 5 + r->ray_y * r->wall_dist * 5);
+	// put_player_line(g, p.x * 5 + r->ray_x * r->wall_dist * 5, p.y * 5 + r->ray_y * r->wall_dist * 5);
 }
 
 int	ray_loop(t_game *g, t_player p)

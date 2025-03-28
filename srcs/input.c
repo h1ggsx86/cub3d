@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 14:49:39 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/28 15:33:51 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/28 19:49:54 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	redraw_img(t_game *g)
 	ray_loop(g, *g->pl);
 	draw_map(g);
 	// put_player_circle(g, g->d->color, 5);
-	// put_player_line(g, p.posX + p.dirX * 10, p.posY + p.dirY * 10);
+	// put_player_line(g, p.x + p.dirX * 5, p.y + p.dirY * 5);
 	if (g->d->active_img)
 		g->d->active_img = 0;
 	else
@@ -56,9 +56,9 @@ void	moves_input(int keycode, t_game *g)
 
 	p = g->pl;
 	if (keycode == XK_Left)
-		camera_move(g, 1, ROT_SPEED);
-	else if (keycode == XK_Right)
 		camera_move(g, -1, ROT_SPEED);
+	else if (keycode == XK_Right)
+		camera_move(g, 1, ROT_SPEED);
 	else if (keycode == XK_w)
 	{
 		if (g->d->mapper[(int)(p->y + p->dirY * MOVE_SPEED)][(int)p->x] != '1')
@@ -75,7 +75,7 @@ void	moves_input(int keycode, t_game *g)
 			p->x -= p->dirX * MOVE_SPEED;
 		redraw_img(g);
 	}
-	else if (keycode == XK_a)
+	else if (keycode == XK_d)
 	{
 		if (g->d->mapper[(int)(p->y + p->dirX * MOVE_SPEED)][(int)p->x] != '1')
 			p->y += p->dirX * MOVE_SPEED;
@@ -83,7 +83,7 @@ void	moves_input(int keycode, t_game *g)
 			p->x -= p->dirY * MOVE_SPEED;
 		redraw_img(g);
 	}
-	else if (keycode == XK_d)
+	else if (keycode == XK_a)
 	{
 		if (g->d->mapper[(int)(p->y - p->dirX * MOVE_SPEED)][(int)p->x] != '1')
 			p->y -= p->dirX * MOVE_SPEED;
@@ -103,9 +103,9 @@ int	mouse_move(/*int x, int y,*/ t_game *g)
 	if (m.x != g->win_width / 2)
 	{
 		if (m.x < g->win_width / 2)
-			camera_move(g, 1, ROT_SPEED / 3);
-		else
 			camera_move(g, -1, ROT_SPEED / 3);
+		else
+			camera_move(g, 1, ROT_SPEED / 3);
 		mlx_mouse_move(g->init, g->win, g->win_width / 2, g->win_height / 2);
 	}
 	return (EXIT_SUCCESS);
