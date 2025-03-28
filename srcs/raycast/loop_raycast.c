@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop_raycast.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 13:27:31 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/26 15:07:55 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/28 17:18:12 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ static void	draw_wall(t_game *g, t_ray *r, t_player p, int x)
 	color = g->d->color;
 	if (r->side == 1)
 		color = color / 2;
+	printf("draw start = %d\n", r->draw_start);
+	printf("draw end = %d\n", r->draw_end);
 	put_vline(g, r->draw_start, r->draw_end, x, color);
 	put_player_line(g, p.x * 5 + r->ray_x * r->wall_dist * 5, p.y * 5 + r->ray_y * r->wall_dist * 5);
 }

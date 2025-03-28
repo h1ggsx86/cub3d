@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: xenon <xenon@student.42.fr>                +#+  +:+       +#+         #
+#    By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/24 19:27:15 by tnedel            #+#    #+#              #
-#    Updated: 2025/03/26 21:42:11 by xenon            ###   ########.fr        #
+#    Updated: 2025/03/28 17:03:35 by arotondo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ LIBFT_LIB = libft/libft.a
 SRC_DIR	= srcs
 OBJ_DIR = obj
 SRC		= 	$(SRC_DIR)/init/init_game.c $(SRC_DIR)/init/init_struct.c \
+			$(SRC_DIR)/init/get_textures.c \
 			$(SRC_DIR)/loop_game.c $(SRC_DIR)/input.c $(SRC_DIR)/main.c \
 			$(SRC_DIR)/parsing/parsing.c $(SRC_DIR)/parsing/parsing_utils.c \
 			$(SRC_DIR)/parsing/parse_textures.c $(SRC_DIR)/parsing/parse_map.c \
