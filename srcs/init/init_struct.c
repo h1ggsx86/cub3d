@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:16:20 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/28 09:53:59 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/28 15:16:21 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,6 @@ int	data_init(t_data *data)
 		return (1);
 	data->img_player[0].img = NULL;
 	data->img_player[1].img = NULL;
-	data->img_map = malloc(sizeof(t_mimg) * 2);
-	if (!data->img_map)
-		return (1);
-	data->img_map[0].img = NULL;
-	data->img_map[1].img = NULL;
 	data->height = 0;
 	data->width = 0;
 	data->mapper = NULL;

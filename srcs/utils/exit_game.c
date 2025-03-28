@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:31:18 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/28 09:53:20 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/28 15:39:05 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ void	err_message(t_game *g, char *arg, char *mess, int ecode)
 		perror("");
 	else
 		ft_putendl_fd(mess, 2);
-	// if (g->d->img_map)
-	// 	free(g->d->img_map);
 	if (g->map > 0)
 		close(g->map);
 	exit_game(g, ecode);
@@ -45,8 +43,8 @@ void	free_img(void *init, t_mimg *img)
 
 void	exit_game(t_game *g, int ecode)
 {
+	// mlx_mouse_show(g->init, g->win);
 	free_img(g->init, g->d->img_player);
-	free_img(g->init, g->d->img_map);
 	if (g->r)
 		free(g->r);
 	if (g->win)

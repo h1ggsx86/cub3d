@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 14:49:39 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/28 09:25:49 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/28 15:33:51 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	redraw_img(t_game *g)
 	img->img = NULL;
 	if (img_init(img, g, g->init))
 		exit_game(g, 1);
-	// draw_map(g);
 	ray_loop(g, *g->pl);
+	draw_map(g);
 	// put_player_circle(g, g->d->color, 5);
 	// put_player_line(g, p.posX + p.dirX * 10, p.posY + p.dirY * 10);
 	if (g->d->active_img)
@@ -93,13 +93,20 @@ void	moves_input(int keycode, t_game *g)
 	}
 }
 
-void	mouse_move(t_game *g, t_mouse m)
+int	mouse_move(/*int x, int y,*/ t_game *g)
 {
-	t_player	*p;
+	t_ivector	m;
 	
-	p = g->pl;
-	if (m.x < g->win_width / 2)
-		camera_move(g, 1, ROT_SPEED / 3);
-	else
-		camera_move(g, -1, ROT_SPEED / 3);
+	m.x = 0;
+	m.y = 0;
+	mlx_mouse_get_pos(g->init, g->win, &m.x, &m.y);
+	if (m.x != g->win_width / 2)
+	{
+		if (m.x < g->win_width / 2)
+			camera_move(g, 1, ROT_SPEED / 3);
+		else
+			camera_move(g, -1, ROT_SPEED / 3);
+		mlx_mouse_move(g->init, g->win, g->win_width / 2, g->win_height / 2);
+	}
+	return (EXIT_SUCCESS);
 }

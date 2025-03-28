@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 15:38:41 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/28 09:50:23 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/28 12:00:45 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,6 @@ void	put_pixel(t_data *d, int x, int y, int color)
 		img = d->img_player + 1;
 	else
 		img = d->img_player;
-	dst = img->addr + (y * img->line_length + x * (img->bpp / 8));
-	*(unsigned int *)dst = color;
-}
-
-void	put_pixel_map(t_data *d, int x, int y, int color)
-{
-	char	*dst;
-	t_mimg	*img;
-
-	if (d->active_img)
-		img = d->img_map + 1;
-	else
-		img = d->img_map;
 	dst = img->addr + (y * img->line_length + x * (img->bpp / 8));
 	*(unsigned int *)dst = color;
 }
@@ -76,8 +63,8 @@ void	put_player_circle(t_game *g, int color, int r)
 		}
 		else
 			p += 2 * x + 1;
-		put_hline(g, pl.x * 5 - x, pl.x * 5 + x, y);
-		put_hline(g, pl.x * 5 + y, pl.x * 5 - y, x);
+		put_hline(g, pl.x - x, pl.x + x, y);
+		put_hline(g, pl.x + y, pl.x - y, x);
 		x++;
 	}
 }

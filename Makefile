@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+         #
+#    By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/24 19:27:15 by tnedel            #+#    #+#              #
-#    Updated: 2025/03/26 10:59:28 by arotondo         ###   ########.fr        #
+#    Updated: 2025/03/28 11:46:26 by tnedel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ SRC		= 	$(SRC_DIR)/init/init_game.c $(SRC_DIR)/init/init_struct.c \
 			$(SRC_DIR)/parsing/parsing.c $(SRC_DIR)/parsing/parsing_utils.c \
 			$(SRC_DIR)/parsing/parse_textures.c $(SRC_DIR)/parsing/parse_map.c \
 			$(SRC_DIR)/parsing/parse_colors.c $(SRC_DIR)/parsing/parsing.c \
-			$(SRC_DIR)/raycast/loop_raycast.c \
+			$(SRC_DIR)/raycast/loop_raycast.c $(SRC_DIR)/utils/draw_map.c\
 			$(SRC_DIR)/utils/exit_game.c $(SRC_DIR)/utils/put_pixel.c \
 			$(SRC_DIR)/utils/put_pixel_lines.c
 SRC_OBJ	= $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)

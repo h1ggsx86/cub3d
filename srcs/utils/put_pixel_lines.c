@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 18:29:22 by arotondo          #+#    #+#             */
-/*   Updated: 2025/03/27 14:04:04 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/28 11:53:00 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,12 @@ void	put_hline(t_game *g, int x_start, int x_end, int y)
 	x = x_start;
 	while (x_start < x_end)
 	{
-		put_pixel(g->d, x_start, pl.y * 5 + y, g->d->color);
+		put_pixel(g->d, x_start, pl.y * 5 + y, 0x00ae24cd);
 		x_start++;
 	}
 	while (x < x_end)
 	{
-		put_pixel(g->d, x, pl.y * 5 - y, g->d->color);
+		put_pixel(g->d, x, pl.y * 5 - y, 0x00ae24cd);
 		x++;
 	}
 }

@@ -6,14 +6,15 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 18:26:43 by arotondo          #+#    #+#             */
-/*   Updated: 2025/03/28 10:00:03 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/28 15:33:03 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef UTILS_H
 # define UTILS_H
 
-typedef struct s_mouse	t_mouse;
+typedef struct s_ivector	t_ivector;
+typedef struct s_fvector	t_fvector;
 typedef struct s_color	t_color;
 typedef struct s_mimg	t_mimg;
 typedef struct s_data	t_data;
@@ -27,7 +28,6 @@ void	exit_game(t_game *g, int ecode);
 
 /* put_pixel */
 void	put_pixel(t_data *d, int x, int y, int color);
-void	put_pixel_map(t_data *d, int x, int y, int color);
 void	put_square(t_data *d, int xc, int yc, int c);
 void	put_player_circle(t_game *g, int color, int r);
 void	put_player_line(t_game *g, int x, int y);
@@ -39,7 +39,7 @@ void	put_lineL(t_game *g, int x0, int y0, int x1, int y1);
 void	put_lineH(t_game *g, int x0, int y0, int x1, int y1);
 
 /* moves input */
+int		mouse_move(/*int x, int y,*/ t_game *g);
 void	moves_input(int keycode, t_game *g);
-void	mouse_move(t_game *g, t_mouse m);
 
 # endif
