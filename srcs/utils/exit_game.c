@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:31:18 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/26 12:43:16 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/28 09:53:20 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	free_img(void *init, t_mimg *img)
 void	exit_game(t_game *g, int ecode)
 {
 	free_img(g->init, g->d->img_player);
+	free_img(g->init, g->d->img_map);
 	if (g->r)
 		free(g->r);
 	if (g->win)

@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 10:30:37 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/27 14:40:48 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/28 09:28:36 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ int	handle_no_event(t_game *g)
 	mlx_mouse_get_pos(g->init, g->win, &m.x, &m.y);
 	if (m.x != g->win_width / 2)
 		mouse_move(g, m);
-	// ray_loop(g, *g->pl);
 	if (g->d->active_img)
 		mlx_put_image_to_window(g->init, g->win, g->d->img_player[0].img, \
 									0, 0);
@@ -51,6 +50,7 @@ void	the_loop(t_game *g)
 {
 	printf("img1 at %p\n", g->d->img_player);
 	printf("img2 at %p\n", g->d->img_player + 1);
+	mlx_mouse_hide(g->init, g->win);
 	// put_player_circle(g, g->d->color, 5);
 	ray_loop(g, *g->pl);
 	g->d->active_img = 0;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:12:09 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/26 10:58:21 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/03/28 09:52:06 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,17 @@ void	game_init(t_game *g)
 	g->win = mlx_new_window(g->init, g->win_width, g->win_height, "CUB3D");
 	if (!g->win)
 		exit_game(g, 1);
-	init_img_player(g, g->d);
+	init_imgs(g, g->d);
 }
 
-void	init_img_player(t_game *g, t_data *d)
+void	init_imgs(t_game *g, t_data *d)
 {
 	if (img_init(d->img_player, g, g->init))
 		exit_game(g, 1);
 	if (img_init(d->img_player + 1, g, g->init))
+		exit_game(g, 1);
+	if (img_init(d->img_map, g, g->init))
+		exit_game(g, 1);
+	if (img_init(d->img_map + 1, g, g->init))
 		exit_game(g, 1);
 }

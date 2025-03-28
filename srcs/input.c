@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 14:49:39 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/27 15:05:09 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/28 09:25:49 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void	mouse_move(t_game *g, t_mouse m)
 	
 	p = g->pl;
 	if (m.x < g->win_width / 2)
-		camera_move(g, 1, ROT_SPEED / 2);
+		camera_move(g, 1, ROT_SPEED / 3);
 	else
-		camera_move(g, -1, ROT_SPEED / 2);
+		camera_move(g, -1, ROT_SPEED / 3);
 }

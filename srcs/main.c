@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 15:03:39 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/27 12:20:46 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/28 09:53:38 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	main(int argc, char **argv)
 	struct_init(&g, &data, &pl);
 	game_init(&g);
 	parsing_the_thing(&g, argv[1]);
-	perror("AFTER PARSE: ");
+	perror("AFTER PARSE");
 	the_loop(&g);
 	return (exit_game(&g, 0), EXIT_SUCCESS);
 }
