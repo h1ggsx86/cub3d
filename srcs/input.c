@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 14:49:39 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/31 13:30:38 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/31 15:05:30 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,6 @@ void	redraw_img(t_game *g)
 		img = g->d->img_player + 1;
 	else
 		img = g->d->img_player;
-	// mlx_destroy_image(g->init, img->img);
-	// img->img = NULL;
-	// if (img_init(img, g, g->init))
-	// 	exit_game(g, 1);
 	ray_loop(g, *g->pl);
 	draw_map(g);
 	if (g->d->active_img)
@@ -78,35 +74,23 @@ void	ad_move(t_game *g, int way)
 		p->x -= p->dirY * MOVE_SPEED * way;
 }
 
-void	moves_input(int keycode, t_game *g)
+void	moves_input(t_game *g)
 {
 	t_player	*p;
 
 	p = g->pl;
-	if (keycode == XK_Left)
+	if (g->key[LEFT])
 		camera_move(g, -1, ROT_SPEED);
-	else if (keycode == XK_Right)
+	else if (g->key[RIGHT])
 		camera_move(g, 1, ROT_SPEED);
-	else if (keycode == XK_w)
-	{
+	else if (g->key[W])
 		ws_move(g, 1);
-		redraw_img(g);
-	}
-	else if (keycode == XK_s)
-	{
+	else if (g->key[S])
 		ws_move(g, -1);
-		redraw_img(g);
-	}
-	else if (keycode == XK_d)
-	{
+	else if (g->key[D])
 		ad_move(g, 1);
-		redraw_img(g);
-	}
-	else if (keycode == XK_a)
-	{
+	else if (g->key[A])
 		ad_move(g, -1);
-		redraw_img(g);
-	}
 }
 
 int	mouse_move(/*int x, int y,*/ t_game *g)
@@ -119,9 +103,9 @@ int	mouse_move(/*int x, int y,*/ t_game *g)
 	if (m.x != g->win_width / 2)
 	{
 		if (m.x < g->win_width / 2)
-			camera_move(g, -1, ROT_SPEED / 3);
+			camera_move(g, -1, ROT_SPEED);
 		else
-			camera_move(g, 1, ROT_SPEED / 3);
+			camera_move(g, 1, ROT_SPEED);
 		mlx_mouse_move(g->init, g->win, g->win_width / 2, g->win_height / 2);
 	}
 	return (EXIT_SUCCESS);

@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 18:26:43 by arotondo          #+#    #+#             */
-/*   Updated: 2025/03/28 19:49:15 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/31 14:38:12 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,6 @@ void	put_lineH(t_game *g, int x0, int y0, int x1, int y1);
 
 /* moves input */
 int		mouse_move(/*int x, int y,*/ t_game *g);
-void	moves_input(int keycode, t_game *g);
+void	moves_input(t_game *g);
 
 # endif

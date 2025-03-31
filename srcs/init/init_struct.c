@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:16:20 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/31 13:51:52 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/31 14:46:36 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,15 @@ void	player_init(t_player *pl)
 	pl->viewY = 0.0f;
 }
 
+void	key_init(t_game *new)
+{
+	int	i;
+
+	i = 0;
+	while (i < 6)
+		new->key[i++] = 0;
+}
+
 void	struct_init(t_game *new, t_data *data, t_player *pl)
 {
 	new->init = NULL;
@@ -71,6 +80,8 @@ void	struct_init(t_game *new, t_data *data, t_player *pl)
 	new->pl = pl;
 	new->win_height = WIN_HEIGHT;
 	new->win_width = WIN_WIDTH;
+	new->fps = 0;
+	key_init(new);
 	new->r = malloc(sizeof(t_ray));
 	if (!new->r)
 		exit_game(new, 1);
