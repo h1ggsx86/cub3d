@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:16:20 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/31 14:46:36 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/31 15:31:26 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	color_init(t_data *data)
 {
 	t_color *color;
 
-	color = malloc(sizeof(t_color ));
+	color = malloc(sizeof(t_color));
 	if (!color)
 		return (1);
 	data->colors = color;

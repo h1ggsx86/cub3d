@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 15:37:30 by arotondo          #+#    #+#             */
-/*   Updated: 2025/03/27 13:33:59 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/31 15:33:56 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,5 +94,8 @@ void	parsing_the_thing(t_game *g, char *file)
 	get_next_line(-1);
 	check_map(g);
 	if (!g->d->all_text || !g->d->all_colors || !g->d->map_parsed)
+	{
+		perror("");
 		exit_game(g, 6);
+	}
 }

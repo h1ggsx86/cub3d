@@ -6,12 +6,12 @@
 #    By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/24 19:27:15 by tnedel            #+#    #+#              #
-#    Updated: 2025/03/31 10:46:12 by tnedel           ###   ########.fr        #
+#    Updated: 2025/03/31 15:28:00 by tnedel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC		= cc
-CFLAGS	= -Wall -Wextra -Werror -g3
+CFLAGS	= -Wall -Wextra -g3
 MLXFLAGS= -L/usr/lib -Lmlx-linux -lmlx_Linux -lXext -lX11 -lm -lz -lbsd
 
 NEWLINE	= \033[2K\r
@@ -36,6 +36,7 @@ LIBFT_LIB = libft/libft.a
 SRC_DIR	= srcs
 OBJ_DIR = obj
 SRC		= 	$(SRC_DIR)/init/init_game.c $(SRC_DIR)/init/init_struct.c \
+			$(SRC_DIR)/init/get_textures.c \
 			$(SRC_DIR)/loop_game.c $(SRC_DIR)/input.c $(SRC_DIR)/main.c \
 			$(SRC_DIR)/parsing/parsing.c $(SRC_DIR)/parsing/parsing_utils.c \
 			$(SRC_DIR)/parsing/parse_textures.c $(SRC_DIR)/parsing/parse_map.c \
