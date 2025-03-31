@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_textures.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 16:01:40 by arotondo          #+#    #+#             */
-/*   Updated: 2025/03/31 15:33:25 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/31 16:42:00 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	get_north_or_south(t_game *g, char *line, int idc)
 		g->d->south_path = ft_strdup(line);
 		if (!g->d->south_path)
 			err_message(g, g->d->south_path, NULL, 5);
-		init_south_texture(g);
+		// init_south_texture(g);
 		g->d->i_text++;
 	}
 }
