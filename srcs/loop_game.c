@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 10:30:37 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/28 15:55:18 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/31 09:30:53 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	input_handler(int keycode, t_game *g)
 	if (keycode == XK_Escape)
 		exit_game(g, 0);
 	moves_input(keycode, g);
+	door_input(keycode, g);
 	return (EXIT_SUCCESS);
 }
 

@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 15:02:41 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/28 19:14:31 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/31 14:02:35 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,16 @@
 # define WIN_HEIGHT 720
 # define ROT_SPEED 0.08f
 # define MOVE_SPEED 0.15f
+
+typedef enum s_kcode
+{
+	W,
+	S,
+	A,
+	D,
+	LEFT,
+	RIGHT
+}	e_kcode;
 
 typedef struct s_ivector
 {
@@ -108,6 +118,7 @@ typedef struct s_data
 	int			s_text;
 	int			w_text;
 	int			e_text;
+	char		player_dir;
 }				t_data;
 
 typedef struct s_player
@@ -122,6 +133,8 @@ typedef struct s_player
 
 typedef struct s_game
 {
+	t_mimg		text;
+	int			key[6];
 	int			map;
 	int			win_height;
 	int			win_width;
@@ -133,6 +146,9 @@ typedef struct s_game
 }				t_game;
 
 void	draw_map(t_game *g);
+void	redraw_img(t_game *g);
+void	door_input(int keycode, t_game *g);
+int	pixel_color(t_mimg texture, int x, int y);
 
 /* LOOP */
 void	the_loop(t_game *g);

@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 15:03:39 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/28 09:53:38 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/31 13:40:23 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,8 @@ int	main(int argc, char **argv)
 		return (ft_putendl_fd("Two arguments expected", 2), 1);
 	check_arg(argv);
 	struct_init(&g, &data, &pl);
-	game_init(&g);
 	parsing_the_thing(&g, argv[1]);
-	perror("AFTER PARSE");
+	game_init(&g);
 	the_loop(&g);
 	return (exit_game(&g, 0), EXIT_SUCCESS);
 }

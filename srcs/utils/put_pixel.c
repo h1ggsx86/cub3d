@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 15:38:41 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/28 19:48:52 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/31 13:56:09 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,4 +85,14 @@ void	put_player_line(t_game *g, int px, int py, int x, int y)
 		else
 			put_lineH(g, px, py, x, y);
 	}
+}
+
+int	pixel_color(t_mimg texture, int x, int y)
+{
+	char	*pixel;
+
+	if (x < 0 || x > 64 || y < 0 || y > 64)
+		return (0xFFFFFF);
+	pixel = texture.addr + (y * texture.line_length + x * (texture.bpp / 8));
+	return (*(unsigned int *)pixel);
 }

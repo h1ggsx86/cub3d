@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 14:49:39 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/28 19:49:54 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/31 13:30:38 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,12 @@ void	redraw_img(t_game *g)
 		img = g->d->img_player + 1;
 	else
 		img = g->d->img_player;
-	mlx_destroy_image(g->init, img->img);
-	img->img = NULL;
-	if (img_init(img, g, g->init))
-		exit_game(g, 1);
+	// mlx_destroy_image(g->init, img->img);
+	// img->img = NULL;
+	// if (img_init(img, g, g->init))
+	// 	exit_game(g, 1);
 	ray_loop(g, *g->pl);
 	draw_map(g);
-	// put_player_circle(g, g->d->color, 5);
-	// put_player_line(g, p.x + p.dirX * 5, p.y + p.dirY * 5);
 	if (g->d->active_img)
 		g->d->active_img = 0;
 	else
@@ -50,6 +48,36 @@ void	camera_move(t_game *g, int way, double rot)
 	redraw_img(g);
 }
 
+void	ws_move(t_game *g, int way)
+{
+	char		**map;
+	t_player	*p;
+
+	p = g->pl;
+	map = g->d->mapper;
+	if (map[(int)(p->y + (p->dirY * MOVE_SPEED * way))][(int)p->x] != '1' &&
+		map[(int)(p->y + (p->dirY * MOVE_SPEED * way))][(int)p->x] != 'C')
+		p->y += p->dirY * MOVE_SPEED * way;
+	if (map[(int)p->y][(int)(p->x + (p->dirX * MOVE_SPEED * way))] != '1' &&
+		map[(int)p->y][(int)(p->x + (p->dirX * MOVE_SPEED * way))] != 'C')
+		p->x += p->dirX * MOVE_SPEED * way;
+}
+
+void	ad_move(t_game *g, int way)
+{
+	char		**map;
+	t_player	*p;
+
+	p = g->pl;
+	map = g->d->mapper;
+	if (map[(int)(p->y + (p->dirX * MOVE_SPEED * way))][(int)p->x] != '1' &&
+		map[(int)(p->y + (p->dirX * MOVE_SPEED * way))][(int)p->x] != 'C')
+		p->y += p->dirX * MOVE_SPEED * way;
+	if (map[(int)p->y][(int)(p->x - (p->dirY * MOVE_SPEED * way))] != '1' &&
+		map[(int)p->y][(int)(p->x - (p->dirY * MOVE_SPEED * way))] != 'C')
+		p->x -= p->dirY * MOVE_SPEED * way;
+}
+
 void	moves_input(int keycode, t_game *g)
 {
 	t_player	*p;
@@ -61,34 +89,22 @@ void	moves_input(int keycode, t_game *g)
 		camera_move(g, 1, ROT_SPEED);
 	else if (keycode == XK_w)
 	{
-		if (g->d->mapper[(int)(p->y + p->dirY * MOVE_SPEED)][(int)p->x] != '1')
-			p->y += p->dirY * MOVE_SPEED;
-		if (g->d->mapper[(int)p->y][(int)(p->x + p->dirX * MOVE_SPEED)] != '1')
-			p->x += p->dirX * MOVE_SPEED;
+		ws_move(g, 1);
 		redraw_img(g);
 	}
 	else if (keycode == XK_s)
 	{
-		if (g->d->mapper[(int)(p->y - p->dirY * MOVE_SPEED)][(int)p->x] != '1')
-			p->y -= p->dirY * MOVE_SPEED;
-		if (g->d->mapper[(int)p->y][(int)(p->x - p->dirX * MOVE_SPEED)] != '1')
-			p->x -= p->dirX * MOVE_SPEED;
+		ws_move(g, -1);
 		redraw_img(g);
 	}
 	else if (keycode == XK_d)
 	{
-		if (g->d->mapper[(int)(p->y + p->dirX * MOVE_SPEED)][(int)p->x] != '1')
-			p->y += p->dirX * MOVE_SPEED;
-		if (g->d->mapper[(int)p->y][(int)(p->x - p->dirY * MOVE_SPEED)] != '1')
-			p->x -= p->dirY * MOVE_SPEED;
+		ad_move(g, 1);
 		redraw_img(g);
 	}
 	else if (keycode == XK_a)
 	{
-		if (g->d->mapper[(int)(p->y - p->dirX * MOVE_SPEED)][(int)p->x] != '1')
-			p->y -= p->dirX * MOVE_SPEED;
-		if (g->d->mapper[(int)p->y][(int)(p->x + p->dirY * MOVE_SPEED)] != '1')
-			p->x += p->dirY * MOVE_SPEED;
+		ad_move(g, -1);
 		redraw_img(g);
 	}
 }

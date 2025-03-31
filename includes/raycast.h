@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 18:45:27 by arotondo          #+#    #+#             */
-/*   Updated: 2025/03/28 15:05:54 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/31 09:33:48 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include "cub3d.h"
 
 typedef struct s_ivector	t_ivector;
-typedef struct s_fvector	t_fvector;
 typedef struct s_ray		t_ray;
 typedef struct s_color		t_color;
 typedef struct s_mimg		t_mimg;
@@ -26,5 +25,7 @@ typedef struct s_game		t_game;
 
 /* loop_raycast */
 int		ray_loop(t_game *g, t_player p);
+void	set_var(t_ray *r, t_player p, int x);
+void	calculate_dist(t_ray *r, t_player p);
 
 # endif

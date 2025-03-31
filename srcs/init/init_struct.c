@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:16:20 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/28 19:17:09 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/31 13:51:52 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,12 @@ int	color_init(t_data *data)
 
 void	player_init(t_player *pl)
 {
-	pl->x = 22;
-	pl->y = 12;
-	pl->dirX = -1;
+	pl->x = 0;
+	pl->y = 0;
+	pl->dirX = 0;
 	pl->dirY = 0;
 	pl->viewX = 0.0f;
-	pl->viewY = -0.66f;
+	pl->viewY = 0.0f;
 }
 
 void	struct_init(t_game *new, t_data *data, t_player *pl)

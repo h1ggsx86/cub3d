@@ -6,13 +6,13 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 13:27:31 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/28 19:18:05 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/03/31 13:14:24 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	set_var(t_ray *r, t_player p, int x)
+void	set_var(t_ray *r, t_player p, int x)
 {
 	r->cameraX = 2 * (double)x / (double)WIN_WIDTH - 1;
 	r->ray_x = (p.dirX + p.viewX * r->cameraX);
@@ -29,7 +29,7 @@ static void	set_var(t_ray *r, t_player p, int x)
 		r->delta_distY = fabs(1 / r->ray_y);
 }
 
-static void	calculate_dist(t_ray *r, t_player p)
+void	calculate_dist(t_ray *r, t_player p)
 {
 	if (r->ray_x < 0)
 	{
@@ -55,7 +55,7 @@ static void	calculate_dist(t_ray *r, t_player p)
 
 static void	draw_wall(t_game *g, t_ray *r, t_player p, int x)
 {
-	int	color;
+	// int	color;
 
 	(void)p;
 	if (!r->side)
@@ -69,10 +69,38 @@ static void	draw_wall(t_game *g, t_ray *r, t_player p, int x)
 	r->draw_end = r->line_height / 2 + WIN_HEIGHT / 2;
 	if (r->draw_end >= WIN_HEIGHT)
 		r->draw_end = WIN_HEIGHT - 1;
-	color = g->d->color;
-	if (r->side == 1)
-		color = color / 2;
-	put_vline(g, r->draw_start, r->draw_end, x, color);
+
+	double	wallX;
+	if (r->side == 0)
+		wallX = p.y + r->wall_dist * r->ray_y;
+	else
+		wallX = p.x + r->wall_dist * r->ray_x;
+	wallX -= floor(wallX);
+	int texX = (int)(wallX * (double)64);
+	if (r->side == 0 && r->ray_x > 0)
+		texX = 64 - texX - 1;
+	if (r->side == 0 && r->ray_y < 0)
+		texX = 64 - texX - 1;
+	double step = 1.0 * 64 / r->line_height;
+	double texPos = (r->draw_start - WIN_HEIGHT / 2 + r->line_height / 2 ) * step;
+	int	texY;
+	int	y = 0;
+	while (y < WIN_HEIGHT)
+	{
+		while (y < r->draw_start)
+			put_pixel(g->d, x, y++, g->d->roof_color);
+		while (y <= r->draw_end)
+		{
+			texY = (int)texPos;
+			texPos += step;
+			put_pixel(g->d, x, y, pixel_color(g->text, texX, texY));
+			y++;
+		}
+		put_pixel(g->d, x, y, g->d->ground_color);
+		y++;
+	}
+
+	// put_vline(g, r->draw_start, r->draw_end, x, color);
 	// put_player_line(g, p.x * 5 + r->ray_x * r->wall_dist * 5, p.y * 5 + r->ray_y * r->wall_dist * 5);
 }
 
@@ -107,6 +135,11 @@ int	ray_loop(t_game *g, t_player p)
 			// 	break ;
 			if (g->d->mapper[r->mapY][r->mapX] == '1')
 				hit = 1;
+			if (g->d->mapper[r->mapY][r->mapX] == 'C')
+			{
+				r->side = 2;
+				hit = 1;
+			}
 		}
 		draw_wall(g, r, p, x);
 		x++;
