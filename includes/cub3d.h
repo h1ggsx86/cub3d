@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 15:02:41 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/01 11:09:34 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/01 12:13:17 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,10 +127,8 @@ typedef struct s_player
 {
 	double	x;
 	double	y;
-	double	dirX;
-	double	dirY;
-	double	viewX;
-	double	viewY;
+	t_fvector	dir;
+	t_fvector	view;
 }			t_player;
 
 typedef struct s_game
@@ -148,17 +146,7 @@ typedef struct s_game
 	t_player	*pl;
 }				t_game;
 
-void	draw_map(t_game *g);
-void	redraw_img(t_game *g);
-void	door_input(int keycode, t_game *g);
-int	pixel_color(t_mimg texture, int x, int y);
-long	ft_get_time(void);
-
 /* LOOP */
 void	the_loop(t_game *g);
-
-/* MATH STUFF*/
-int		fix_angle(int a);
-float	deg_to_rad(int a);
 
 #endif

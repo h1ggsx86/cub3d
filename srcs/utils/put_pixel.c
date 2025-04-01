@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 15:38:41 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/31 13:56:09 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/01 11:45:51 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,47 +43,24 @@ void	put_square(t_data *d, int xc, int yc, int c)
 	}
 }
 
-void	put_player_circle(t_game *g, int color, int r)
+void	put_player_line(t_game *g, t_ivector p, int x, int y)
 {
-	double x;
-	double y;
-	double	p;
+	t_ivector	xy;
 
-	t_player (pl) = *g->pl;
-	(void)color;
-	y = -r;
-	p = -r;
-	x = 0;
-	while (x < -y)
+	ivector_init(&xy, x, y);
+	if (abs(x - (int)p.x) > abs(y - (int)p.y))
 	{
-		if (p > 0)
-		{
-			y += 1;
-			p += 2 * (x + y) + 1;
-		}
+		if (p.x > x)
+			put_line_l(g, xy, p.x, p.y);
 		else
-			p += 2 * x + 1;
-		put_hline(g, pl.x * 10 + 10 - x, pl.x * 10 + 10 + x, y);
-		put_hline(g, pl.x * 10 + 10 + y, pl.x * 10 + 10 - y, x);
-		x++;
-	}
-}
-
-void	put_player_line(t_game *g, int px, int py, int x, int y)
-{
-	if (abs(x - (int)px) > abs(y - (int)py))
-	{
-		if (px > x)
-			put_lineL(g, x, y, px, py);
-		else
-			put_lineL(g, px, py, x, y);
+			put_line_l(g, p, x, y);
 	}
 	else
 	{
-		if (py > y)
-			put_lineH(g, x, y, px, py);
+		if (p.y > y)
+			put_line_h(g, xy, p.x, p.y);
 		else
-			put_lineH(g, px, py, x, y);
+			put_line_h(g, p, x, y);
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:12:09 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/31 13:54:08 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/01 11:58:21 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,23 @@ static void	p_pos_init(t_data d, t_player *p)
 {
 	if (d.player_dir == 'N')
 	{
-		p->dirY = -1;
-		p->viewX = 0.66f;
+		p->dir.y = -1;
+		p->view.x = 0.66f;
 	}
 	else if (d.player_dir == 'W')
 	{
-		p->dirX = -1;
-		p->viewY = -0.66f;
+		p->dir.x = -1;
+		p->view.y = -0.66f;
 	}
 	else if (d.player_dir == 'E')
 	{
-		p->dirX = 1;
-		p->viewY = 0.66f;
+		p->dir.x = 1;
+		p->view.y = 0.66f;
 	}
 	else
 	{
-		p->dirY = 1;
-		p->viewX = -0.66f;
+		p->dir.y = 1;
+		p->view.x = -0.66f;
 	}
 }
 

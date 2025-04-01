@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 13:27:31 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/01 11:12:59 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/01 11:54:01 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void	set_var(t_ray *r, t_player p, int x)
 {
 	r->cameraX = 2 * (double)x / (double)WIN_WIDTH - 1;
-	fvector_init(&r->ray, (p.dirX + p.viewX * r->cameraX), \
-				(p.dirY + p.viewY * r->cameraX));
+	fvector_init(&r->ray, (p.dir.x + p.view.x * r->cameraX), \
+				(p.dir.y + p.view.y * r->cameraX));
 	ivector_init(&r->map, (int)p.x, (int)p.y);
 	if (r->ray.x == 0)
 		r->delta_d.x = 1e30;
@@ -57,9 +57,16 @@ static void	calculate_wall(t_ray *r, t_player p)
 	double	wall_x;
 
 	if (!r->side)
+	{
 		r->wall_dist = (r->side_d.x - r->delta_d.x) + 0.0001f;
+		wall_x = p.y + r->wall_dist * r->ray.y;
+	}
 	else
+	{
 		r->wall_dist = (r->side_d.y - r->delta_d.y) + 0.0001f;
+		wall_x = p.x + r->wall_dist * r->ray.x;
+	}
+	wall_x -= floor(wall_x);
 	r->line_height = (int)(WIN_HEIGHT / r->wall_dist);
 	r->draw_start = -r->line_height / 2 + WIN_HEIGHT / 2;
 	if (r->draw_start < 0)
@@ -67,11 +74,6 @@ static void	calculate_wall(t_ray *r, t_player p)
 	r->draw_end = r->line_height / 2 + WIN_HEIGHT / 2;
 	if (r->draw_end >= WIN_HEIGHT)
 		r->draw_end = WIN_HEIGHT - 1;
-	if (r->side == 0)
-		wall_x = p.y + r->wall_dist * r->ray.y;
-	else
-		wall_x = p.x + r->wall_dist * r->ray.x;
-	wall_x -= floor(wall_x);
 	r->tex.x = (int)(wall_x * (double)64);
 	if (r->side == 0 && r->ray.x > 0)
 		r->tex.x = 64 - r->tex.x - 1;
