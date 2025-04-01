@@ -1,10 +1,10 @@
-SO ./textures/test_Cub3D.xpm
-EA ./textures/path_to_the_east_texture
-WE ./textures/path_to_the_west_texture
-NO ./textures/path_to_the_north_texture
+SO ./textures/red_drapes2.xpm
+EA ./textures/red_drapes2.xpm
+WE ./textures/red_drapes2.xpm
+NO ./textures/red_drapes2.xpm
 
-F 135, 117, 86
-C 240, 206, 148
+C 161, 0, 0
+F 102, 51, 0
 
         1111111111111111111111111
         1000000000110000000000001

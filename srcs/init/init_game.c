@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:12:09 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/01 12:34:19 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/01 15:58:35 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,13 @@ void	game_init(t_game *g)
 		exit_game(g, 1);
 	init_imgs(g, g->d);
 	p_pos_init(*g->d, g->pl);
-	g->text.img = mlx_xpm_file_to_image(g->init, "./srcs/image.xpm", &size, &size);
-	g->text.addr = mlx_get_data_addr(g->text.img, &g->text.bpp, &g->text.line_length, &g->text.endian);
-	printf("img text -> %p\n", g->text.img);
+	init_south_texture(g);
+	init_north_texture(g);
+	init_east_texture(g);
+	init_west_texture(g);
+	// g->text.img = mlx_xpm_file_to_image(g->init, "./textures/red_drapes2.xpm", &size, &size);
+	// g->text.addr = mlx_get_data_addr(g->text.img, &g->text.bpp, &g->text.line_length, &g->text.endian);
+	// printf("img text -> %p\n", g->text.img);
 }
 
 void	init_imgs(t_game *g, t_data *d)
