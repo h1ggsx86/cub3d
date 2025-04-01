@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:12:09 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/01 15:58:35 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/01 17:28:34 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ void	game_init(t_game *g)
 	init_north_texture(g);
 	init_east_texture(g);
 	init_west_texture(g);
-	// g->text.img = mlx_xpm_file_to_image(g->init, "./textures/red_drapes2.xpm", &size, &size);
-	// g->text.addr = mlx_get_data_addr(g->text.img, &g->text.bpp, &g->text.line_length, &g->text.endian);
+	g->text.img = mlx_xpm_file_to_image(g->init, "./textures/red_drapes2.xpm", &size, &size);
+	g->text.addr = mlx_get_data_addr(g->text.img, &g->text.bpp, &g->text.line_length, &g->text.endian);
 	// printf("img text -> %p\n", g->text.img);
 }
 
