@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 18:33:13 by arotondo          #+#    #+#             */
-/*   Updated: 2025/03/31 15:28:30 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/01 12:34:11 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 
 typedef struct s_ivector	t_ivector;
 typedef struct s_fvector	t_fvector;
-typedef struct s_color	t_color;
-typedef struct s_mimg	t_mimg;
-typedef struct s_data	t_data;
-typedef struct s_player	t_player;
-typedef struct s_game	t_game;
+typedef struct s_color		t_color;
+typedef struct s_mimg		t_mimg;
+typedef struct s_data		t_data;
+typedef struct s_player		t_player;
+typedef struct s_game		t_game;
 
 /* init_game */
 int		img_init(t_mimg *img, t_game *g, void *init);
