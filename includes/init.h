@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 18:33:13 by arotondo          #+#    #+#             */
-/*   Updated: 2025/03/28 15:04:38 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/01 10:26:16 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,7 @@ int		data_init(t_data *data);
 int		color_init(t_data *data);
 void	player_init(t_player *pl);
 void	struct_init(t_game *new, t_data *data, t_player *pl);
+void	ivector_init(t_ivector *vec, int x, int y);
+void	fvector_init(t_fvector *vec, double x, double y);
 
 # endif

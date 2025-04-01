@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 14:49:39 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/01 09:49:30 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/01 10:03:39 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,11 @@ void	redraw_img(t_game *g)
 
 void	camera_move(t_game *g, int way, double rot)
 {
+	double		frametime;
 	t_player	*p;
 
+	frametime = g->time - g->old_time;
+	rot = frametime * rot;
 	p = g->pl;
 	double oldDirX = p->dirX;
 	p->dirX = p->dirX * cosf(rot * way) - p->dirY * sinf(rot * way);
@@ -111,9 +114,9 @@ int	mouse_move(/*int x, int y,*/ t_game *g)
 	if (m.x != g->win_width / 2)
 	{
 		if (m.x < g->win_width / 2)
-			camera_move(g, -1, ROT_SPEED);
+			camera_move(g, -1, ROT_SPEED * 2);
 		else
-			camera_move(g, 1, ROT_SPEED);
+			camera_move(g, 1, ROT_SPEED * 2);
 		mlx_mouse_move(g->init, g->win, g->win_width / 2, g->win_height / 2);
 	}
 	return (EXIT_SUCCESS);

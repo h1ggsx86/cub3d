@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 15:02:41 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/01 09:50:16 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/01 11:09:34 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@
 # define MAP_SIZE 64
 # define WIN_WIDTH 1280
 # define WIN_HEIGHT 720
-# define ROT_SPEED 0.01f
+# define ROT_SPEED 0.002f
 # define MOVE_SPEED 0.005f
 
 enum e_kcode
@@ -59,25 +59,27 @@ typedef struct s_ivector
 	int	y;
 }		t_ivector;
 
+typedef struct s_fvector
+{
+	double	x;
+	double	y;
+}		t_fvector;
+
 typedef struct s_ray
 {
-	int		side;
-	int		line_height;
-	int		draw_start;
-	int		draw_end;
-	int		mapX;
-	int		mapY;
-	int		stepX;
-	int		stepY;
-	double	cameraX;
-	double	wall_dist;
-	double	ray_x;
-	double	ray_y;
-	double	side_distX;
-	double	side_distY;
-	double	delta_distX;
-	double	delta_distY;
-}			t_ray;
+	int			side;
+	int			line_height;
+	int			draw_start;
+	int			draw_end;
+	double		cameraX;
+	double		wall_dist;
+	t_ivector	map;
+	t_ivector	step;
+	t_fvector	ray;
+	t_fvector	side_d;
+	t_fvector	delta_d;
+	t_ivector	tex;
+}				t_ray;
 
 typedef struct s_color
 {
@@ -144,7 +146,6 @@ typedef struct s_game
 	void		*win;
 	t_data		*d;
 	t_player	*pl;
-	t_ray		*r;
 }				t_game;
 
 void	draw_map(t_game *g);
