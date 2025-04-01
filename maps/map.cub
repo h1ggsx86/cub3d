@@ -3,7 +3,7 @@ EA ./textures/path_to_the_east_texture
 WE ./textures/path_to_the_west_texture
 NO ./textures/path_to_the_north_texture
 
-F 135, 117, 86
+F 115, 23, 23
 C 240, 206, 148
 
         1111111111111111111111111

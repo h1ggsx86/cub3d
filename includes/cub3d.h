@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 15:02:41 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/01 12:13:17 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/01 14:35:22 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ typedef struct s_fvector
 
 typedef struct s_ray
 {
+	int			door;
 	int			side;
 	int			line_height;
 	int			draw_start;

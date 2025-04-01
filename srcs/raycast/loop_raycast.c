@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 13:27:31 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/01 12:35:18 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/01 15:11:32 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ static void	draw_wall(t_game *g, t_ray *r, t_player p, int x)
 	double	step;
 	double	tex_pos;
 
-	(void)p;
 	calculate_wall(r, p);
 	step = 1.0 * 64 / r->line_height;
 	tex_pos = (r->draw_start - WIN_HEIGHT / 2 + r->line_height / 2) * step;
@@ -104,6 +103,30 @@ static void	draw_wall(t_game *g, t_ray *r, t_player p, int x)
 			y++;
 		}
 		put_pixel(g->d, x, y, g->d->ground_color);
+		y++;
+	}
+}
+
+static void	draw_door(t_game *g, t_ray *r, t_player p, int x)
+{
+	int		y;
+	int		color;
+	double	step;
+	double	tex_pos;
+
+	calculate_wall(r, p);
+	step = 1.0 * 64 / r->line_height;
+	tex_pos = (r->draw_start - WIN_HEIGHT / 2 + r->line_height / 2) * step;
+	y = 0;
+	while (y < r->draw_start)
+		y++;
+	while (y < r->draw_end)
+	{
+		r->tex.y = (int)tex_pos;
+		tex_pos += step;
+		color = pixel_color(g->text, r->tex.x, r->tex.y);
+		if (color != 0)
+			put_pixel(g->d, x, y, color);
 		y++;
 	}
 }
@@ -129,6 +152,23 @@ int	ray_loop(t_game *g, t_player p)
 				hit = 1;
 		}
 		draw_wall(g, &r, p, x);
+		set_var(&r, p, x);
+		calculate_dist(&r, p);
+		r.door = 0;
+		while (!r.door)
+		{
+			if (dda_algo(g, &r))
+				break ;
+			if (g->d->mapper[r.map.y][r.map.x] == '1' ||
+				g->d->mapper[r.map.y][r.map.x] == 'C')
+				break ;
+			if (g->d->mapper[r.map.y][r.map.x] == 'O')
+				r.door = 1;
+		}
+		if (r.door)
+		{
+			draw_door(g, &r, p, x);
+		}
 		x++;
 	}
 	g->old_time = g->time;
