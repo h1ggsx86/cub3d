@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 10:57:25 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/28 19:51:11 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/01 09:10:27 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	draw_map(t_game *g)
 		{
 			if ((tile.x < 0 || tile.y < 0) || (tile.x >= (int)d.width || tile.y >= (int)d.height))
 				d.color = 0x00dadada / 2;
-			else if (d.mapper[tile.y][tile.x] == '0')
+			else if (d.mapper[tile.y][tile.x] == '0' || d.mapper[tile.y][tile.x] == 'O')
 				d.color = 0x00dadada;
 			else
 				d.color = 0x00dadada / 2;

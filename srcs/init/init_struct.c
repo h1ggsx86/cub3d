@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:16:20 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/31 14:46:36 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/01 09:39:52 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,8 @@ void	struct_init(t_game *new, t_data *data, t_player *pl)
 	new->pl = pl;
 	new->win_height = WIN_HEIGHT;
 	new->win_width = WIN_WIDTH;
-	new->fps = 0;
+	new->time = 0;
+	new->old_time = 0;
 	key_init(new);
 	new->r = malloc(sizeof(t_ray));
 	if (!new->r)

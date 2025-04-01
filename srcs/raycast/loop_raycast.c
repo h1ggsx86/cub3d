@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 13:27:31 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/31 13:14:24 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/01 09:49:44 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ static void	draw_wall(t_game *g, t_ray *r, t_player p, int x)
 	{
 		while (y < r->draw_start)
 			put_pixel(g->d, x, y++, g->d->roof_color);
-		while (y <= r->draw_end)
+		while (y < r->draw_end)
 		{
 			texY = (int)texPos;
 			texPos += step;
@@ -131,18 +131,17 @@ int	ray_loop(t_game *g, t_player p)
 				r->mapY += r->stepY;
 				r->side = 1;
 			}
-			// if (r->mapY > (int)g->d->height || r->mapX > (int)g->d->width)
-			// 	break ;
-			if (g->d->mapper[r->mapY][r->mapX] == '1')
+			if ((r->mapY >= (int)g->d->height || r->mapX >= (int)g->d->width) ||
+				(r->mapY < 0 || r->mapX < 0))
+				break ;
+			if (g->d->mapper[r->mapY][r->mapX] == '1' ||
+				g->d->mapper[r->mapY][r->mapX] == 'C')
 				hit = 1;
-			if (g->d->mapper[r->mapY][r->mapX] == 'C')
-			{
-				r->side = 2;
-				hit = 1;
-			}
 		}
 		draw_wall(g, r, p, x);
 		x++;
 	}
+	g->old_time = g->time;
+	g->time = ft_get_time();
 	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 14:49:39 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/31 15:05:30 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/01 09:49:30 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,37 +41,45 @@ void	camera_move(t_game *g, int way, double rot)
 	double oldPlaneX = p->viewX;
 	p->viewX = p->viewX * cosf(rot * way) - p->viewY * sinf(rot * way);
 	p->viewY = oldPlaneX * sinf(rot * way) + p->viewY * cosf(rot * way);
-	redraw_img(g);
+	// redraw_img(g);
 }
 
 void	ws_move(t_game *g, int way)
 {
+	double		frametime;
+	double		move_speed;
 	char		**map;
 	t_player	*p;
 
+	frametime = g->time - g->old_time;
+	move_speed = frametime * MOVE_SPEED;
 	p = g->pl;
 	map = g->d->mapper;
-	if (map[(int)(p->y + (p->dirY * MOVE_SPEED * way))][(int)p->x] != '1' &&
-		map[(int)(p->y + (p->dirY * MOVE_SPEED * way))][(int)p->x] != 'C')
-		p->y += p->dirY * MOVE_SPEED * way;
-	if (map[(int)p->y][(int)(p->x + (p->dirX * MOVE_SPEED * way))] != '1' &&
-		map[(int)p->y][(int)(p->x + (p->dirX * MOVE_SPEED * way))] != 'C')
-		p->x += p->dirX * MOVE_SPEED * way;
+	if (map[(int)(p->y + (p->dirY * move_speed * way))][(int)p->x] != '1' &&
+		map[(int)(p->y + (p->dirY * move_speed * way))][(int)p->x] != 'C')
+		p->y += p->dirY * move_speed * way;
+	if (map[(int)p->y][(int)(p->x + (p->dirX * move_speed * way))] != '1' &&
+		map[(int)p->y][(int)(p->x + (p->dirX * move_speed * way))] != 'C')
+		p->x += p->dirX * move_speed * way;
 }
 
 void	ad_move(t_game *g, int way)
 {
+	double		frametime;
+	double		move_speed;
 	char		**map;
 	t_player	*p;
 
+	frametime = g->time - g->old_time;
+	move_speed = frametime * MOVE_SPEED;
 	p = g->pl;
 	map = g->d->mapper;
-	if (map[(int)(p->y + (p->dirX * MOVE_SPEED * way))][(int)p->x] != '1' &&
-		map[(int)(p->y + (p->dirX * MOVE_SPEED * way))][(int)p->x] != 'C')
-		p->y += p->dirX * MOVE_SPEED * way;
-	if (map[(int)p->y][(int)(p->x - (p->dirY * MOVE_SPEED * way))] != '1' &&
-		map[(int)p->y][(int)(p->x - (p->dirY * MOVE_SPEED * way))] != 'C')
-		p->x -= p->dirY * MOVE_SPEED * way;
+	if (map[(int)(p->y + (p->dirX * move_speed * way))][(int)p->x] != '1' &&
+		map[(int)(p->y + (p->dirX * move_speed * way))][(int)p->x] != 'C')
+		p->y += p->dirX * move_speed * way;
+	if (map[(int)p->y][(int)(p->x - (p->dirY * move_speed * way))] != '1' &&
+		map[(int)p->y][(int)(p->x - (p->dirY * move_speed * way))] != 'C')
+		p->x -= p->dirY * move_speed * way;
 }
 
 void	moves_input(t_game *g)

@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 15:02:41 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/31 14:55:54 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/01 09:50:16 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@
 # define MAP_SIZE 64
 # define WIN_WIDTH 1280
 # define WIN_HEIGHT 720
-# define ROT_SPEED 0.02f
-# define MOVE_SPEED 0.02f
+# define ROT_SPEED 0.01f
+# define MOVE_SPEED 0.005f
 
 enum e_kcode
 {
@@ -135,10 +135,11 @@ typedef struct s_game
 {
 	t_mimg		text;
 	int			key[6];
-	int			fps;
 	int			map;
 	int			win_height;
 	int			win_width;
+	long		time;
+	long		old_time;
 	void		*init;
 	void		*win;
 	t_data		*d;
@@ -150,6 +151,7 @@ void	draw_map(t_game *g);
 void	redraw_img(t_game *g);
 void	door_input(int keycode, t_game *g);
 int	pixel_color(t_mimg texture, int x, int y);
+long	ft_get_time(void);
 
 /* LOOP */
 void	the_loop(t_game *g);
