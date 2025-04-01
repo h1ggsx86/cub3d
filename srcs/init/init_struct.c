@@ -6,11 +6,23 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:16:20 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/31 15:31:26 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/01 12:34:47 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
+
+void	ivector_init(t_ivector *vec, int x, int y)
+{
+	vec->x = x;
+	vec->y = y;
+}
+
+void	fvector_init(t_fvector *vec, double x, double y)
+{
+	vec->x = x;
+	vec->y = y;
+}
 
 int	data_init(t_data *data)
 {
@@ -57,10 +69,10 @@ void	player_init(t_player *pl)
 {
 	pl->x = 0;
 	pl->y = 0;
-	pl->dirX = 0;
-	pl->dirY = 0;
-	pl->viewX = 0.0f;
-	pl->viewY = 0.0f;
+	pl->dir.x = 0;
+	pl->dir.y = 0;
+	pl->view.x = 0.0f;
+	pl->view.y = 0.0f;
 }
 
 void	key_init(t_game *new)
@@ -80,11 +92,9 @@ void	struct_init(t_game *new, t_data *data, t_player *pl)
 	new->pl = pl;
 	new->win_height = WIN_HEIGHT;
 	new->win_width = WIN_WIDTH;
-	new->fps = 0;
+	new->time = 0;
+	new->old_time = 0;
 	key_init(new);
-	new->r = malloc(sizeof(t_ray));
-	if (!new->r)
-		exit_game(new, 1);
 	if (data_init(new->d))
 		exit_game(new, 1);
 	if (color_init(new->d))

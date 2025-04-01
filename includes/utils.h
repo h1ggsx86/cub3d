@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 18:26:43 by arotondo          #+#    #+#             */
-/*   Updated: 2025/03/31 14:38:12 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/01 12:11:16 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,19 @@ void	free_img(void *init, t_mimg *img);
 void	exit_game(t_game *g, int ecode);
 
 /* put_pixel */
+int		pixel_color(t_mimg texture, int x, int y);
 void	put_pixel(t_data *d, int x, int y, int color);
 void	put_square(t_data *d, int xc, int yc, int c);
-void	put_player_circle(t_game *g, int color, int r);
-void	put_player_line(t_game *g, int px, int py, int x, int y);
+void	put_player_line(t_game *g, t_ivector p, int x, int y);
 
 /* put_pixel_lines */
-void	put_vline(t_game *g, int y_start, int y_end, int x, int color);
-void	put_hline(t_game *g, int x_start, int x_end, int y);
-void	put_lineL(t_game *g, int x0, int y0, int x1, int y1);
-void	put_lineH(t_game *g, int x0, int y0, int x1, int y1);
+void	put_line_l(t_game *g, t_ivector start, int x1, int y1);
+void	put_line_h(t_game *g, t_ivector start, int x1, int y1);
 
 /* moves input */
-int		mouse_move(/*int x, int y,*/ t_game *g);
+int		mouse_move(t_game *g);
 void	moves_input(t_game *g);
+
+long	ft_get_time(void);
 
 # endif

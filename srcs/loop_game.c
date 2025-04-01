@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 10:30:37 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/31 15:30:26 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/01 12:31:48 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	handle_no_event(t_game *g)
 {
 	moves_input(g);
 	mouse_move(g);
-	redraw_img(g);
+	render_img(g);
 	if (g->d->active_img)
 		mlx_put_image_to_window(g->init, g->win, g->d->img_player[0].img, \
 									0, 0);
@@ -77,9 +77,6 @@ void	the_loop(t_game *g)
 	printf("img2 at %p\n", g->d->img_player + 1);
 	// mlx_mouse_hide(g->init, g->win);
 	mlx_mouse_move(g->init, g->win, g->win_width / 2, g->win_height / 2);
-	redraw_img(g);
-	g->d->active_img = 0;
-	redraw_img(g);
 	mlx_loop_hook(g->init, &handle_no_event, g);
 	mlx_hook(g->win, KeyPress, KeyPressMask, &input_handler, g);
 	// mlx_hook(g->win, MotionNotify, PointerMotionMask, &mouse_move, g);
