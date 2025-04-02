@@ -6,13 +6,21 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 15:37:30 by arotondo          #+#    #+#             */
-/*   Updated: 2025/04/02 16:55:47 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/02 18:50:51 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-
+void	get_map_height(t_game *g, int i)
+{
+	close(g->map);
+	get_next_line(-1);
+	g->d->height = i;
+	g->d->mapper = (char **)ft_calloc(sizeof(char *), g->d->height + 1);
+	if (!g->d->mapper)
+		err_message(g, "mapper", "memory allocation failed", 2);
+}
 
 void	init_my_map(t_game *g, char *file)
 {
@@ -22,12 +30,7 @@ void	init_my_map(t_game *g, char *file)
 
 	i = 0;
 	in_map = false;
-	g->map = open(file, O_RDONLY, 0664);
-	if (g->map < 0)
-		err_message(g, file, "invalid fd", 1);
-	line = malloc(sizeof(char) * 1);
-	if (!line)
-		err_message(g, "line", "memory allocation failed", 2);
+	line = init_tmp(g, file);
 	while (line)
 	{
 		free(line);
@@ -45,12 +48,7 @@ void	init_my_map(t_game *g, char *file)
 	}
 	if (line)
 		free(line);
-	g->d->height = i;
-	close(g->map);
-	get_next_line(-1);
-	g->d->mapper = (char **)ft_calloc(sizeof(char *), g->d->height + 1);
-	if (!g->d->mapper)
-		err_message(g, "mapper", "memory allocation failed", 2);
+	get_map_height(g, i);
 }
 
 void	parsing_the_thing(t_game *g, char *file)
@@ -59,12 +57,7 @@ void	parsing_the_thing(t_game *g, char *file)
 	int		i;
 
 	init_my_map(g, file);
-	g->map = open(file, O_RDONLY, 0664);
-	if (g->map < 0)
-		err_message(g, file, "invalid fd", 2);
-	line = malloc(1 * sizeof(char));
-	if (!line)
-		err_message(g, "line", "memory allocation failed", 2);
+	line = init_tmp(g, file);
 	i = 0;
 	while (line)
 	{
@@ -84,9 +77,19 @@ void	parsing_the_thing(t_game *g, char *file)
 	close(g->map);
 	get_next_line(-1);
 	check_map(g);
-	if (!g->d->all_text || !g->d->all_colors || !g->d->map_parsed)
-	{
-		perror("");
-		exit_game(g, 6);
-	}
+	check_all_parsed(g);
+}
+
+char	*init_tmp(t_game *g, char *file)
+{
+	char	*line;
+
+	line = NULL;
+	g->map = open(file, O_RDONLY, 0664);
+	if (g->map < 0)
+		err_message(g, file, "invalid fd", 2);
+	line = malloc(1 * sizeof(char));
+	if (!line)
+		err_message(g, "line", "memory allocation failed", 2);
+	return (line);
 }

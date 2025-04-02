@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:16:20 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/02 17:18:41 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/02 17:19:22 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	struct_init(t_game *new, t_data *data, t_player *pl)
 	new->win_width = WIN_WIDTH;
 	new->time = 0;
 	new->old_time = 0;
-	new->color = ;
+	new->color = 0x00dadada;
 	key_init(new);
 	if (data_init(new->d))
 		exit_game(new, 1);

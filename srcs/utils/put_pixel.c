@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   put_pixel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 15:38:41 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/01 11:45:51 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/02 17:22:03 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	put_pixel(t_data *d, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void	put_square(t_data *d, int xc, int yc, int c)
+void	put_square(t_game *g, int xc, int yc, int c)
 {
 	int	y;
 	int	x;
@@ -36,7 +36,7 @@ void	put_square(t_data *d, int xc, int yc, int c)
 		x = 0;
 		while (x < c)
 		{
-			put_pixel(d, xc + x, yc + y, d->color);
+			put_pixel(g->d, xc + x, yc + y, g->color);
 			x++;
 		}
 		y++;

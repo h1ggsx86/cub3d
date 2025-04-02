@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 18:26:43 by arotondo          #+#    #+#             */
-/*   Updated: 2025/04/02 16:39:23 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/02 17:23:04 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	exit_game(t_game *g, int ecode);
 /* put_pixel */
 int		pixel_color(t_mimg texture, int x, int y);
 void	put_pixel(t_data *d, int x, int y, int color);
-void	put_square(t_data *d, int xc, int yc, int c);
+void	put_square(t_game *g, int xc, int yc, int c);
 void	put_player_line(t_game *g, t_ivector p, int x, int y);
 
 /* put_pixel_lines */

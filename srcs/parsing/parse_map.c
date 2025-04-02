@@ -6,33 +6,35 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 16:00:46 by arotondo          #+#    #+#             */
-/*   Updated: 2025/04/02 14:49:15 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/02 18:56:36 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
+void	keep_pos_player(t_game *g, int *j, int *i)
+{
+	g->pl->y = (double)*j;
+	g->pl->x = (double)*i;
+	g->d->player_dir = g->d->mapper[*j][*i];
+	g->d->mapper[*j][*i] = '0';
+}
+
 int	check_inside(t_game *g)
 {
-	int		n_player;
-	int		j;
 	int		i;
 
-	n_player = 0;
-	j = 0;
+	int (n_player) = 0;
+	int (j) = 0;
 	while (g->d->mapper[j])
 	{
 		i = 0;
-		while(g->d->mapper[j][i] && g->d->mapper[j][i] != '\n')
+		while (g->d->mapper[j][i] && g->d->mapper[j][i] != '\n')
 		{
 			if (!n_player && is_pos_player(g->d->mapper[j][i], &n_player))
-			{
-				g->pl->y = (double)j;
-				g->pl->x = (double)i;
-				g->d->player_dir = g->d->mapper[j][i];
-				g->d->mapper[j][i] = '0';
-			}
-			else if (is_pos_player(g->d->mapper[j][i], &n_player) && n_player > 1)
+				keep_pos_player(g, &j, &i);
+			else if (is_pos_player(g->d->mapper[j][i], &n_player) \
+				&& n_player > 1)
 				err_message(g, "player", "only one allowed", 6);
 			else if (g->d->mapper[j][i] != '1' && g->d->mapper[j][i] != '0' && \
 						g->d->mapper[j][i] != 'C' && g->d->mapper[j][i] != 'O')
@@ -57,7 +59,8 @@ int	check_top_bottom(t_game *g)
 		max_hight = ft_vert_len(g->d->mapper, i, g->d->height) - 1;
 		if (max_hight <= 0)
 			return (1);
-		if (i == (int)ft_strlen(g->d->mapper[max_hight]) - 1 && g->d->mapper[max_hight][i] == '\n')
+		if (i == (int)ft_strlen(g->d->mapper[max_hight]) - 1 \
+			&& g->d->mapper[max_hight][i] == '\n')
 			break ;
 		if (g->d->mapper[0][i] && g->d->mapper[0][i] != '1')
 			return (1);
@@ -91,7 +94,7 @@ int	check_left_right(t_game *g)
 void	parse_map(t_game *g, char *line, int *j)
 {
 	size_t	i;
- 
+
 	i = 0;
 	if (g->d->map_parsed == true)
 		return ;

@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:48:34 by arotondo          #+#    #+#             */
-/*   Updated: 2025/04/02 16:48:16 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/02 18:40:48 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,13 @@ void	init_colors(t_game *g, int idc)
 	g->d->i_colors++;
 	if (g->d->i_colors == 2)
 		g->d->all_colors = true;
+}
+
+void	check_all_parsed(t_game *g)
+{
+	if (!g->d->all_text || !g->d->all_colors || !g->d->map_parsed)
+	{
+		perror("");
+		exit_game(g, 6);
+	}
 }
