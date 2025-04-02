@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 15:02:41 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/01 14:35:22 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/02 12:03:26 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,14 @@ enum e_kcode
 	RIGHT
 };
 
+enum e_cardinal
+{
+	NORTH,
+	EAST,
+	WEST,
+	SOUTH
+};
+
 typedef struct s_ivector
 {
 	int	x;
@@ -76,10 +84,11 @@ typedef struct s_ray
 	double		wall_dist;
 	t_ivector	map;
 	t_ivector	step;
+	t_ivector	tex;
 	t_fvector	ray;
 	t_fvector	side_d;
 	t_fvector	delta_d;
-	t_ivector	tex;
+	t_fvector	door_side_d;
 }				t_ray;
 
 typedef struct s_color
@@ -100,6 +109,9 @@ typedef struct s_mimg
 typedef struct s_data
 {
 	t_mimg		*img_player;
+	t_mimg		*textures[4];
+	t_mimg		the_chosen;
+	t_mimg		tex_door[2];
 	t_color		*colors;
 	int			active_img;
 	char		**mapper;
@@ -134,7 +146,6 @@ typedef struct s_player
 
 typedef struct s_game
 {
-	t_mimg		text;
 	int			key[6];
 	int			map;
 	int			win_height;

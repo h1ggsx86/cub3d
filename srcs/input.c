@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 14:49:39 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/01 12:34:02 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/02 10:42:40 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,15 +76,15 @@ void	moves_input(t_game *g)
 	p = g->pl;
 	if (g->key[LEFT])
 		camera_move(g, -1, ROT_SPEED);
-	else if (g->key[RIGHT])
+	if (g->key[RIGHT])
 		camera_move(g, 1, ROT_SPEED);
-	else if (g->key[W])
+	if (g->key[W])
 		ws_move(g, 1);
-	else if (g->key[S])
+	if (g->key[S])
 		ws_move(g, -1);
-	else if (g->key[D])
+	if (g->key[D])
 		ad_move(g, 1);
-	else if (g->key[A])
+	if (g->key[A])
 		ad_move(g, -1);
 }
 

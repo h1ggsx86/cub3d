@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 18:33:13 by arotondo          #+#    #+#             */
-/*   Updated: 2025/04/01 15:59:22 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/02 09:54:26 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ void	ivector_init(t_ivector *vec, int x, int y);
 void	fvector_init(t_fvector *vec, double x, double y);
 
 /* get_textures */
-void	init_north_texture(t_game *g);
-void	init_south_texture(t_game *g);
-void	init_west_texture(t_game *g);
-void	init_east_texture(t_game *g);
+t_mimg	*init_north_texture(t_game *g);
+t_mimg	*init_south_texture(t_game *g);
+t_mimg	*init_west_texture(t_game *g);
+t_mimg	*init_east_texture(t_game *g);
 
 # endif

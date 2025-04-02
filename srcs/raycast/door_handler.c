@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 09:15:05 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/01 11:11:54 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/02 11:37:04 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,59 @@ static int	check_collisions(t_game *g, t_ray *r)
 	return (EXIT_SUCCESS);
 }
 
+static void	calculate_door(t_ray *r, t_player p)
+{
+	double	wall_x;
+
+	if (!r->side)
+	{
+		r->wall_dist = (r->side_d.x - r->delta_d.x) + 0.0001f;
+		wall_x = p.y + r->wall_dist * r->ray.y;
+	}
+	else
+	{
+		r->wall_dist = (r->side_d.y - r->delta_d.y) + 0.0001f;
+		wall_x = p.x + r->wall_dist * r->ray.x;
+	}
+	wall_x -= floor(wall_x);
+	r->line_height = (int)(WIN_HEIGHT / r->wall_dist);
+	r->draw_start = -r->line_height / 2 + WIN_HEIGHT / 2;
+	if (r->draw_start < 0)
+		r->draw_start = 0;
+	r->draw_end = r->line_height / 2 + WIN_HEIGHT / 2;
+	if (r->draw_end >= WIN_HEIGHT)
+		r->draw_end = WIN_HEIGHT - 1;
+	r->tex.x = (int)(wall_x * (double)64);
+	if (r->side == 0 && r->ray.x < 0)
+		r->tex.x = 64 - r->tex.x - 1;
+	if (r->side == 1 && r->ray.y > 0)
+		r->tex.x = 64 - r->tex.x - 1;
+}
+
+void	draw_door(t_game *g, t_ray *r, t_player p, int x)
+{
+	int		y;
+	int		color;
+	double	step;
+	double	tex_pos;
+
+	calculate_door(r, p);
+	step = 1.0 * 64 / r->line_height;
+	tex_pos = (r->draw_start - WIN_HEIGHT / 2 + r->line_height / 2) * step;
+	y = 0;
+	while (y < r->draw_start)
+		y++;
+	while (y < r->draw_end)
+	{
+		r->tex.y = (int)tex_pos;
+		tex_pos += step;
+		color = pixel_color(g->d->tex_door[0], r->tex.x, r->tex.y);
+		if (color != 0)
+			put_pixel(g->d, x, y, color);
+		y++;
+	}
+}
+
 static int	ray_check_door(t_game *g)
 {
 	int			x;
@@ -70,14 +123,11 @@ static int	ray_check_door(t_game *g)
 	{
 		set_var(&r, p, x);
 		calculate_dist(&r, p);
-		while (1)
+		r.door = 0;
+		while (!r.door)
 		{
 			if (dda_algo(g, &r))
 				break ;
-			if (!r.side)
-				r.wall_dist = (r.side_d.x - r.delta_d.x) + 0.0001f;
-			else
-				r.wall_dist = (r.side_d.y - r.delta_d.y) + 0.0001f;
 			if (check_collisions(g, &r))
 				return (EXIT_FAILURE);
 		}

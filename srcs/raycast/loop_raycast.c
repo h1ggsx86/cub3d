@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 13:27:31 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/02 13:29:26 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/02 13:30:25 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,11 @@ void	calculate_dist(t_ray *r, t_player p)
 		r->step.y = 1;
 		r->side_d.y = (r->map.y + 1.0 - p.y) * r->delta_d.y;
 	}
+	r->door_side_d.x = r->side_d.x;
+	r->door_side_d.y = r->side_d.y;
 }
 
-static void	calculate_wall(t_ray *r, t_player p)
+static void	calculate_wall(t_data *d, t_ray *r, t_player p)
 {
 	double	wall_x;
 
@@ -60,12 +62,22 @@ static void	calculate_wall(t_ray *r, t_player p)
 	{
 		r->wall_dist = (r->side_d.x - r->delta_d.x) + 0.0001f;
 		wall_x = p.y + r->wall_dist * r->ray.y;
+		if (r->ray.x > 0)
+			d->the_chosen = *d->textures[WEST];
+		else
+			d->the_chosen = *d->textures[EAST];
 	}
 	else
 	{
 		r->wall_dist = (r->side_d.y - r->delta_d.y) + 0.0001f;
 		wall_x = p.x + r->wall_dist * r->ray.x;
+		if (r->ray.y > 0)
+			d->the_chosen = *d->textures[SOUTH];
+		else
+			d->the_chosen = *d->textures[NORTH];
 	}
+	if (d->mapper[r->map.y][r->map.x] == 'C')
+		d->the_chosen = d->tex_door[1];
 	wall_x -= floor(wall_x);
 	r->line_height = (int)(WIN_HEIGHT / r->wall_dist);
 	r->draw_start = -r->line_height / 2 + WIN_HEIGHT / 2;
@@ -75,9 +87,9 @@ static void	calculate_wall(t_ray *r, t_player p)
 	if (r->draw_end >= WIN_HEIGHT)
 		r->draw_end = WIN_HEIGHT - 1;
 	r->tex.x = (int)(wall_x * (double)64);
-	if (r->side == 0 && r->ray.x > 0)
+	if (r->side == 0 && r->ray.x < 0)
 		r->tex.x = 64 - r->tex.x - 1;
-	if (r->side == 0 && r->ray.y < 0)
+	if (r->side == 1 && r->ray.y > 0)
 		r->tex.x = 64 - r->tex.x - 1;
 }
 
@@ -87,7 +99,7 @@ static void	draw_wall(t_game *g, t_ray *r, t_player p, int x)
 	double	step;
 	double	tex_pos;
 
-	calculate_wall(r, p);
+	calculate_wall(g->d, r, p);
 	step = 1.0 * 64 / r->line_height;
 	tex_pos = (r->draw_start - WIN_HEIGHT / 2 + r->line_height / 2) * step;
 	y = 0;
@@ -99,34 +111,10 @@ static void	draw_wall(t_game *g, t_ray *r, t_player p, int x)
 		{
 			r->tex.y = (int)tex_pos;
 			tex_pos += step;
-			put_pixel(g->d, x, y, pixel_color(g->text, r->tex.x, r->tex.y));
+			put_pixel(g->d, x, y, pixel_color(g->d->the_chosen, r->tex.x, r->tex.y));
 			y++;
 		}
 		put_pixel(g->d, x, y, g->d->ground_color);
-		y++;
-	}
-}
-
-static void	draw_door(t_game *g, t_ray *r, t_player p, int x)
-{
-	int		y;
-	int		color;
-	double	step;
-	double	tex_pos;
-
-	calculate_wall(r, p);
-	step = 1.0 * 64 / r->line_height;
-	tex_pos = (r->draw_start - WIN_HEIGHT / 2 + r->line_height / 2) * step;
-	y = 0;
-	while (y < r->draw_start)
-		y++;
-	while (y < r->draw_end)
-	{
-		r->tex.y = (int)tex_pos;
-		tex_pos += step;
-		color = pixel_color(g->text, r->tex.x, r->tex.y);
-		if (color != 0)
-			put_pixel(g->d, x, y, color);
 		y++;
 	}
 }
@@ -152,9 +140,9 @@ int	ray_loop(t_game *g, t_player p)
 				hit = 1;
 		}
 		draw_wall(g, &r, p, x);
-		set_var(&r, p, x);
-		calculate_dist(&r, p);
 		r.door = 0;
+		ivector_init(&r.map, (int)p.x, (int)p.y);
+		fvector_init(&r.side_d, r.door_side_d.x, r.door_side_d.y);
 		while (!r.door)
 		{
 			if (dda_algo(g, &r))
@@ -166,9 +154,7 @@ int	ray_loop(t_game *g, t_player p)
 				r.door = 1;
 		}
 		if (r.door)
-		{
 			draw_door(g, &r, p, x);
-		}
 		x++;
 	}
 	g->old_time = g->time;

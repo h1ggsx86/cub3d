@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_textures.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 16:02:27 by arotondo          #+#    #+#             */
-/*   Updated: 2025/04/01 15:41:18 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/02 10:08:40 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void	init_north_texture(t_game *g)
+t_mimg	*init_north_texture(t_game *g)
 {
 	t_mimg	*n_img;
 	int		size;
@@ -30,9 +30,10 @@ void	init_north_texture(t_game *g)
 		&n_img->line_length, &n_img->endian);
 	if (!n_img)
 		err_message(g, "north_data_addr", "mlx_failed", 7);
+	return (n_img);
 }
 
-void	init_south_texture(t_game *g)
+t_mimg	*init_south_texture(t_game *g)
 {
 	t_mimg	*s_img;
 	int		size;
@@ -53,9 +54,10 @@ void	init_south_texture(t_game *g)
 		&s_img->line_length, &s_img->endian);
 	if (!s_img)
 		err_message(g, "south_data_addr", "mlx_failed", 7);
+	return (s_img);
 }
 
-void	init_west_texture(t_game *g)
+t_mimg	*init_west_texture(t_game *g)
 {
 	t_mimg	*w_img;
 	int		size;
@@ -73,9 +75,10 @@ void	init_west_texture(t_game *g)
 		&w_img->line_length, &w_img->endian);
 	if (!w_img)
 		err_message(g, "west_data_addr", "mlx_failed", 7);
+	return (w_img);
 }
 
-void	init_east_texture(t_game *g)
+t_mimg	*init_east_texture(t_game *g)
 {
 	t_mimg	*e_img;
 	int		size;
@@ -93,4 +96,5 @@ void	init_east_texture(t_game *g)
 		&e_img->line_length, &e_img->endian);
 	if (!e_img)
 		err_message(g, "east_data_addr", "mlx_failed", 7);
+	return (e_img);
 }
