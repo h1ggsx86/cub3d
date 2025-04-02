@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 10:30:37 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/01 12:31:48 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/02 16:56:14 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ int	handle_no_event(t_game *g)
 
 void	the_loop(t_game *g)
 {
-	printf("img1 at %p\n", g->d->img_player);
-	printf("img2 at %p\n", g->d->img_player + 1);
+	// printf("img1 at %p\n", g->d->img_player);
+	// printf("img2 at %p\n", g->d->img_player + 1);
 	// mlx_mouse_hide(g->init, g->win);
 	mlx_mouse_move(g->init, g->win, g->win_width / 2, g->win_height / 2);
 	mlx_loop_hook(g->init, &handle_no_event, g);

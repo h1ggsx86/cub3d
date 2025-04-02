@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 15:02:41 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/02 15:54:12 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/02 17:18:25 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ typedef struct s_ray
 	int			line_height;
 	int			draw_start;
 	int			draw_end;
-	double		cameraX;
+	double		camera_x;
 	double		wall_dist;
 	t_ivector	map;
 	t_ivector	step;
@@ -119,7 +119,6 @@ typedef struct s_data
 	size_t		width;
 	int			i_text;
 	int			i_colors;
-	int			color;
 	u_int32_t	ground_color;
 	u_int32_t	roof_color;
 	bool		all_text;
@@ -132,8 +131,8 @@ typedef struct s_data
 
 typedef struct s_player
 {
-	double	x;
-	double	y;
+	double		x;
+	double		y;
 	t_fvector	dir;
 	t_fvector	view;
 }			t_player;
@@ -144,6 +143,7 @@ typedef struct s_game
 	int			map;
 	int			win_height;
 	int			win_width;
+	int			color;
 	long		time;
 	long		old_time;
 	void		*init;

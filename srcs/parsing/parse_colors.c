@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 16:01:10 by arotondo          #+#    #+#             */
-/*   Updated: 2025/04/02 14:49:05 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/02 16:47:04 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	cut_color(t_game *g, char *line, int idc)
 	j = 0;
 	while (line[i] && line[i] != '\n')
 	{
-		while(line[i] && (line[i] == '+' || line[i] == '-'))
+		while (line[i] && (line[i] == '+' || line[i] == '-'))
 		{
 			if (line[i] == '-')
 				err_message(g, "colors", "RGB values can't be negative", 4);
@@ -63,18 +63,13 @@ void	cut_color(t_game *g, char *line, int idc)
 		j++;
 		while (line[i] && (line[i] == ',' || !ft_isspace(line[i])))
 			i++;
-		if (line[i] && line[i] != ',' && ft_isspace(line[i]) && !ft_isdigit(line[i]))
+		if (line[i] && line[i] != ',' && ft_isspace(line[i]) \
+			&& !ft_isdigit(line[i]))
 			err_message(g, "colors", "bad separator", 4);
 	}
 	if (j != 3)
 		err_message(g, "colors", "RGB must contains 3 values", 4);
-	if (idc == 'F')
-		g->d->ground_color = bitshift_op(g);
-	else
-		g->d->roof_color = bitshift_op(g);
-	g->d->i_colors++;
-	if (g->d->i_colors == 2)
-		g->d->all_colors = true;
+	init_colors(g, idc);
 }
 
 void	is_color(t_game *g, char *line)

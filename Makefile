@@ -6,7 +6,7 @@
 #    By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/24 19:27:15 by tnedel            #+#    #+#              #
-#    Updated: 2025/04/02 16:30:23 by arotondo         ###   ########.fr        #
+#    Updated: 2025/04/02 17:12:39 by arotondo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,9 +36,9 @@ LIBFT_LIB = libft/libft.a
 SRC_DIR	= srcs
 OBJ_DIR = obj
 SRC		= 	$(SRC_DIR)/init/init_game.c $(SRC_DIR)/init/init_struct.c \
-			$(SRC_DIR)/init/get_textures.c \
+			$(SRC_DIR)/init/get_textures.c $(SRC_DIR)/init/others_init.c \
 			$(SRC_DIR)/loop_game.c $(SRC_DIR)/input.c $(SRC_DIR)/main.c \
-			$(SRC_DIR)/parsing/check_map.c $(SRC_DIR)/parsing/parsing_utils.c \
+			$(SRC_DIR)/parsing/parsing_checks.c $(SRC_DIR)/parsing/parsing_utils.c \
 			$(SRC_DIR)/parsing/parse_textures.c $(SRC_DIR)/parsing/parse_map.c \
 			$(SRC_DIR)/parsing/parse_colors.c $(SRC_DIR)/parsing/parsing.c \
 			$(SRC_DIR)/raycast/loop_raycast.c $(SRC_DIR)/raycast/door_handler.c \

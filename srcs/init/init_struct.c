@@ -6,23 +6,11 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:16:20 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/02 16:05:09 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/02 17:18:41 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
-
-void	ivector_init(t_ivector *vec, int x, int y)
-{
-	vec->x = x;
-	vec->y = y;
-}
-
-void	fvector_init(t_fvector *vec, double x, double y)
-{
-	vec->x = x;
-	vec->y = y;
-}
 
 int	data_init(t_data *data)
 {
@@ -35,7 +23,6 @@ int	data_init(t_data *data)
 	data->width = 0;
 	data->mapper = NULL;
 	data->active_img = 1;
-	data->color = 0x00dadada;
 	data->i_colors = 0;
 	data->i_text = 0;
 	data->all_text = false;
@@ -56,32 +43,13 @@ int	data_init(t_data *data)
 
 int	color_init(t_data *data)
 {
-	t_color *color;
+	t_color	*color;
 
 	color = malloc(sizeof(t_color));
 	if (!color)
 		return (1);
 	data->colors = color;
 	return (0);
-}
-
-void	player_init(t_player *pl)
-{
-	pl->x = 0;
-	pl->y = 0;
-	pl->dir.x = 0;
-	pl->dir.y = 0;
-	pl->view.x = 0.0f;
-	pl->view.y = 0.0f;
-}
-
-void	key_init(t_game *new)
-{
-	int	i;
-
-	i = 0;
-	while (i < 6)
-		new->key[i++] = 0;
 }
 
 void	struct_init(t_game *new, t_data *data, t_player *pl)
@@ -94,6 +62,7 @@ void	struct_init(t_game *new, t_data *data, t_player *pl)
 	new->win_width = WIN_WIDTH;
 	new->time = 0;
 	new->old_time = 0;
+	new->color = ;
 	key_init(new);
 	if (data_init(new->d))
 		exit_game(new, 1);

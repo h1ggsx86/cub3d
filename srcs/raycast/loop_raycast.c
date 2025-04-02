@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop_raycast.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 13:27:31 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/02 13:30:25 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/02 16:40:34 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	set_var(t_ray *r, t_player p, int x)
 {
-	r->cameraX = 2 * (double)x / (double)WIN_WIDTH - 1;
-	fvector_init(&r->ray, (p.dir.x + p.view.x * r->cameraX), \
-				(p.dir.y + p.view.y * r->cameraX));
+	r->camera_x = 2 * (double)x / (double)WIN_WIDTH - 1;
+	fvector_init(&r->ray, (p.dir.x + p.view.x * r->camera_x), \
+				(p.dir.y + p.view.y * r->camera_x));
 	ivector_init(&r->map, (int)p.x, (int)p.y);
 	if (r->ray.x == 0)
 		r->delta_d.x = 1e30;

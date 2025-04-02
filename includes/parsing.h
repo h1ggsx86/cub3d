@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 16:16:04 by arotondo          #+#    #+#             */
-/*   Updated: 2025/04/02 14:49:42 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/02 16:48:32 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,11 @@ void		get_east_or_west(t_game *g, char *line, int idc);
 void		get_textures(t_game *g, char *line, int idc);
 int			is_indicator(t_game *g, char *line);
 
-/* check_map */
+/* parsing_checks */
 int			is_pos_player(int c, int *player);
 int			is_door_valid(t_game *g, int j, int i);
+void		check_map(t_game *g);
+void		init_colors(t_game *g, int idc);
 
 /* parse_map */
 int			check_inside(t_game *g);
@@ -49,4 +51,4 @@ void		cut_color(t_game *g, char *line, int idc);
 void		is_color(t_game *g, char *line);
 void		parse_colors(t_game *g, char *line);
 
-# endif
+#endif

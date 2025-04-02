@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 16:27:34 by arotondo          #+#    #+#             */
-/*   Updated: 2025/04/02 16:31:59 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/02 17:04:54 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	free_doors(void *init, t_mimg *door_text)
 			mlx_destroy_image(init, door_text[0].img);
 		if (door_text[1].img)
 			mlx_destroy_image(init, door_text[1].img);
-			
 	}
 }
 

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_map.c                                        :+:      :+:    :+:   */
+/*   parsing_checks.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:48:34 by arotondo          #+#    #+#             */
-/*   Updated: 2025/04/02 14:49:19 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/02 16:48:16 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,26 @@ int	is_door_valid(t_game *g, int j, int i)
 			return (0);
 	}
 	return (1);
+}
+
+void	check_map(t_game *g)
+{
+	if (check_left_right(g))
+		err_message(g, "map", "invalid", 4);
+	if (check_top_bottom(g))
+		err_message(g, "map", "invalid", 4);
+	g->d->map_parsed = true;
+	if (check_inside(g))
+		exit_game(g, 5);
+}
+
+void	init_colors(t_game *g, int idc)
+{
+	if (idc == 'F')
+		g->d->ground_color = bitshift_op(g);
+	else
+		g->d->roof_color = bitshift_op(g);
+	g->d->i_colors++;
+	if (g->d->i_colors == 2)
+		g->d->all_colors = true;
 }

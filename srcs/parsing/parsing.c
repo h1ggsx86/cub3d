@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 15:37:30 by arotondo          #+#    #+#             */
-/*   Updated: 2025/03/31 15:33:56 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/02 16:55:47 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
+
+
 
 void	init_my_map(t_game *g, char *file)
 {
@@ -22,7 +24,7 @@ void	init_my_map(t_game *g, char *file)
 	in_map = false;
 	g->map = open(file, O_RDONLY, 0664);
 	if (g->map < 0)
-			err_message(g, file, "invalid fd", 1);
+		err_message(g, file, "invalid fd", 1);
 	line = malloc(sizeof(char) * 1);
 	if (!line)
 		err_message(g, "line", "memory allocation failed", 2);
@@ -49,17 +51,6 @@ void	init_my_map(t_game *g, char *file)
 	g->d->mapper = (char **)ft_calloc(sizeof(char *), g->d->height + 1);
 	if (!g->d->mapper)
 		err_message(g, "mapper", "memory allocation failed", 2);
-}
-
-void	check_map(t_game *g)
-{
-	if (check_left_right(g))
-		err_message(g, "map", "invalid", 4);
-	if (check_top_bottom(g))
-		err_message(g, "map", "invalid", 4);
-	g->d->map_parsed = true;
-	if (check_inside(g))
-		exit_game(g, 5);
 }
 
 void	parsing_the_thing(t_game *g, char *file)

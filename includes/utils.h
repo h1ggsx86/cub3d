@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 18:26:43 by arotondo          #+#    #+#             */
-/*   Updated: 2025/04/02 16:30:43 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/02 16:39:23 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,4 @@ void	free_doors(void *init, t_mimg *door_text);
 void	free_textures(void *init, t_mimg *img, t_game *g);
 void	free_map(char **map);
 
-# endif
+#endif

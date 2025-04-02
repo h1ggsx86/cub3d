@@ -3,26 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 12:06:05 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/01 12:14:43 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/02 17:17:28 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	check_tile(t_ivector tile, t_data d, int *color)
+static void	check_tile(t_ivector tile, t_data d, int color)
 {
 	if ((tile.x < 0 || tile.y < 0) || \
 		(tile.x >= (int)d.width || tile.y >= (int)d.height))
-		*color = 0x00dadada / 2;
+		color = 0x00dadada / 2;
 	else if (d.mapper[tile.y][tile.x] == '0' || d.mapper[tile.y][tile.x] == 'O')
-		*color = 0x00dadada;
+		color = 0x00dadada;
 	else if (d.mapper[tile.y][tile.x] == 'C')
-		*color = 0xffaa32d5;
+		color = 0xffaa32d5;
 	else
-		*color = 0x00dadada / 2;
+		color = 0x00dadada / 2;
 }
 
 void	render_map(t_game *g, t_player p, t_data d)
@@ -38,7 +38,7 @@ void	render_map(t_game *g, t_player p, t_data d)
 		index.x = 0;
 		while (index.x < 10)
 		{
-			check_tile(tile, d, &d.color);
+			check_tile(tile, d, 0xffffff);
 			put_square(&d, index.x * 10 + 10, index.y * 10 + 10, 10);
 			tile.x++;
 			index.x++;
@@ -47,7 +47,6 @@ void	render_map(t_game *g, t_player p, t_data d)
 		index.y++;
 	}
 	ivector_init(&tile, 64, 64);
-	d.color = 0x00ff00ff;
 	put_square(&d, 62, 62, 5);
 	put_player_line(g, tile, tile.x + (p.dir.x * 6), \
 									tile.x + (p.dir.y * 6));

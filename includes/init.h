@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 18:33:13 by arotondo          #+#    #+#             */
-/*   Updated: 2025/04/02 09:54:26 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/02 17:12:04 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,16 @@ int		img_init(t_mimg *img, t_game *g, void *init);
 void	game_init(t_game *g);
 void	init_imgs(t_game *g, t_data *d);
 
+/* others_init */
+void	ivector_init(t_ivector *vec, int x, int y);
+void	fvector_init(t_fvector *vec, double x, double y);
+void	player_init(t_player *pl);
+void	key_init(t_game *new);
+
 /* init_struct */
 int		data_init(t_data *data);
 int		color_init(t_data *data);
-void	player_init(t_player *pl);
 void	struct_init(t_game *new, t_data *data, t_player *pl);
-void	ivector_init(t_ivector *vec, int x, int y);
-void	fvector_init(t_fvector *vec, double x, double y);
 
 /* get_textures */
 t_mimg	*init_north_texture(t_game *g);
@@ -40,4 +43,4 @@ t_mimg	*init_south_texture(t_game *g);
 t_mimg	*init_west_texture(t_game *g);
 t_mimg	*init_east_texture(t_game *g);
 
-# endif
+#endif
