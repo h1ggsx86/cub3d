@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 12:06:05 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/01 12:14:43 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/02 14:06:55 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ static void	check_tile(t_ivector tile, t_data d, int *color)
 {
 	if ((tile.x < 0 || tile.y < 0) || \
 		(tile.x >= (int)d.width || tile.y >= (int)d.height))
-		*color = 0x00dadada / 2;
+		*color = d.roof_color;
 	else if (d.mapper[tile.y][tile.x] == '0' || d.mapper[tile.y][tile.x] == 'O')
-		*color = 0x00dadada;
+		*color = d.ground_color;
 	else if (d.mapper[tile.y][tile.x] == 'C')
 		*color = 0xffaa32d5;
 	else
-		*color = 0x00dadada / 2;
+		*color = d.roof_color;
 }
 
 void	render_map(t_game *g, t_player p, t_data d)

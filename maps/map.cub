@@ -1,14 +1,14 @@
-SO ./textures/south.xpm
-EA ./textures/east.xpm
-WE ./textures/west.xpm
-NO ./textures/north.xpm
+SO ./textures/red_drapes2.xpm
+EA ./textures/red_drapes2.xpm
+WE ./textures/red_drapes2.xpm
+NO ./textures/red_drapes2.xpm
 
-C 161, 0, 0
-F 120, 18, 21
+C 161, 12, 4
+F 57, 1, 0
 
         1111111111111111111111111
         1000000000110000000000001
-        1011000001110000000000001
+        C01100C001110000000000001
         1001000000000000E00000001
 111111111011000001110000000000001
 10000000001100000111C111111111111
