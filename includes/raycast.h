@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 18:45:27 by arotondo          #+#    #+#             */
-/*   Updated: 2025/04/02 11:17:36 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/02 16:48:25 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@ void	set_var(t_ray *r, t_player p, int x);
 void	calculate_dist(t_ray *r, t_player p);
 void	draw_door(t_game *g, t_ray *r, t_player p, int x);
 void	door_input(int keycode, t_game *g);
+void	calculate_dist(t_ray *r, t_player p);
+void	calculate_tex(t_ray *r, double wall_x);
+void	calculate_door(t_ray *r, t_player p);
 
 /* render */
 void	render_map(t_game *g, t_player p, t_data d);

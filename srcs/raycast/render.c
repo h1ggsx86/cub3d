@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 12:06:05 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/02 14:06:55 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/02 16:05:46 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,6 @@ void	render_map(t_game *g, t_player p, t_data d)
 
 void	render_img(t_game *g)
 {
-	t_player	p;
-	t_mimg		*img;
-
-	p = *g->pl;
-	if (g->d->active_img)
-		img = g->d->img_player + 1;
-	else
-		img = g->d->img_player;
 	ray_loop(g, *g->pl);
 	render_map(g, *g->pl, *g->d);
 	if (g->d->active_img)
