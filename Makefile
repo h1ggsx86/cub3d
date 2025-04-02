@@ -6,12 +6,12 @@
 #    By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/24 19:27:15 by tnedel            #+#    #+#              #
-#    Updated: 2025/04/01 12:32:41 by tnedel           ###   ########.fr        #
+#    Updated: 2025/04/02 10:07:39 by tnedel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC		= cc
-CFLAGS	= -Wall -Wextra -g3
+CFLAGS	= -Wall -Wextra -Werror -g3
 MLXFLAGS= -L/usr/lib -Lmlx-linux -lmlx_Linux -lXext -lX11 -lm -lz -lbsd
 
 NEWLINE	= \033[2K\r

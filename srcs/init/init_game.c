@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:12:09 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/01 16:27:24 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/02 13:25:17 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,18 @@ void	game_init(t_game *g)
 		exit_game(g, 1);
 	init_imgs(g, g->d);
 	p_pos_init(*g->d, g->pl);
-	init_south_texture(g);
-	init_north_texture(g);
-	init_east_texture(g);
-	init_west_texture(g);
-	// g->text.img = mlx_xpm_file_to_image(g->init, "./textures/red_drapes2.xpm", &size, &size);
-	// g->text.addr = mlx_get_data_addr(g->text.img, &g->text.bpp, &g->text.line_length, &g->text.endian);
-	// printf("img text -> %p\n", g->text.img);
+	g->d->textures[SOUTH] = init_south_texture(g);
+	g->d->textures[NORTH] = init_north_texture(g);
+	g->d->textures[EAST] = init_east_texture(g);
+	g->d->textures[WEST] = init_west_texture(g);
+	g->d->tex_door[0].img = mlx_xpm_file_to_image(g->init, "./textures/door_open.xpm", \
+							&size, &size);
+	g->d->tex_door[0].addr = mlx_get_data_addr(g->d->tex_door[0].img, &g->d->tex_door[0].bpp, \
+							&g->d->tex_door[0].line_length, &g->d->tex_door[0].endian);
+	g->d->tex_door[1].img = mlx_xpm_file_to_image(g->init, "./textures/door_closed.xpm", \
+							&size, &size);
+	g->d->tex_door[1].addr = mlx_get_data_addr(g->d->tex_door[1].img, &g->d->tex_door[1].bpp, \
+							&g->d->tex_door[1].line_length, &g->d->tex_door[1].endian);
 }
 
 void	init_imgs(t_game *g, t_data *d)
