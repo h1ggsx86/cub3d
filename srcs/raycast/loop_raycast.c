@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 13:27:31 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/01 16:28:12 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/02 13:29:26 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ static void	calculate_wall(t_ray *r, t_player p)
 	r->tex.x = (int)(wall_x * (double)64);
 	if (r->side == 0 && r->ray.x > 0)
 		r->tex.x = 64 - r->tex.x - 1;
-	// if (r->side == 0 && r->ray.y < 0)
-	// 	r->tex.x = 64 - r->tex.x - 1;
+	if (r->side == 0 && r->ray.y < 0)
+		r->tex.x = 64 - r->tex.x - 1;
 }
 
 static void	draw_wall(t_game *g, t_ray *r, t_player p, int x)
