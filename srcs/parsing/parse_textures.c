@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 16:01:40 by arotondo          #+#    #+#             */
-/*   Updated: 2025/04/01 15:42:22 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/02 13:15:56 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	get_north_or_south(t_game *g, char *line, int idc)
 		g->d->north_path = ft_strdup(line);
 		if (!g->d->north_path)
 			err_message(g, g->d->north_path, NULL, 5);
-		// init_north_texture(g);
 		g->d->i_text++;
 	}
 	else if (idc == 83)
@@ -36,7 +35,6 @@ void	get_north_or_south(t_game *g, char *line, int idc)
 		g->d->south_path = ft_strdup(line);
 		if (!g->d->south_path)
 			err_message(g, g->d->south_path, NULL, 5);
-		// init_south_texture(g);
 		g->d->i_text++;
 	}
 }
@@ -54,7 +52,6 @@ void	get_east_or_west(t_game *g, char *line, int idc)
 		g->d->west_path = ft_strdup(line);
 		if (!g->d->west_path)
 			err_message(g, g->d->west_path, NULL, 5);
-		// init_west_texture(g);
 		g->d->i_text++;
 	}
 	else if (idc == 69)
@@ -65,7 +62,6 @@ void	get_east_or_west(t_game *g, char *line, int idc)
 		g->d->east_path = ft_strdup(line);
 		if (!g->d->east_path)
 			err_message(g, g->d->east_path, NULL, 5);
-		// init_east_texture(g);
 		g->d->i_text++;
 	}
 }
