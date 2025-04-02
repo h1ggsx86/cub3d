@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 16:02:27 by arotondo          #+#    #+#             */
-/*   Updated: 2025/04/01 15:41:18 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/02 13:15:29 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	init_north_texture(t_game *g)
 	g->d->n_text = open(g->d->north_path, O_RDONLY, 0664);
 	if (g->d->n_text < 0)
 		err_message(g, g->d->north_path, NULL, 5);
+	g->d->i_text++;
 	n_img = malloc(sizeof(t_mimg));
 	if (!n_img)
 		err_message(g, "north_texture", "memeory allocation failed", 7);
@@ -41,6 +42,7 @@ void	init_south_texture(t_game *g)
 	g->d->s_text = open(g->d->south_path, O_RDONLY, 0664);
 	if (g->d->s_text < 0)
 		err_message(g, g->d->south_path, NULL, 5);
+	g->d->i_text++;
 	s_img = malloc(sizeof(t_mimg));
 	if (!s_img)
 		err_message(g, "south_texture", "memory allocation failed", 7);
@@ -64,6 +66,7 @@ void	init_west_texture(t_game *g)
 	g->d->w_text = open(g->d->west_path, O_RDONLY, 0664);
 	if (g->d->w_text < 0)
 		err_message(g, g->d->west_path, NULL, 5);
+	g->d->i_text++;
 	w_img = malloc(sizeof(t_mimg));
 	if (!w_img)
 		err_message(g, "west_texture", "memory allocation failed", 7);
@@ -84,6 +87,7 @@ void	init_east_texture(t_game *g)
 	g->d->e_text = open(g->d->east_path, O_RDONLY, 0664);
 	if (g->d->e_text < 0)
 		err_message(g, g->d->east_path, NULL, 5);
+	g->d->i_text++;
 	e_img = malloc(sizeof(t_mimg));
 	if (!e_img)
 		err_message(g, "east_texture", "memory allocation failed", 7);
