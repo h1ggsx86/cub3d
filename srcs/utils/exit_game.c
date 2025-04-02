@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:31:18 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/01 12:35:29 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/02 16:28:09 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,22 +29,19 @@ void	err_message(t_game *g, char *arg, char *mess, int ecode)
 	exit_game(g, ecode);
 }
 
-void	free_img(void *init, t_mimg *img)
-{
-	if (img)
-	{
-		if (img[0].img)
-			mlx_destroy_image(init, img[0].img);
-		if (img[1].img)
-			mlx_destroy_image(init, img[1].img);
-		free(img);
-	}
-}
-
 void	exit_game(t_game *g, int ecode)
 {
 	// mlx_mouse_show(g->init, g->win);
 	free_img(g->init, g->d->img_player);
+	free_doors(g->init, g->d->tex_door);
+	free_map(g->d->mapper);
+	while (g->d->i_text)
+	{
+		free_textures(g->init, g->d->textures[g->d->i_text - 1], g);
+		g->d->i_text--;
+	}
+	if (g->d->colors)
+		free(g->d->colors);
 	if (g->win)
 		mlx_destroy_window(g->init, g->win);
 	if (g->init)

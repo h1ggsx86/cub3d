@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 15:02:41 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/02 12:03:26 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/02 15:54:12 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,14 +125,8 @@ typedef struct s_data
 	bool		all_text;
 	bool		all_colors;
 	bool		map_parsed;
-	char		*north_path;
-	char		*south_path;
-	char		*west_path;
-	char		*east_path;
-	int			n_text;
-	int			s_text;
-	int			w_text;
-	int			e_text;
+	char		*text_path[4];
+	int			fd_texture[4];
 	char		player_dir;
 }				t_data;
 

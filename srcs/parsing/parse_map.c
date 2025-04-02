@@ -3,30 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 16:00:46 by arotondo          #+#    #+#             */
-/*   Updated: 2025/04/01 14:16:44 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/02 14:49:15 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
-
-int	is_pos_player(int c, int *player)
-{
-	if (c == 'N')
-		(*player)++;
-	else if (c == 'S')
-		(*player)++;
-	else if (c == 'E')
-		(*player)++;
-	else if (c == 'W')
-		(*player)++;
-	if (*player)
-		return (1);
-	else
-		return (0);
-}
 
 int	check_inside(t_game *g)
 {
@@ -53,6 +37,8 @@ int	check_inside(t_game *g)
 			else if (g->d->mapper[j][i] != '1' && g->d->mapper[j][i] != '0' && \
 						g->d->mapper[j][i] != 'C' && g->d->mapper[j][i] != 'O')
 				return (1);
+			else if (is_door_valid(g, j, i))
+				err_message(g, "door", "invalid position", 6);
 			i++;
 		}
 		j++;

@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 16:01:10 by arotondo          #+#    #+#             */
-/*   Updated: 2025/03/26 18:28:34 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/02 14:49:05 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,9 @@ void	cut_color(t_game *g, char *line, int idc)
 	if (j != 3)
 		err_message(g, "colors", "RGB must contains 3 values", 4);
 	if (idc == 'F')
-		g->d->roof_color = bitshift_op(g);
-	else
 		g->d->ground_color = bitshift_op(g);
+	else
+		g->d->roof_color = bitshift_op(g);
 	g->d->i_colors++;
 	if (g->d->i_colors == 2)
 		g->d->all_colors = true;
@@ -82,13 +82,13 @@ void	is_color(t_game *g, char *line)
 	int	i;
 
 	i = 0;
-	if (line[i] == 'F' && !g->d->roof_color)
+	if (line[i] == 'F' && !g->d->ground_color)
 	{
 		while (!ft_isdigit(line[i]) && line[i] != '-' && line[i] != '+')
 			i++;
 		cut_color(g, line + i, 'F');
 	}
-	else if (line[i] == 'C' && !g->d->ground_color)
+	else if (line[i] == 'C' && !g->d->roof_color)
 	{
 		while (!ft_isdigit(line[i]) && line[i] != '-' && line[i] != '+')
 			i++;

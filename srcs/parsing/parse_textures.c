@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 16:01:40 by arotondo          #+#    #+#             */
-/*   Updated: 2025/04/02 13:15:56 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/02 15:51:24 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ void	get_north_or_south(t_game *g, char *line, int idc)
 		while (line[i] && ft_isspace(line[i]))
 			i++;
 		line[i] = '\0';
-		g->d->north_path = ft_strdup(line);
-		if (!g->d->north_path)
-			err_message(g, g->d->north_path, NULL, 5);
+		g->d->text_path[0] = ft_strdup(line);
+		if (!g->d->text_path[0])
+			err_message(g, g->d->text_path[0], NULL, 5);
 		g->d->i_text++;
 	}
 	else if (idc == 83)
@@ -32,9 +32,9 @@ void	get_north_or_south(t_game *g, char *line, int idc)
 		while (line[i] && ft_isspace(line[i]))
 			i++;
 		line[i] = '\0';
-		g->d->south_path = ft_strdup(line);
-		if (!g->d->south_path)
-			err_message(g, g->d->south_path, NULL, 5);
+		g->d->text_path[3] = ft_strdup(line);
+		if (!g->d->text_path[3])
+			err_message(g, g->d->text_path[3], NULL, 5);
 		g->d->i_text++;
 	}
 }
@@ -49,9 +49,9 @@ void	get_east_or_west(t_game *g, char *line, int idc)
 		while (line[i] && ft_isspace(line[i]))
 			i++;
 		line[i] = '\0';
-		g->d->west_path = ft_strdup(line);
-		if (!g->d->west_path)
-			err_message(g, g->d->west_path, NULL, 5);
+		g->d->text_path[2] = ft_strdup(line);
+		if (!g->d->text_path[2])
+			err_message(g, g->d->text_path[2], NULL, 5);
 		g->d->i_text++;
 	}
 	else if (idc == 69)
@@ -59,9 +59,9 @@ void	get_east_or_west(t_game *g, char *line, int idc)
 		while (line[i] && ft_isspace(line[i]))
 			i++;
 		line[i] = '\0';
-		g->d->east_path = ft_strdup(line);
-		if (!g->d->east_path)
-			err_message(g, g->d->east_path, NULL, 5);
+		g->d->text_path[1] = ft_strdup(line);
+		if (!g->d->text_path[1])
+			err_message(g, g->d->text_path[1], NULL, 5);
 		g->d->i_text++;
 	}
 }
@@ -92,13 +92,13 @@ int	is_indicator(t_game *g, char *line)
 	i = 0;
 	while (line[i] && !ft_isspace(line[i]))
 		i++;
-	if (line[i] == 'N' && !g->d->north_path)
+	if (line[i] == 'N' && !g->d->text_path[0])
 		get_textures(g, line, 78);
-	else if (line[i] == 'S' && !g->d->south_path)
+	else if (line[i] == 'S' && !g->d->text_path[3])
 		get_textures(g, line, 83);
-	else if (line[i] == 'W' && !g->d->west_path)
+	else if (line[i] == 'W' && !g->d->text_path[2])
 		get_textures(g, line, 87);
-	else if (line[i] == 'E' && !g->d->east_path)
+	else if (line[i] == 'E' && !g->d->text_path[1])
 		get_textures(g, line, 69);
 	else
 		err_message(g, "textures", "not found", 5);
