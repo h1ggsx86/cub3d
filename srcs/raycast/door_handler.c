@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   door_handler.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 09:15:05 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/03 13:25:41 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/03 19:26:57 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ static int	check_collisions(t_game *g, t_ray *r)
 		{
 			g->d->mapper[r->map.y][r->map.x] = 'O';
 			hit = 1;
+			g->d->i_frames = 12;
+			g->d->tex_way = -1;
 			return (hit);
 		}
 	}
@@ -52,6 +54,8 @@ static int	check_collisions(t_game *g, t_ray *r)
 		{
 			g->d->mapper[r->map.y][r->map.x] = 'C';
 			hit = 1;
+			g->d->i_frames = 0;
+			g->d->tex_way = 1;
 			return (hit);
 		}
 	}
@@ -76,7 +80,7 @@ void	draw_door(t_game *g, t_ray *r, t_player p, int x)
 	{
 		r->tex.y = (int)tex_pos;
 		tex_pos += step;
-		color = pixel_color(g->d->tex_door[0], r->tex.x, r->tex.y);
+		color = pixel_color(g->d->tex_door[g->d->i_frames], r->tex.x, r->tex.y);
 		if (color != 0)
 			put_pixel(g->d, x, y, color);
 		y++;

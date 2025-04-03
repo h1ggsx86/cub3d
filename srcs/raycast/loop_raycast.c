@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop_raycast.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 13:27:31 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/03 18:54:44 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/03 19:37:07 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ static void	chose_texture(t_data *d, t_ray *r, t_player p, double *wall_x)
 		else
 			d->the_chosen = *d->textures[NORTH];
 	}
-	if (d->mapper[r->map.y][r->map.x] == 'C')
-		d->the_chosen = d->tex_door[1];
+	// if (d->mapper[r->map.y][r->map.x] == 'C')
+	// 	d->the_chosen = d->tex_door[12];
 }
 
 static void	draw_wall(t_game *g, t_ray *r, t_player p, int x)
@@ -96,10 +96,10 @@ void	door_loop(t_game *g, t_ray *r, t_player p, int x)
 	{
 		if (dda_algo(g, r))
 			break;
-		if (g->d->mapper[r->map.y][r->map.x] == '1' ||
-			g->d->mapper[r->map.y][r->map.x] == 'C')
+		if (g->d->mapper[r->map.y][r->map.x] == '1')
 			break;
-		if (g->d->mapper[r->map.y][r->map.x] == 'O')
+		if (g->d->mapper[r->map.y][r->map.x] == 'O' || \
+			g->d->mapper[r->map.y][r->map.x] == 'C')
 			r->door = 1;
 	}
 	if (r->door)
@@ -123,8 +123,8 @@ int	ray_loop(t_game *g, t_player p)
 		{
 			if (dda_algo(g, &r))
 				break ;
-			if (g->d->mapper[r.map.y][r.map.x] == '1' ||
-				g->d->mapper[r.map.y][r.map.x] == 'C')
+			if (g->d->mapper[r.map.y][r.map.x] == '1')// ||
+				// g->d->mapper[r.map.y][r.map.x] == 'C')
 				hit = 1;
 		}
 		draw_wall(g, &r, p, x);

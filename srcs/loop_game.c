@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 10:30:37 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/02 16:56:14 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/03 19:24:33 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,15 +59,25 @@ int	close_win_pointer(t_game *g)
 
 int	handle_no_event(t_game *g)
 {
+	if (g->fps == 24)
+	{
+		g->fps = 0;
+		g->d->i_frames += g->d->tex_way;
+		if (g->d->i_frames < 0)
+			g->d->i_frames = 0;
+		if (g->d->i_frames > 12)
+			g->d->i_frames = 12;
+	}
 	moves_input(g);
 	mouse_move(g);
 	render_img(g);
 	if (g->d->active_img)
-		mlx_put_image_to_window(g->init, g->win, g->d->img_player[0].img, \
-									0, 0);
-	else
+	mlx_put_image_to_window(g->init, g->win, g->d->img_player[0].img, \
+		0, 0);
+		else
 		mlx_put_image_to_window(g->init, g->win, g->d->img_player[1].img, \
-									0, 0);
+			0, 0);
+	g->fps++;
 	return (EXIT_SUCCESS);
 }
 

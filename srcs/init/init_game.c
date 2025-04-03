@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:12:09 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/03 18:12:45 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/03 19:34:55 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,17 +63,7 @@ void	game_init(t_game *g)
 	g->d->textures[NORTH] = init_north_texture(g);
 	g->d->textures[EAST] = init_east_texture(g);
 	g->d->textures[WEST] = init_west_texture(g);
-	g->d->tex_door[0].img = mlx_xpm_file_to_image(g->init, \
-		"./textures/door_open.xpm", &size, &size);
-	g->d->tex_door[0].addr = mlx_get_data_addr(g->d->tex_door[0].img, \
-		&g->d->tex_door[0].bpp, &g->d->tex_door[0].line_length, \
-			&g->d->tex_door[0].endian);
-	g->d->tex_door[1].img = mlx_xpm_file_to_image(g->init, \
-		"./textures/door_closed.xpm", &size, &size);
-	g->d->tex_door[1].addr = mlx_get_data_addr(g->d->tex_door[1].img, \
-		&g->d->tex_door[1].bpp, &g->d->tex_door[1].line_length, \
-			&g->d->tex_door[1].endian);
-
+	init_doors(g, &size);
 	g->d->pov.img = mlx_xpm_file_to_image(g->init, \
 		"./textures/sprite1pov.xpm", &g->win_width, &g->win_height);
 	g->d->pov.addr = mlx_get_data_addr(g->d->pov.img, \

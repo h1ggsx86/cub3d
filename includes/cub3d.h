@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 15:02:41 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/03 17:02:32 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/03 19:35:48 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,16 +124,18 @@ typedef struct s_data
 	t_mimg		*img_player;
 	t_mimg		*textures[4];
 	t_mimg		the_chosen;
-	t_mimg		tex_door[2];
+	t_mimg		tex_door[13];
 	t_mimg		pov;
 	t_mimg		floor;
 	t_color		*colors;
 	int			active_img;
 	char		**mapper;
 	int			height;
+	int			tex_way;
 	size_t		width;
 	int			i_text;
 	int			i_colors;
+	int			i_frames;
 	u_int32_t	ground_color;
 	u_int32_t	roof_color;
 	bool		all_text;
@@ -156,6 +158,7 @@ typedef struct s_game
 {
 	int			key[6];
 	int			map;
+	int			fps;
 	int			win_height;
 	int			win_width;
 	int			color;
