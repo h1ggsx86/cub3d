@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 18:33:13 by arotondo          #+#    #+#             */
-/*   Updated: 2025/04/03 13:23:22 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/03 17:07:22 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,11 @@ void	ivector_init(t_ivector *vec, int x, int y);
 void	fvector_init(t_fvector *vec, double x, double y);
 void	player_init(t_player *pl);
 void	key_init(t_game *new);
+void	init_doors(t_game *g, int *size);
 
 /* init_struct */
 int		data_init(t_data *data);
+void	data_init2(t_data *data);
 int		color_init(t_data *data);
 void	struct_init(t_game *new, t_data *data, t_player *pl);
 
