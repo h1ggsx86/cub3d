@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:12:09 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/03 13:24:33 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/03 13:28:22 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	init_ray(t_ray *r)
 	r->line_height = 0;
 	r->draw_end = 0;
 	r->draw_start = 0;
-	r->cameraX = 0;
+	r->camera_x = 0;
 	r->wall_dist = 0;
 	ivector_init(&r->map, 0, 0);
 	ivector_init(&r->step, 0, 0);
