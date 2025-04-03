@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: xenon <xenon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 16:27:34 by arotondo          #+#    #+#             */
-/*   Updated: 2025/04/03 17:31:08 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/03 23:47:17 by xenon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,21 @@ void	free_img(void *init, t_mimg *img)
 	}
 }
 
-void	free_doors(void *init, t_mimg *door_text)
+void	free_doors(void *init, t_game *g)
 {
-	if (door_text)
+	int	i;
+
+	i = 0;
+	while (i < 13)
 	{
-		if (door_text[0].img)
-			mlx_destroy_image(init, door_text[0].img);
-		if (door_text[1].img)
-			mlx_destroy_image(init, door_text[1].img);
+		if (g->d->tex_door[i].img)
+			mlx_destroy_image(init, g->d->tex_door[i].img);
+		i++;
 	}
+	if (g->d->floor.img)
+		mlx_destroy_image(init, g->d->floor.img);
+	if (g->d->pov.img)
+		mlx_destroy_image(init, g->d->pov.img);
 }
 
 void	free_textures(void *init, t_mimg *img, t_game *g)

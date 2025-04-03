@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: xenon <xenon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 18:26:43 by arotondo          #+#    #+#             */
-/*   Updated: 2025/04/03 17:43:16 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/03 23:48:19 by xenon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,15 @@ void	moves_input(t_game *g);
 long	ft_get_time(void);
 
 /* get trgb*/
-int	get_t(int trgb);
-int	get_r(int trgb);
-int	get_g(int trgb);
-int	get_b(int trgb);
-int	apply_intensity(int	color, double intensity);
+int		get_t(int trgb);
+int		get_r(int trgb);
+int		get_g(int trgb);
+int		get_b(int trgb);
+int		apply_intensity(int	color, double intensity);
 
 /* free */
 void	free_img(void *init, t_mimg *img);
-void	free_doors(void *init, t_mimg *door_text);
+void	free_doors(void *init, t_game *g);
 void	free_textures(void *init, t_mimg *img, t_game *g);
 void	free_map(char **map);
 

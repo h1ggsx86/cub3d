@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: xenon <xenon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:31:18 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/03 17:30:23 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/03 23:47:57 by xenon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	err_message(t_game *g, char *arg, char *mess, int ecode)
 void	exit_game(t_game *g, int ecode)
 {
 	free_img(g->init, g->d->img_player);
-	free_doors(g->init, g->d->tex_door);
+	free_doors(g->init, g);
 	free_map(g->d->mapper);
 	while (g->d->i_text)
 	{

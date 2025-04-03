@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_checks.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: xenon <xenon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:48:34 by arotondo          #+#    #+#             */
-/*   Updated: 2025/04/02 18:40:48 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/03 23:42:27 by xenon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,18 @@ int	is_door_valid(t_game *g, int j, int i)
 	if (g->d->mapper[j][i - 1] && g->d->mapper[j][i + 1])
 	{
 		if (g->d->mapper[j][i - 1] == '1' && g->d->mapper[j][i + 1] == '1')
+		{
+			g->d->i_doors++;
 			return (0);
+		}
 	}
 	if (g->d->mapper[j - 1][i] && g->d->mapper[j + 1][i])
 	{
 		if (g->d->mapper[j - 1][i] == '1' && g->d->mapper[j + 1][i] == '1')
+		{
+			g->d->i_doors++;
 			return (0);
+		}
 	}
 	return (1);
 }

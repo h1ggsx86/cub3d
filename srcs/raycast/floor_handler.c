@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   floor_handler.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: xenon <xenon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 16:37:04 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/03 18:55:18 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/03 21:50:23 by xenon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ void	draw_floor(t_game *g, t_player p)
 		{
 			ivector_init(&f.tile, (int)f.floor.x, (int)f.floor.y);
 			ivector_init(&f.tex, \
-							(int)(64 * (f.floor.x - f.tile.x)) & 64 - 1, \
-							(int)(64 * (f.floor.y - f.tile.y)) & 64 - 1);
+							(int)(64 * (f.floor.x - f.tile.x)) && (64 - 1), \
+							(int)(64 * (f.floor.y - f.tile.y)) && (64 - 1));
 			f.floor.x += f.f_step.x;
 			f.floor.y += f.f_step.y;
 			color = apply_intensity(pixel_color(g->d->floor, f.tex.x, f.tex.y), intensity);
