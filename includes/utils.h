@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 18:26:43 by arotondo          #+#    #+#             */
-/*   Updated: 2025/04/02 17:23:04 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/03 17:43:16 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,13 @@ void	moves_input(t_game *g);
 
 /* ft_get_time */
 long	ft_get_time(void);
+
+/* get trgb*/
+int	get_t(int trgb);
+int	get_r(int trgb);
+int	get_g(int trgb);
+int	get_b(int trgb);
+int	apply_intensity(int	color, double intensity);
 
 /* free */
 void	free_img(void *init, t_mimg *img);

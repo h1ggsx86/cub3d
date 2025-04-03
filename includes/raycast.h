@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 18:45:27 by arotondo          #+#    #+#             */
-/*   Updated: 2025/04/03 13:23:38 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/03 17:08:58 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 typedef struct s_ivector	t_ivector;
 typedef struct s_fvector	t_fvector;
+typedef struct s_floor		t_floor;
 typedef struct s_ray		t_ray;
 typedef struct s_color		t_color;
 typedef struct s_mimg		t_mimg;
@@ -34,6 +35,7 @@ void	door_input(int keycode, t_game *g);
 void	calculate_dist(t_ray *r, t_player p);
 void	calculate_tex(t_ray *r, double wall_x);
 void	calculate_door(t_ray *r, t_player p);
+void	draw_floor(t_game *g, t_player p);
 
 /* render */
 void	render_map(t_game *g, t_player p, t_data d);

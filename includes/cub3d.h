@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 15:02:41 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/02 17:18:25 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/03 17:02:32 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,19 @@ typedef struct s_fvector
 	double	y;
 }		t_fvector;
 
+typedef struct	s_floor
+{
+	int			pos;
+	double		pos_z;
+	double		row_dist;
+	t_ivector	tile;
+	t_ivector	tex;
+	t_fvector	floor;
+	t_fvector	f_step;
+	t_fvector	ray0;
+	t_fvector	ray1;
+}				t_floor;
+
 typedef struct s_ray
 {
 	int			door;
@@ -112,6 +125,8 @@ typedef struct s_data
 	t_mimg		*textures[4];
 	t_mimg		the_chosen;
 	t_mimg		tex_door[2];
+	t_mimg		pov;
+	t_mimg		floor;
 	t_color		*colors;
 	int			active_img;
 	char		**mapper;

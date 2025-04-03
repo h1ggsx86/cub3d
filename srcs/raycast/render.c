@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 12:06:05 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/03 13:34:45 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/03 18:50:48 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	check_tile(t_ivector tile, t_data d, int *color)
 	else if (d.mapper[tile.y][tile.x] == '0' || d.mapper[tile.y][tile.x] == 'O')
 		*color = d.ground_color;
 	else if (d.mapper[tile.y][tile.x] == 'C')
-		*color = 0xFFFFFF;
+		*color = d.ground_color / 2;
 	else
 		*color = d.roof_color;
 }
@@ -53,10 +53,34 @@ void	render_map(t_game *g, t_player p, t_data d)
 									tile.x + (p.dir.y * 6));
 }
 
+void	render_pov(t_game *g)
+{
+	int		y;
+	int		x;
+	int		color;
+
+	x = 0;
+	while (x < g->win_width)
+	{
+		y = 0;
+		while (y < g->win_height)
+		{
+			color = pixel_color(g->d->pov, x, y);
+			color = apply_intensity(color, 0.9);
+			if (color != 0)
+				put_pixel(g->d, x, y, color);
+			y++;
+		}
+		x++;
+	}
+}
+
 void	render_img(t_game *g)
 {
+	draw_floor(g, *g->pl);
 	ray_loop(g, *g->pl);
 	render_map(g, *g->pl, *g->d);
+	render_pov(g);
 	if (g->d->active_img)
 		g->d->active_img = 0;
 	else

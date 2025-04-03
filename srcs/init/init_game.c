@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:12:09 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/03 13:28:22 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/03 18:12:45 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,18 @@ void	game_init(t_game *g)
 	g->d->tex_door[1].addr = mlx_get_data_addr(g->d->tex_door[1].img, \
 		&g->d->tex_door[1].bpp, &g->d->tex_door[1].line_length, \
 			&g->d->tex_door[1].endian);
+
+	g->d->pov.img = mlx_xpm_file_to_image(g->init, \
+		"./textures/sprite1pov.xpm", &g->win_width, &g->win_height);
+	g->d->pov.addr = mlx_get_data_addr(g->d->pov.img, \
+		&g->d->pov.bpp, &g->d->pov.line_length, \
+			&g->d->pov.endian);
+
+	g->d->floor.img = mlx_xpm_file_to_image(g->init, \
+		"./textures/damier.xpm", &size, &size);
+	g->d->floor.addr = mlx_get_data_addr(g->d->floor.img, \
+		&g->d->floor.bpp, &g->d->floor.line_length, \
+			&g->d->floor.endian);
 }
 
 void	init_imgs(t_game *g, t_data *d)
