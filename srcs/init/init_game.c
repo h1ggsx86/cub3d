@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/25 11:12:09 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/03 19:34:55 by arotondo         ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2025/04/03 19:40:55 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../../includes/cub3d.h"
 
@@ -69,7 +70,6 @@ void	game_init(t_game *g)
 	g->d->pov.addr = mlx_get_data_addr(g->d->pov.img, \
 		&g->d->pov.bpp, &g->d->pov.line_length, \
 			&g->d->pov.endian);
-
 	g->d->floor.img = mlx_xpm_file_to_image(g->init, \
 		"./textures/damier.xpm", &size, &size);
 	g->d->floor.addr = mlx_get_data_addr(g->d->floor.img, \
