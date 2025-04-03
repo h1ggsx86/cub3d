@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   put_pixel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 15:38:41 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/02 17:22:03 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/03 15:48:50 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ int	pixel_color(t_mimg texture, int x, int y)
 {
 	char	*pixel;
 
-	if (x < 0 || x > 64 || y < 0 || y > 64)
-		return (0xFFFFFF);
+	// if (x < 0 || x > 64 || y < 0 || y > 64)
+	// 	return (0xFFFFFF);
 	pixel = texture.addr + (y * texture.line_length + x * (texture.bpp / 8));
 	return (*(unsigned int *)pixel);
 }
