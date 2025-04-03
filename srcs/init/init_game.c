@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:12:09 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/02 17:07:13 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/03 13:24:33 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,4 +81,22 @@ void	init_imgs(t_game *g, t_data *d)
 		exit_game(g, 1);
 	if (img_init(d->img_player + 1, g, g->init))
 		exit_game(g, 1);
+}
+
+void	init_ray(t_ray *r)
+{
+	r->door = 0;
+	r->side = 0;
+	r->line_height = 0;
+	r->draw_end = 0;
+	r->draw_start = 0;
+	r->cameraX = 0;
+	r->wall_dist = 0;
+	ivector_init(&r->map, 0, 0);
+	ivector_init(&r->step, 0, 0);
+	ivector_init(&r->tex, 0, 0);
+	fvector_init(&r->ray, 0, 0);
+	fvector_init(&r->side_d, 0, 0);
+	fvector_init(&r->delta_d, 0, 0);
+	fvector_init(&r->door_side_d, 0, 0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop_raycast.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 13:27:31 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/02 16:40:34 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/03 13:26:31 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,40 +28,12 @@ void	set_var(t_ray *r, t_player p, int x)
 		r->delta_d.y = fabs(1 / r->ray.y);
 }
 
-void	calculate_dist(t_ray *r, t_player p)
+static void	chose_texture(t_data *d, t_ray *r, t_player p, double *wall_x)
 {
-	if (r->ray.x < 0)
-	{
-		r->step.x = -1;
-		r->side_d.x = (p.x - r->map.x) * r->delta_d.x;
-	}
-	else
-	{
-		r->step.x = 1;
-		r->side_d.x = (r->map.x + 1.0 - p.x) * r->delta_d.x;
-	}
-	if (r->ray.y < 0)
-	{
-		r->step.y = -1;
-		r->side_d.y = (p.y - r->map.y) * r->delta_d.y;
-	}
-	else
-	{
-		r->step.y = 1;
-		r->side_d.y = (r->map.y + 1.0 - p.y) * r->delta_d.y;
-	}
-	r->door_side_d.x = r->side_d.x;
-	r->door_side_d.y = r->side_d.y;
-}
-
-static void	calculate_wall(t_data *d, t_ray *r, t_player p)
-{
-	double	wall_x;
-
 	if (!r->side)
 	{
 		r->wall_dist = (r->side_d.x - r->delta_d.x) + 0.0001f;
-		wall_x = p.y + r->wall_dist * r->ray.y;
+		*wall_x = p.y + r->wall_dist * r->ray.y;
 		if (r->ray.x > 0)
 			d->the_chosen = *d->textures[WEST];
 		else
@@ -70,7 +42,7 @@ static void	calculate_wall(t_data *d, t_ray *r, t_player p)
 	else
 	{
 		r->wall_dist = (r->side_d.y - r->delta_d.y) + 0.0001f;
-		wall_x = p.x + r->wall_dist * r->ray.x;
+		*wall_x = p.x + r->wall_dist * r->ray.x;
 		if (r->ray.y > 0)
 			d->the_chosen = *d->textures[SOUTH];
 		else
@@ -78,28 +50,17 @@ static void	calculate_wall(t_data *d, t_ray *r, t_player p)
 	}
 	if (d->mapper[r->map.y][r->map.x] == 'C')
 		d->the_chosen = d->tex_door[1];
-	wall_x -= floor(wall_x);
-	r->line_height = (int)(WIN_HEIGHT / r->wall_dist);
-	r->draw_start = -r->line_height / 2 + WIN_HEIGHT / 2;
-	if (r->draw_start < 0)
-		r->draw_start = 0;
-	r->draw_end = r->line_height / 2 + WIN_HEIGHT / 2;
-	if (r->draw_end >= WIN_HEIGHT)
-		r->draw_end = WIN_HEIGHT - 1;
-	r->tex.x = (int)(wall_x * (double)64);
-	if (r->side == 0 && r->ray.x < 0)
-		r->tex.x = 64 - r->tex.x - 1;
-	if (r->side == 1 && r->ray.y > 0)
-		r->tex.x = 64 - r->tex.x - 1;
 }
 
 static void	draw_wall(t_game *g, t_ray *r, t_player p, int x)
 {
 	int		y;
+	double	wall_x;
 	double	step;
 	double	tex_pos;
 
-	calculate_wall(g->d, r, p);
+	chose_texture(g->d, r, p, &wall_x);
+	calculate_tex(r, wall_x);
 	step = 1.0 * 64 / r->line_height;
 	tex_pos = (r->draw_start - WIN_HEIGHT / 2 + r->line_height / 2) * step;
 	y = 0;
@@ -119,12 +80,32 @@ static void	draw_wall(t_game *g, t_ray *r, t_player p, int x)
 	}
 }
 
+void	door_loop(t_game *g, t_ray *r, t_player p, int x)
+{
+	r->door = 0;
+	ivector_init(&r->map, (int)p.x, (int)p.y);
+	fvector_init(&r->side_d, r->door_side_d.x, r->door_side_d.y);
+	while (!r->door)
+	{
+		if (dda_algo(g, r))
+			break;
+		if (g->d->mapper[r->map.y][r->map.x] == '1' ||
+			g->d->mapper[r->map.y][r->map.x] == 'C')
+			break;
+		if (g->d->mapper[r->map.y][r->map.x] == 'O')
+			r->door = 1;
+	}
+	if (r->door)
+		draw_door(g, r, p, x);
+}
+
 int	ray_loop(t_game *g, t_player p)
 {
 	int		x;
 	int		hit;
 	t_ray	r;
 
+	init_ray(&r);
 	x = 0;
 	while (x < WIN_WIDTH)
 	{
@@ -140,21 +121,7 @@ int	ray_loop(t_game *g, t_player p)
 				hit = 1;
 		}
 		draw_wall(g, &r, p, x);
-		r.door = 0;
-		ivector_init(&r.map, (int)p.x, (int)p.y);
-		fvector_init(&r.side_d, r.door_side_d.x, r.door_side_d.y);
-		while (!r.door)
-		{
-			if (dda_algo(g, &r))
-				break ;
-			if (g->d->mapper[r.map.y][r.map.x] == '1' ||
-				g->d->mapper[r.map.y][r.map.x] == 'C')
-				break ;
-			if (g->d->mapper[r.map.y][r.map.x] == 'O')
-				r.door = 1;
-		}
-		if (r.door)
-			draw_door(g, &r, p, x);
+		door_loop(g, &r, p, x);
 		x++;
 	}
 	g->old_time = g->time;
