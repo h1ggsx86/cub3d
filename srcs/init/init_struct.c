@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xenon <xenon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:16:20 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/03 23:35:51 by xenon            ###   ########.fr       */
+/*   Updated: 2025/04/04 11:10:48 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void	data_init2(t_data *data)
 	data->text_path[1] = NULL;
 	data->text_path[2] = NULL;
 	data->text_path[3] = NULL;
+	data->floor.img = NULL;
+	data->pov.img = NULL;
 }
 
 int	data_init(t_data *data)

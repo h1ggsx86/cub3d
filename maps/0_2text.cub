@@ -1,5 +1,5 @@
-NO ./textures/path_to_the_north_texture
-WE ./textures/path_to_the_west_texture
+NO ./textures/north.xpm
+WE ./textures/west.xpm
 
 C 186, 199, 45
 F 225, 30, 0

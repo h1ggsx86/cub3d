@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xenon <xenon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:31:18 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/03 23:47:57 by xenon            ###   ########.fr       */
+/*   Updated: 2025/04/04 15:02:31 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	err_message(t_game *g, char *arg, char *mess, int ecode)
 		perror("");
 	else
 		ft_putendl_fd(mess, 2);
+	get_next_line(-1);
 	if (g->map > 0)
 		close(g->map);
 	exit_game(g, ecode);
@@ -34,6 +35,8 @@ void	exit_game(t_game *g, int ecode)
 	free_img(g->init, g->d->img_player);
 	free_doors(g->init, g);
 	free_map(g->d->mapper);
+	if (g->d->i_text != 4)
+		free_incomp_text(g);
 	while (g->d->i_text)
 	{
 		free_textures(g->init, g->d->textures[g->d->i_text - 1], g);

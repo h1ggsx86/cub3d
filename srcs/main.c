@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 15:03:39 by tnedel            #+#    #+#             */
-/*   Updated: 2025/03/31 15:30:56 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/04 12:09:10 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@ int	check_arg(char **argv)
 	if (!argv[1] || !ft_strlen(argv[1]))
 	{
 		ft_putendl_fd("Empty argument detected", 2);
+		exit(1);
+	}
+	else if (ft_strlen(argv[1]) < 5)
+	{
+		ft_putendl_fd("Bad argument detected", 2);
 		exit(1);
 	}
 	while (i != (int)(ft_strlen(argv[1]) - 4))

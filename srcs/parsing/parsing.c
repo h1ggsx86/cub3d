@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 15:37:30 by arotondo          #+#    #+#             */
-/*   Updated: 2025/04/02 18:50:51 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/04 16:28:59 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	get_map_height(t_game *g, int i)
 	g->d->mapper = (char **)ft_calloc(sizeof(char *), g->d->height + 1);
 	if (!g->d->mapper)
 		err_message(g, "mapper", "memory allocation failed", 2);
+	else if (!g->d->height)
+		err_message(g, "parsing", "no map detected", 2);
 }
 
 void	init_my_map(t_game *g, char *file)
@@ -75,6 +77,7 @@ void	parsing_the_thing(t_game *g, char *file)
 			break ;
 	}
 	close(g->map);
+	free(line);
 	get_next_line(-1);
 	check_map(g);
 	check_all_parsed(g);

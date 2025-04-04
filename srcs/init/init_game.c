@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xenon <xenon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/04/03 23:41:48 by xenon            ###   ########.fr       */
+/*   Updated: 2025/04/04 12:34:44 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,15 +55,15 @@ void	game_init(t_game *g)
 	g->init = mlx_init();
 	if (!g->init)
 		exit_game(g, 1);
+	g->d->textures[SOUTH] = init_south_texture(g);
+	g->d->textures[NORTH] = init_north_texture(g);
+	g->d->textures[EAST] = init_east_texture(g);
+	g->d->textures[WEST] = init_west_texture(g);
 	g->win = mlx_new_window(g->init, g->win_width, g->win_height, "CUB3D");
 	if (!g->win)
 		exit_game(g, 1);
 	init_imgs(g, g->d);
 	p_pos_init(*g->d, g->pl);
-	g->d->textures[SOUTH] = init_south_texture(g);
-	g->d->textures[NORTH] = init_north_texture(g);
-	g->d->textures[EAST] = init_east_texture(g);
-	g->d->textures[WEST] = init_west_texture(g);
 	init_doors(g, &size);
 	g->d->pov.img = mlx_xpm_file_to_image(g->init, \
 		"./textures/sprite1pov.xpm", &g->win_width, &g->win_height);

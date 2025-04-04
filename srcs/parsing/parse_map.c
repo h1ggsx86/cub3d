@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 16:00:46 by arotondo          #+#    #+#             */
-/*   Updated: 2025/04/02 18:56:36 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/04 16:29:29 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,6 @@ void	parse_map(t_game *g, char *line, int *j)
 		if (line[i] == ' ')
 			line[i] = '1';
 		g->d->mapper[*j][i] = line[i];
-		printf("%c", g->d->mapper[*j][i]);
 		i++;
 	}
 	(*j)++;

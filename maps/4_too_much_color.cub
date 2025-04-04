@@ -1,7 +1,7 @@
-SO ./textures/path_to_the_south_texture
-EA ./textures/path_to_the_east_texture
-WE ./textures/path_to_the_west_texture
-NO ./textures/path_to_the_north_texture
+SO ./textures/south.xpm
+EA ./textures/east.xpm
+WE ./textures/west.xpm
+NO ./textures/north.xpm
 
 F 45, 89, 90, 09
 C 34, 54, 10

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xenon <xenon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 16:27:34 by arotondo          #+#    #+#             */
-/*   Updated: 2025/04/03 23:47:17 by xenon            ###   ########.fr       */
+/*   Updated: 2025/04/04 16:26:05 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,34 @@ void	free_doors(void *init, t_game *g)
 		mlx_destroy_image(init, g->d->pov.img);
 }
 
+void	free_incomp_text(t_game *g)
+{
+	int	i;
+
+	i = 0;
+	while (i < 4)
+	{
+		if (g->d->text_path[i])
+		{
+			free(g->d->text_path[i]);
+			g->d->text_path[i] = NULL;
+			g->d->i_text--;
+		}
+		if (g->d->fd_texture[i] > 0)
+			close(g->d->fd_texture[i]);
+		i++;
+	}
+}
+
 void	free_textures(void *init, t_mimg *img, t_game *g)
 {
 	if (img)
 	{
 		if (img->img)
 			mlx_destroy_image(init, img->img);
-		if (g->d->fd_texture[g->d->i_text - 1] > 0)
-			close(g->d->fd_texture[g->d->i_text - 1]);
 	}
+	if (g->d->fd_texture[g->d->i_text - 1] > 0)
+		close(g->d->fd_texture[g->d->i_text - 1]);
 	if (g->d->textures[g->d->i_text - 1])
 		free(g->d->textures[g->d->i_text - 1]);
 	if (g->d->text_path[g->d->i_text - 1])

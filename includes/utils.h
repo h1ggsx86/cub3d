@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xenon <xenon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 18:26:43 by arotondo          #+#    #+#             */
-/*   Updated: 2025/04/03 23:48:19 by xenon            ###   ########.fr       */
+/*   Updated: 2025/04/04 11:45:30 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int		apply_intensity(int	color, double intensity);
 /* free */
 void	free_img(void *init, t_mimg *img);
 void	free_doors(void *init, t_game *g);
+void	free_incomp_text(t_game *g);
 void	free_textures(void *init, t_mimg *img, t_game *g);
 void	free_map(char **map);
 

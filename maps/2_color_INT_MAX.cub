@@ -1,9 +1,9 @@
-SO ./textures/path_to_the_south_texture
-EA ./textures/path_to_the_east_texture
-WE ./textures/path_to_the_west_texture
-NO ./textures/path_to_the_north_texture
+SO ./textures/south.xpm
+EA ./textures/ssssssssssssssssss
+WE ./textures/west.xpm
+NO ./textures/east.xpm
 
-C 186, 199, 214748364900000000000
+C 186, 199, 21474836490000000000
 F 225, 30, 100
 
         1111111111111111111111111
