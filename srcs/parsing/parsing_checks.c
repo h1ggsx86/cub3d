@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_checks.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xenon <xenon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:48:34 by arotondo          #+#    #+#             */
-/*   Updated: 2025/04/03 23:42:27 by xenon            ###   ########.fr       */
+/*   Updated: 2025/04/04 17:35:10 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	check_map(t_game *g)
 		err_message(g, "map", "invalid", 4);
 	g->d->map_parsed = true;
 	if (check_inside(g))
-		exit_game(g, 5);
+		err_message(g, "map", "invalid", 4);
 }
 
 void	init_colors(t_game *g, int idc)
