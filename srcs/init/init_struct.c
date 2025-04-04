@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:16:20 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/04 11:10:48 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/04 16:52:16 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int	data_init(t_data *data)
 	data->i_colors = 0;
 	data->i_text = 0;
 	data->i_frames = 0;
+	data->tex_way = 1;
 	data->roof_color = 0;
 	data->ground_color = 0;
 	data->all_text = false;

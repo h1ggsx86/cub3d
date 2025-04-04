@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 16:37:04 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/04 10:42:25 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/04 16:52:44 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	draw_floor(t_game *g, t_player p)
 		fvector_init(&f.f_step, f.row_dist * (f.ray1.x - f.ray0.x) / WIN_WIDTH, \
 								f.row_dist * (f.ray1.y - f.ray0.y) / WIN_WIDTH);
 		fvector_init(&f.floor, p.x + f.row_dist * f.ray0.x, p.y + f.row_dist * f.ray0.y);
-		intensity = 1 / fabs(f.row_dist) * 4;
+		intensity = 1 / fabs(f.row_dist) * MULTIPLIER;
 		if (intensity > 1)
 			intensity = 1;
 		y++;
@@ -47,7 +47,7 @@ void	draw_floor(t_game *g, t_player p)
 			color = apply_intensity(pixel_color(g->d->floor, f.tex.x, f.tex.y), intensity);
 			put_pixel(g->d, x, y, color);
 			color = apply_intensity(g->d->roof_color, intensity);
-			put_pixel(g->d, x, WIN_HEIGHT - y - 1, color);
+			put_pixel(g->d, x, WIN_HEIGHT - y, color);
 			x++;
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 12:06:05 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/03 18:50:48 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/04 11:52:39 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ static void	check_tile(t_ivector tile, t_data d, int *color)
 	if ((tile.x < 0 || tile.y < 0) || \
 		(tile.x >= (int)d.width || tile.y >= (int)d.height))
 		*color = d.roof_color;
-	else if (d.mapper[tile.y][tile.x] == '0' || d.mapper[tile.y][tile.x] == 'O')
+	else if (d.mapper[tile.y][tile.x] == '0')
 		*color = d.ground_color;
-	else if (d.mapper[tile.y][tile.x] == 'C')
+	else if (d.mapper[tile.y][tile.x] == 'C' || d.mapper[tile.y][tile.x] == 'O')
 		*color = d.ground_color / 2;
 	else
 		*color = d.roof_color;

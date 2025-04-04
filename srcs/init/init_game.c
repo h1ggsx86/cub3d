@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/04/04 12:34:44 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/04 16:51:50 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ void	game_init(t_game *g)
 	g->d->floor.addr = mlx_get_data_addr(g->d->floor.img, \
 		&g->d->floor.bpp, &g->d->floor.line_length, \
 			&g->d->floor.endian);
+	g->d->door_map = init_door_map(g, g->d);
 }
 
 void	init_imgs(t_game *g, t_data *d)

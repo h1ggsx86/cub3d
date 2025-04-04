@@ -1,5 +1,5 @@
 /* XPM */
-static char * sprite 1pov_xpm[] = {
+static char * sprite1pov_xpm[] = {
 "1280 720 18061 3",
 "   	c None",
 ".  	c #000000",
