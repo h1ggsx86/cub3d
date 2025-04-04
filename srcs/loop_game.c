@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 10:30:37 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/04 15:28:58 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/04 16:38:52 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,9 @@ int	handle_no_event(t_game *g)
 		mlx_put_image_to_window(g->init, g->win, g->d->img_player[1].img, \
 			0, 0);
 	g->fps++;
-	if (g->fps > 60)
+	if (g->fps > 24)
 		g->fps = 0;
+	g->is_active = true;
 	return (EXIT_SUCCESS);
 }
 

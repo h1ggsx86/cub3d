@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 09:15:05 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/04 15:29:09 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/04 16:38:39 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,14 +107,14 @@ void	draw_door(t_game *g, t_ray *r, t_player p, int x)
 	intensity = 1 / r->wall_dist * MULTIPLIER;
 	if (intensity > 1)
 		intensity = 1;
-	if (g->fps == 59)
+	if (g->fps == 24 && g->is_active)
 	{
 		g->d->door_map[r->map.y * g->d->width + r->map.x].tex += g->d->door_map[r->map.y * g->d->width + r->map.x].way;
-		printf("[ %d ]\n",g->d->door_map[r->map.y * g->d->width + r->map.x].tex);
 		if (g->d->door_map[r->map.y * g->d->width + r->map.x].tex < 0)
 			g->d->door_map[r->map.y * g->d->width + r->map.x].tex = 0;
 		if (g->d->door_map[r->map.y * g->d->width + r->map.x].tex > 12)
 			g->d->door_map[r->map.y * g->d->width + r->map.x].tex = 12;
+		g->is_active = false;
 	}
 	y = 0;
 	while (y < r->draw_start)

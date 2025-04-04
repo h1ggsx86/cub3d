@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 15:02:41 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/04 15:03:23 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/04 16:29:53 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,6 +167,7 @@ typedef struct s_game
 {
 	int			key[6];
 	int			map;
+	int			is_active;
 	int			fps;
 	int			win_height;
 	int			win_width;
