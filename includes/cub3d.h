@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xenon <xenon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 15:02:41 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/03 23:23:00 by xenon            ###   ########.fr       */
+/*   Updated: 2025/04/04 15:03:23 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@
 # define WIN_HEIGHT 720
 # define ROT_SPEED 0.002f
 # define MOVE_SPEED 0.005f
+# define MULTIPLIER 2.5f
 
 enum e_kcode
 {
@@ -119,12 +120,19 @@ typedef struct s_mimg
 	int		endian;
 }			t_mimg;
 
+typedef struct s_door
+{
+	int	tex;
+	int	way;
+}		t_door;
+
 typedef struct s_data
 {
 	t_mimg		*img_player;
 	t_mimg		*textures[4];
 	t_mimg		the_chosen;
 	t_mimg		tex_door[13];
+	t_door		*door_map;
 	t_mimg		pov;
 	t_mimg		floor;
 	t_color		*colors;

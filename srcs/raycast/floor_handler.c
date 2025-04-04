@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   floor_handler.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xenon <xenon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 16:37:04 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/03 21:50:23 by xenon            ###   ########.fr       */
+/*   Updated: 2025/04/04 12:11:36 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	draw_floor(t_game *g, t_player p)
 		fvector_init(&f.f_step, f.row_dist * (f.ray1.x - f.ray0.x) / WIN_WIDTH, \
 								f.row_dist * (f.ray1.y - f.ray0.y) / WIN_WIDTH);
 		fvector_init(&f.floor, p.x + f.row_dist * f.ray0.x, p.y + f.row_dist * f.ray0.y);
-		intensity = 1 / fabs(f.row_dist) * 4;
+		intensity = 1 / fabs(f.row_dist) * MULTIPLIER;
 		if (intensity > 1)
 			intensity = 1;
 		y++;
@@ -40,14 +40,14 @@ void	draw_floor(t_game *g, t_player p)
 		{
 			ivector_init(&f.tile, (int)f.floor.x, (int)f.floor.y);
 			ivector_init(&f.tex, \
-							(int)(64 * (f.floor.x - f.tile.x)) && (64 - 1), \
-							(int)(64 * (f.floor.y - f.tile.y)) && (64 - 1));
+							(int)(64 * (f.floor.x - f.tile.x)) & (64 - 1), \
+							(int)(64 * (f.floor.y - f.tile.y)) & (64 - 1));
 			f.floor.x += f.f_step.x;
 			f.floor.y += f.f_step.y;
 			color = apply_intensity(pixel_color(g->d->floor, f.tex.x, f.tex.y), intensity);
 			put_pixel(g->d, x, y, color);
 			color = apply_intensity(g->d->roof_color, intensity);
-			put_pixel(g->d, x, WIN_HEIGHT - y - 1, color);
+			put_pixel(g->d, x, WIN_HEIGHT - y, color);
 			x++;
 		}
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 10:30:37 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/03 19:24:33 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/04 15:28:58 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,15 +59,6 @@ int	close_win_pointer(t_game *g)
 
 int	handle_no_event(t_game *g)
 {
-	if (g->fps == 24)
-	{
-		g->fps = 0;
-		g->d->i_frames += g->d->tex_way;
-		if (g->d->i_frames < 0)
-			g->d->i_frames = 0;
-		if (g->d->i_frames > 12)
-			g->d->i_frames = 12;
-	}
 	moves_input(g);
 	mouse_move(g);
 	render_img(g);
@@ -78,6 +69,8 @@ int	handle_no_event(t_game *g)
 		mlx_put_image_to_window(g->init, g->win, g->d->img_player[1].img, \
 			0, 0);
 	g->fps++;
+	if (g->fps > 60)
+		g->fps = 0;
 	return (EXIT_SUCCESS);
 }
 
@@ -85,7 +78,7 @@ void	the_loop(t_game *g)
 {
 	// printf("img1 at %p\n", g->d->img_player);
 	// printf("img2 at %p\n", g->d->img_player + 1);
-	// mlx_mouse_hide(g->init, g->win);
+	mlx_mouse_hide(g->init, g->win);
 	mlx_mouse_move(g->init, g->win, g->win_width / 2, g->win_height / 2);
 	mlx_loop_hook(g->init, &handle_no_event, g);
 	mlx_hook(g->win, KeyPress, KeyPressMask, &input_handler, g);

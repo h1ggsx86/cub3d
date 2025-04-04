@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop_raycast.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 13:27:31 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/03 19:41:37 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/04 15:09:39 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static void	draw_wall(t_game *g, t_ray *r, t_player p, int x)
 
 	chose_texture(g->d, r, p, &wall_x);
 	calculate_tex(r, wall_x);
-	intensity = 1 / r->wall_dist * 3;
+	intensity = 1 / r->wall_dist * MULTIPLIER;
 	if (intensity > 1)
 		intensity = 1;
 	step = 1.0 * 64 / r->line_height;
@@ -82,7 +82,6 @@ static void	draw_wall(t_game *g, t_ray *r, t_player p, int x)
 			put_pixel(g->d, x, y, color);
 			y++;
 		}
-		// put_pixel(g->d, x, y, g->d->ground_color);
 		y++;
 	}
 }
@@ -100,6 +99,7 @@ void	door_loop(t_game *g, t_ray *r, t_player p, int x)
 			break;
 		if (g->d->mapper[r->map.y][r->map.x] == 'O' || \
 			g->d->mapper[r->map.y][r->map.x] == 'C')
+		// if (g->d->mapper[r->map.y][r->map.x] == 'C')
 			r->door = 1;
 	}
 	if (r->door)

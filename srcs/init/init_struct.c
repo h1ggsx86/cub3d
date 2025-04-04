@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xenon <xenon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:16:20 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/03 23:35:51 by xenon            ###   ########.fr       */
+/*   Updated: 2025/04/04 12:15:44 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int	data_init(t_data *data)
 	data->i_colors = 0;
 	data->i_text = 0;
 	data->i_frames = 0;
+	data->tex_way = 1;
 	data->roof_color = 0;
 	data->ground_color = 0;
 	data->all_text = false;
