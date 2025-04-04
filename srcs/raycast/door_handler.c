@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   door_handler.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 09:15:05 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/04 16:52:26 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/04 17:21:30 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,6 @@ void	*init_door_map(t_game *g, t_data *d)
 		}
 		y++;
 	}
-	// for (y = 0; y < (int)d->height; y++)
-	// {
-	// 	for (x = 0; x <(int)d->width; x++)
-	// 		printf("%d ", door_map[y * d->height + x]);
-	// 	printf("\n");
-	// }
 	return (door_map);
 }
 
