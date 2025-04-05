@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 09:15:05 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/04 16:52:26 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/05 18:41:00 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	*init_door_map(t_game *g, t_data *d)
 {
-	int	y;
-	int	x;
+	int		y;
+	int		x;
 	t_door	*door_map;
 
 	door_map = (t_door *)ft_calloc(sizeof(t_door), d->height * d->width);

@@ -6,11 +6,24 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 16:01:40 by arotondo          #+#    #+#             */
-/*   Updated: 2025/04/04 16:06:33 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/05 17:42:32 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
+
+int	texture_is_valid(t_game *g, int flag)
+{
+	int	i;
+
+	i = ft_strlen(g->d->text_path[flag]) - 4;
+	if (ft_strcmp(".xpm", g->d->text_path[flag] + i))
+		return (1);
+	g->d->fd_texture[flag] = open(g->d->text_path[flag], O_RDONLY, 0664);
+	if (g->d->fd_texture[flag] < 0)
+		return (1);
+	return (0);
+}
 
 int	get_north_or_south(t_game *g, char *line, int idc)
 {
@@ -22,12 +35,11 @@ int	get_north_or_south(t_game *g, char *line, int idc)
 		while (line[i] && ft_isspace(line[i]))
 			i++;
 		line[i] = '\0';
-		g->d->text_path[0] = ft_strdup(line);
-		if (!g->d->text_path[0])
+		g->d->text_path[NORTH] = ft_strdup(line);
+		if (!g->d->text_path[NORTH])
 			return (1);
 		g->d->i_text++;
-		g->d->fd_texture[0] = open(g->d->text_path[0], O_RDONLY, 0664);
-		if (g->d->fd_texture[0] < 0)
+		if (texture_is_valid(g, NORTH))
 			return (1);
 	}
 	else if (idc == 83)
@@ -35,12 +47,11 @@ int	get_north_or_south(t_game *g, char *line, int idc)
 		while (line[i] && ft_isspace(line[i]))
 			i++;
 		line[i] = '\0';
-		g->d->text_path[3] = ft_strdup(line);
-		if (!g->d->text_path[3])
+		g->d->text_path[SOUTH] = ft_strdup(line);
+		if (!g->d->text_path[SOUTH])
 			return (1);
 		g->d->i_text++;
-		g->d->fd_texture[3] = open(g->d->text_path[3], O_RDONLY, 0664);
-		if (g->d->fd_texture[3] < 0)
+		if (texture_is_valid(g, SOUTH))
 			return (1);
 	}
 	return (0);
@@ -56,12 +67,11 @@ int	get_east_or_west(t_game *g, char *line, int idc)
 		while (line[i] && ft_isspace(line[i]))
 			i++;
 		line[i] = '\0';
-		g->d->text_path[2] = ft_strdup(line);
-		if (!g->d->text_path[2])
+		g->d->text_path[WEST] = ft_strdup(line);
+		if (!g->d->text_path[WEST])
 			return (1);
 		g->d->i_text++;
-		g->d->fd_texture[2] = open(g->d->text_path[2], O_RDONLY, 0664);
-		if (g->d->fd_texture[2] < 0)
+		if (texture_is_valid(g, WEST))
 			return (1);
 	}
 	else if (idc == 69)
@@ -69,12 +79,11 @@ int	get_east_or_west(t_game *g, char *line, int idc)
 		while (line[i] && ft_isspace(line[i]))
 			i++;
 		line[i] = '\0';
-		g->d->text_path[1] = ft_strdup(line);
-		if (!g->d->text_path[1])
+		g->d->text_path[EAST] = ft_strdup(line);
+		if (!g->d->text_path[EAST])
 			return (1);
 		g->d->i_text++;
-		g->d->fd_texture[1] = open(g->d->text_path[1], O_RDONLY, 0664);
-		if (g->d->fd_texture[1] < 0)
+		if (texture_is_valid(g, EAST))
 			return (1);
 	}
 	return (0);

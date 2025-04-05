@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 16:27:34 by arotondo          #+#    #+#             */
-/*   Updated: 2025/04/04 16:26:05 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/05 18:28:33 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ void	free_doors(void *init, t_game *g)
 		mlx_destroy_image(init, g->d->floor.img);
 	if (g->d->pov.img)
 		mlx_destroy_image(init, g->d->pov.img);
+	if (g->d->door_map)
+		free(g->d->door_map);
 }
 
 void	free_incomp_text(t_game *g)

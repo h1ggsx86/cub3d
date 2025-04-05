@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:16:20 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/04 16:52:16 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/05 18:40:51 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	data_init2(t_data *data)
 	data->text_path[3] = NULL;
 	data->floor.img = NULL;
 	data->pov.img = NULL;
+	data->door_map = NULL;
 }
 
 int	data_init(t_data *data)

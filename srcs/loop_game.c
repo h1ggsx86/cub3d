@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 10:30:37 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/04 16:51:42 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/05 17:57:16 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	the_loop(t_game *g)
 {
 	// printf("img1 at %p\n", g->d->img_player);
 	// printf("img2 at %p\n", g->d->img_player + 1);
-	mlx_mouse_hide(g->init, g->win);
+	// mlx_mouse_hide(g->init, g->win);
 	mlx_mouse_move(g->init, g->win, g->win_width / 2, g->win_height / 2);
 	mlx_loop_hook(g->init, &handle_no_event, g);
 	mlx_hook(g->win, KeyPress, KeyPressMask, &input_handler, g);
