@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:31:18 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/07 18:09:02 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/07 18:42:55 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,13 @@ void	err_message(t_game *g, char *arg, char *mess, int ecode)
 
 void	exit_game(t_game *g, int ecode)
 {
-	perror("EXIT GAME");
 	free_img(g->init, g->d->img_player);
-	printf("i_text = %d\n", g->d->i_text);
 	free_doors(g->init, g);
 	free_map(g->d->mapper);
 	if (g->d->i_text != 4)
 		free_incomp_text(g);
 	while (g->d->i_text)
 	{
-		perror("FREE TEXT");
 		free_textures(g->init, g->d->textures[g->d->i_text - 1], g);
 		g->d->i_text--;
 	}

@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 19:26:41 by arotondo          #+#    #+#             */
-/*   Updated: 2025/04/07 16:00:39 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/07 18:28:59 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,17 +50,28 @@ void	check_map_closed(t_game *g, int j, int i)
 	}
 }
 
-void	check_closing_door(t_game *g, char *path)
+int	check_closing_door(char *path)
 {
 	int	fd_test;
 
 	if (!path)
-		err_message(g, "door texture", "missing file", 7);
+		return (1);
 	fd_test = open(path, O_RDONLY, 0664);
 	if (fd_test < 0)
 	{
 		free(path);
-		err_message(g, "door texture", NULL, 7);
+		return (1);
 	}
 	close(fd_test);
+	return (0);
+}
+
+void	exit_here(t_game *g, void *p, char *mess, int ecode)
+{
+	if (p)
+		free(p);
+	if (ecode == 4)
+		err_message(g, "colors", mess, ecode);
+	else if (ecode == 5)
+		err_message(g, "textures", mess, ecode);
 }

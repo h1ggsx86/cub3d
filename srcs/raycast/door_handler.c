@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 09:15:05 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/07 18:00:27 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/07 18:42:32 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void	draw_door(t_game *g, t_ray *r, t_player p, int x)
 	{
 		r->tex.y = (int)tex_pos;
 		tex_pos += step;
-		color = apply_intensity(pixel_color(\
+		color = apply_intensity(pixel_color( \
 			d->tex_door[d->door_map[r->map.y * d->width + r->map.x].tex], \
 			r->tex.x, r->tex.y), r->intensity);
 		if (color != 0)

@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 18:33:13 by arotondo          #+#    #+#             */
-/*   Updated: 2025/04/05 18:48:37 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/07 18:29:51 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	key_init(t_game *new);
 void	init_doors(t_game *g, int *size);
 
 /* init_struct */
-void	init_door_texture(t_data *data);
+int		init_door_texture(t_data *data);
 int		data_init(t_data *data);
 void	data_init2(t_data *data);
 int		color_init(t_data *data);

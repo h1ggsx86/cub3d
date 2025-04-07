@@ -6,27 +6,36 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:16:20 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/07 15:34:03 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/07 18:34:55 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void	init_door_texture(t_data *data)
+int	init_door_texture(t_data *data)
 {
-	int	i;
+	int		i;
+	char	*path;
+	char	*ret;
 
 	i = 0;
 	while (i < 13)
 	{
 		data->tex_door[i].img = NULL;
+		ret = ft_itoa(i);
+		path = ft_strjoin2("./textures/close_door/frame", ret);
+		free(ret);
+		path = ft_strjoin(path, ".xpm");
+		if (check_closing_door(path))
+			return (1);
 		i++;
+		free(path);
 	}
+	return (0);
 }
 
 void	data_init2(t_data *data)
 {
-	init_door_texture(data);
 	data->img_player[0].img = NULL;
 	data->img_player[1].img = NULL;
 	data->textures[0] = NULL;
@@ -37,6 +46,10 @@ void	data_init2(t_data *data)
 	data->text_path[1] = NULL;
 	data->text_path[2] = NULL;
 	data->text_path[3] = NULL;
+	data->fd_texture[0] = 0;
+	data->fd_texture[1] = 0;
+	data->fd_texture[2] = 0;
+	data->fd_texture[3] = 0;
 	data->floor.img = NULL;
 	data->pov.img = NULL;
 	data->door_map = NULL;
@@ -61,11 +74,9 @@ int	data_init(t_data *data)
 	data->all_text = false;
 	data->all_colors = false;
 	data->map_parsed = false;
-	data->fd_texture[0] = 0;
-	data->fd_texture[1] = 0;
-	data->fd_texture[2] = 0;
-	data->fd_texture[3] = 0;
 	data_init2(data);
+	if (init_door_texture(data))
+		return (1);
 	return (0);
 }
 
@@ -93,12 +104,12 @@ void	struct_init(t_game *new, t_data *data, t_player *pl)
 	new->color = 0x00dadada;
 	new->fps = 0;
 	key_init(new);
-	if (data_init(new->d))
+	if (color_init(new->d))
 	{
 		ft_putendl_fd("Error", 2);
 		exit_game(new, 1);
 	}
-	if (color_init(new->d))
+	if (data_init(new->d))
 	{
 		ft_putendl_fd("Error", 2);
 		exit_game(new, 1);
