@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 19:26:41 by arotondo          #+#    #+#             */
-/*   Updated: 2025/04/07 18:28:59 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/07 19:12:59 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,11 @@ void	check_map_closed(t_game *g, int j, int i)
 	{
 		if (!g->d->mapper[j + 1][i] || !g->d->mapper[j - 1][i])
 			err_message(g, "parsing", "map must be surronded by walls", 6);
+		else if (g->d->mapper[j + 1][i] == 10 || g->d->mapper[j - 1][i] == 10)
+			err_message(g, "parsing", "map must be surronded by walls", 6);
 		else if (!g->d->mapper[j][i + 1] || !g->d->mapper[j][i - 1])
+			err_message(g, "parsing", "map must be surronded by walls", 6);
+		else if (g->d->mapper[j][i + 1] == 10 || g->d->mapper[j][i - 1] == 10)
 			err_message(g, "parsing", "map must be surronded by walls", 6);
 	}
 }
