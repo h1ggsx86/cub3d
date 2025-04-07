@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 16:01:40 by arotondo          #+#    #+#             */
-/*   Updated: 2025/04/05 17:42:32 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/07 18:13:51 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,16 @@ int	texture_is_valid(t_game *g, int flag)
 {
 	int	i;
 
+	if (!g->d->text_path[flag])
+		return (1);
+	g->d->i_text++;
 	i = ft_strlen(g->d->text_path[flag]) - 4;
 	if (ft_strcmp(".xpm", g->d->text_path[flag] + i))
 		return (1);
 	g->d->fd_texture[flag] = open(g->d->text_path[flag], O_RDONLY, 0664);
 	if (g->d->fd_texture[flag] < 0)
 		return (1);
+	close(g->d->fd_texture[flag]);
 	return (0);
 }
 
@@ -36,9 +40,6 @@ int	get_north_or_south(t_game *g, char *line, int idc)
 			i++;
 		line[i] = '\0';
 		g->d->text_path[NORTH] = ft_strdup(line);
-		if (!g->d->text_path[NORTH])
-			return (1);
-		g->d->i_text++;
 		if (texture_is_valid(g, NORTH))
 			return (1);
 	}
@@ -48,9 +49,6 @@ int	get_north_or_south(t_game *g, char *line, int idc)
 			i++;
 		line[i] = '\0';
 		g->d->text_path[SOUTH] = ft_strdup(line);
-		if (!g->d->text_path[SOUTH])
-			return (1);
-		g->d->i_text++;
 		if (texture_is_valid(g, SOUTH))
 			return (1);
 	}
@@ -68,9 +66,6 @@ int	get_east_or_west(t_game *g, char *line, int idc)
 			i++;
 		line[i] = '\0';
 		g->d->text_path[WEST] = ft_strdup(line);
-		if (!g->d->text_path[WEST])
-			return (1);
-		g->d->i_text++;
 		if (texture_is_valid(g, WEST))
 			return (1);
 	}
@@ -80,9 +75,6 @@ int	get_east_or_west(t_game *g, char *line, int idc)
 			i++;
 		line[i] = '\0';
 		g->d->text_path[EAST] = ft_strdup(line);
-		if (!g->d->text_path[EAST])
-			return (1);
-		g->d->i_text++;
 		if (texture_is_valid(g, EAST))
 			return (1);
 	}

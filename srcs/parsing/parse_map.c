@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 16:00:46 by arotondo          #+#    #+#             */
-/*   Updated: 2025/04/07 15:17:58 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/07 17:34:36 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,9 @@ void	keep_pos_player(t_game *g, int *j, int *i)
 int	check_inside(t_game *g)
 {
 	int	i;
-	int	j;
-	int	n_player;
 
-	j = 0;
-	n_player = 0;
+	int (j) = 0;
+	int (n_player) = 0;
 	while (g->d->mapper[j])
 	{
 		i = 0;
@@ -107,7 +105,7 @@ void	parse_map(t_game *g, char *line, int *j)
 		return ;
 	g->d->mapper[*j] = (char *)ft_calloc(sizeof(char), g->d->width + 1);
 	if (!g->d->mapper[*j])
-		exit(1);
+		exit_game(g, 1);
 	while (line[i] && i < g->d->width)
 	{
 		if (line[i] == ' ')

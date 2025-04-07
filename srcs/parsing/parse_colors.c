@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 16:01:10 by arotondo          #+#    #+#             */
-/*   Updated: 2025/04/07 13:35:36 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/07 17:30:54 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,7 @@ void	cut_color(t_game *g, char *line, int idc, char *pointer)
 		while (line[i] && (line[i] == '+' || line[i] == '-'))
 		{
 			if (line[i] == '-')
-			{
-				free(pointer);
-				err_message(g, "colors", "RGB values can't be negative", 4);
-			}
+				exit_here(g, pointer, "RGB values can't be negative", 4);
 			i++;
 		}
 		i += get_color(g, line + i, j, pointer);
@@ -71,16 +68,10 @@ void	cut_color(t_game *g, char *line, int idc, char *pointer)
 			i++;
 		if (line[i] && line[i] != ',' && ft_isspace(line[i]) \
 			&& !ft_isdigit(line[i]))
-		{
-			free(pointer);
-			err_message(g, "colors", "bad separator", 4);
-		}
+			exit_here(g, pointer, "bad separator", 4);
 	}
 	if (j != 3)
-	{
-		free(pointer);
-		err_message(g, "colors", "RGB must contains 3 values", 4);
-	}
+		exit_here(g, pointer, "RGB must contains 3 values", 4);
 	init_colors(g, idc);
 }
 
