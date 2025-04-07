@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:48:34 by arotondo          #+#    #+#             */
-/*   Updated: 2025/04/07 15:18:42 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/07 18:18:44 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	check_all_parsed(t_game *g)
 {
 	if (!g->d->all_text || !g->d->all_colors || !g->d->map_parsed)
 	{
-		perror("");
+		ft_putendl_fd("Error", 2);
 		exit_game(g, 6);
 	}
 }

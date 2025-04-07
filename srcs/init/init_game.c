@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 13:21:28 by arotondo          #+#    #+#             */
-/*   Updated: 2025/04/07 17:10:09 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/07 18:38:58 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	game_init(t_game *g)
 	if (!g->win)
 		exit_game(g, 1);
 	init_imgs(g, g->d, size);
+	g->d->door_map = init_door_map(g, g->d);
 }
 
 void	init_imgs(t_game *g, t_data *d, int size)
