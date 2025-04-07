@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 18:45:27 by arotondo          #+#    #+#             */
-/*   Updated: 2025/04/07 17:35:40 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/07 18:05:25 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,21 +30,27 @@ typedef struct s_game		t_game;
 int		dda_algo(t_game *g, t_ray *r);
 void	ray_loop(t_game *g, t_player p);
 void	set_var(t_ray *r, t_player p, int x);
-void	draw_door(t_game *g, t_ray *r, t_player p, int x);
-void	door_input(int keycode, t_game *g);
-void	calculate_dist(t_ray *r, t_player p);
-void	calculate_tex(t_ray *r, double wall_x);
-void	calculate_door(t_ray *r, t_player p, double *step, double *tex_pos);
-void	draw_floor(t_game *g, t_player p);
-void	*init_door_map(t_game *g, t_data *d);
 
 /* render */
 void	render_map(t_game *g, t_player p, t_data d);
 void	render_img(t_game *g);
 
-/* door */
+/* door_handler */
 int		ray_check_door(t_game *g);
-int		check_collisions_next(t_data *d, t_ray *r, int *hit, t_player p);
+void	draw_door(t_game *g, t_ray *r, t_player p, int x);
+void	*init_door_map(t_game *g, t_data *d);
+
+/* door_helper */
 void	handle_framerate(t_game *g, t_data *d, t_ray *r);
+void	door_input(int keycode, t_game *g);
+int		check_collisions_next(t_data *d, t_ray *r, int *hit, t_player p);
+
+/* math_stuff */
+void	calculate_dist(t_ray *r, t_player p);
+void	calculate_tex(t_ray *r, double wall_x);
+void	calculate_door(t_ray *r, t_player p, double *step, double *tex_pos);
+
+/* floor_handler */
+void	draw_floor(t_game *g, t_player p);
 
 #endif

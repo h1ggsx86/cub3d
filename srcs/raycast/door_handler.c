@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 09:15:05 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/07 17:45:43 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/07 18:00:27 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,7 @@ int	dda_algo(t_game *g, t_ray *r)
 
 static int	check_collisions(t_data *d, t_ray *r, t_player p)
 {
-	int	hit;
-
-	hit = 0;
+	int (hit) = 0;
 	if (d->mapper[r->map.y][r->map.x] == 'C')
 	{
 		if (!r->side)
@@ -73,9 +71,7 @@ static int	check_collisions(t_data *d, t_ray *r, t_player p)
 			r->wall_dist = (r->side_d.y - r->delta_d.y) + 0.0001f;
 			r->wall_x = p.x + r->wall_dist * r->ray.x;
 		}
-		printf("wall_dist %f\n", r->wall_dist);
-		printf("int wall_dist %d\n", (int)r->wall_dist);
-		if (r->wall_dist < 10.0f)
+		if (r->wall_dist < 2)
 		{
 			d->mapper[r->map.y][r->map.x] = 'O';
 			hit = 1;
@@ -132,6 +128,8 @@ int	ray_check_door(t_game *g)
 		while (!r.door)
 		{
 			if (dda_algo(g, &r))
+				break ;
+			if (g->d->mapper[r.map.y][r.map.x] == '1')
 				break ;
 			if (check_collisions(g->d, &r, *g->pl))
 				return (EXIT_FAILURE);

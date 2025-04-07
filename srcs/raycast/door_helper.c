@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 14:43:25 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/07 17:45:48 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/07 17:58:42 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,7 @@ int	check_collisions_next(t_data *d, t_ray *r, int *hit, t_player p)
 			r->wall_dist = (r->side_d.y - r->delta_d.y) + 0.0001f;
 			r->wall_x = p.x + r->wall_dist * r->ray.x;
 		}
-		printf("wall_dist %f\n", r->wall_dist);
-		if (r->wall_dist < 10.0f)
+		if (r->wall_dist < 2)
 		{
 			d->mapper[r->map.y][r->map.x] = 'C';
 			*hit = 1;

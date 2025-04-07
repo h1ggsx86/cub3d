@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 15:38:41 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/04 11:40:52 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/07 18:08:35 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,6 @@ int	pixel_color(t_mimg texture, int x, int y)
 {
 	char	*pixel;
 
-	// if (x < 0 || x > 64 || y < 0 || y > 64)
-	// 	return (0xFFFFFF);
 	pixel = texture.addr + (y * texture.line_length + x * (texture.bpp / 8));
 	return (*(unsigned int *)pixel);
 }
