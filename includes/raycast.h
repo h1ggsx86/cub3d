@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 18:45:27 by arotondo          #+#    #+#             */
-/*   Updated: 2025/04/07 15:10:10 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/07 15:32:45 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ typedef struct s_game		t_game;
 int		dda_algo(t_game *g, t_ray *r);
 void	ray_loop(t_game *g, t_player p);
 void	set_var(t_ray *r, t_player p, int x);
-void	calculate_dist(t_ray *r, t_player p);
 void	draw_door(t_game *g, t_ray *r, t_player p, int x);
 void	door_input(int keycode, t_game *g);
 void	calculate_dist(t_ray *r, t_player p);

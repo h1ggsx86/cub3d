@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:31:18 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/04 15:02:31 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/07 13:14:38 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	err_message(t_game *g, char *arg, char *mess, int ecode)
 {
+	ft_putendl_fd("Error", 2);
 	ft_putstr_fd("Club3D: ", 2);
 	if (arg)
 	{

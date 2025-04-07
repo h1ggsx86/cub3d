@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:16:20 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/07 14:33:25 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/07 15:34:03 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	data_init2(t_data *data)
 	data->text_path[3] = NULL;
 	data->floor.img = NULL;
 	data->pov.img = NULL;
+	data->door_map = NULL;
 }
 
 int	data_init(t_data *data)
@@ -93,8 +94,14 @@ void	struct_init(t_game *new, t_data *data, t_player *pl)
 	new->fps = 0;
 	key_init(new);
 	if (data_init(new->d))
+	{
+		ft_putendl_fd("Error", 2);
 		exit_game(new, 1);
+	}
 	if (color_init(new->d))
+	{
+		ft_putendl_fd("Error", 2);
 		exit_game(new, 1);
+	}
 	player_init(new->pl);
 }

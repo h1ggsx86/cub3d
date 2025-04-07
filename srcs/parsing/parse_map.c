@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 16:00:46 by arotondo          #+#    #+#             */
-/*   Updated: 2025/04/04 16:29:29 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/07 15:17:58 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,12 @@ void	keep_pos_player(t_game *g, int *j, int *i)
 
 int	check_inside(t_game *g)
 {
-	int		i;
+	int	i;
+	int	j;
+	int	n_player;
 
-	int (n_player) = 0;
-	int (j) = 0;
+	j = 0;
+	n_player = 0;
 	while (g->d->mapper[j])
 	{
 		i = 0;
@@ -41,6 +43,7 @@ int	check_inside(t_game *g)
 				return (1);
 			else if (is_door_valid(g, j, i))
 				err_message(g, "door", "invalid position", 6);
+			check_map_closed(g, j, i);
 			i++;
 		}
 		j++;
@@ -73,18 +76,18 @@ int	check_top_bottom(t_game *g)
 
 int	check_left_right(t_game *g)
 {
-	int	j;
-	int	max_len;
+	int		j;
+	size_t	max_len;
 
 	j = 0;
 	while (j < g->d->height)
 	{
-		max_len = ft_strlen(g->d->mapper[j]) - 2;
+		max_len = ft_strlen(g->d->mapper[j]);
 		if (max_len == 0)
 			return (1);
 		if (g->d->mapper[j] && g->d->mapper[j][0] != '1')
 			return (1);
-		if (g->d->mapper[j] && g->d->mapper[j][max_len] != '1')
+		if (g->d->mapper[j] && g->d->mapper[j][max_len - 2] != '1')
 			return (1);
 		j++;
 	}

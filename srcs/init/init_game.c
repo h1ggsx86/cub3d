@@ -5,11 +5,10 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/04/04 16:51:50 by arotondo         ###   ########.fr       */
+/*   Created: 2025/04/07 13:21:28 by arotondo          #+#    #+#             */
+/*   Updated: 2025/04/07 13:21:30 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../../includes/cub3d.h"
 
@@ -43,7 +42,9 @@ int	img_init(t_mimg *img, t_game *g, void *init)
 	if (!img->img)
 		return (EXIT_FAILURE);
 	img->addr = mlx_get_data_addr(img->img, &img->bpp, \
-									&img->line_length, &img->endian);
+		&img->line_length, &img->endian);
+	if (!img->addr)
+		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
 
@@ -62,27 +63,34 @@ void	game_init(t_game *g)
 	g->win = mlx_new_window(g->init, g->win_width, g->win_height, "CUB3D");
 	if (!g->win)
 		exit_game(g, 1);
-	init_imgs(g, g->d);
-	p_pos_init(*g->d, g->pl);
-	init_doors(g, &size);
-	g->d->pov.img = mlx_xpm_file_to_image(g->init, \
-		"./textures/sprite1pov.xpm", &g->win_width, &g->win_height);
-	g->d->pov.addr = mlx_get_data_addr(g->d->pov.img, \
-		&g->d->pov.bpp, &g->d->pov.line_length, \
-			&g->d->pov.endian);
-	g->d->floor.img = mlx_xpm_file_to_image(g->init, \
-		"./textures/damier.xpm", &size, &size);
-	g->d->floor.addr = mlx_get_data_addr(g->d->floor.img, \
-		&g->d->floor.bpp, &g->d->floor.line_length, \
-			&g->d->floor.endian);
-	g->d->door_map = init_door_map(g, g->d);
+	init_imgs(g, g->d, size);
 }
 
-void	init_imgs(t_game *g, t_data *d)
+void	init_imgs(t_game *g, t_data *d, int size)
 {
 	if (img_init(d->img_player, g, g->init))
 		exit_game(g, 1);
 	if (img_init(d->img_player + 1, g, g->init))
+		exit_game(g, 1);
+	p_pos_init(*g->d, g->pl);
+	init_doors(g, &size);
+	g->d->pov.img = mlx_xpm_file_to_image(g->init, \
+		"./textures/sprite1pov.xpm", &g->win_width, &g->win_height);
+	if (!g->d->pov.img)
+		exit_game(g, 1);
+	g->d->pov.addr = mlx_get_data_addr(g->d->pov.img, \
+		&g->d->pov.bpp, &g->d->pov.line_length, \
+			&g->d->pov.endian);
+	if (!g->d->pov.addr)
+		exit_game(g, 1);
+	g->d->floor.img = mlx_xpm_file_to_image(g->init, \
+		"./textures/damier.xpm", &size, &size);
+	if (!g->d->floor.img)
+		exit_game(g, 1);
+	g->d->floor.addr = mlx_get_data_addr(g->d->floor.img, \
+		&g->d->floor.bpp, &g->d->floor.line_length, \
+			&g->d->floor.endian);
+	if (!g->d->floor.addr)
 		exit_game(g, 1);
 }
 

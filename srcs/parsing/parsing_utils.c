@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 19:26:41 by arotondo          #+#    #+#             */
-/*   Updated: 2025/03/26 11:29:17 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/07 14:45:46 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,24 @@ size_t	ft_vert_len(char **tab, int row, int max)
 		i++;
 	}
 	return (i);
+}
+
+int	non_wall_char(int c)
+{
+	if (c == '0' || c == 'N' || c == 'E' || c == 'W' || c == 'S')
+		return (1);
+	return (0);
+}
+
+void	check_map_closed(t_game *g, int j, int i)
+{
+	if (!non_wall_char(g->d->mapper[j][i]))
+		return ;
+	else
+	{
+		if (!g->d->mapper[j + 1][i] || !g->d->mapper[j - 1][i])
+			err_message(g, "parsing", "map must be surronded by walls", 6);
+		else if (!g->d->mapper[j][i + 1] || !g->d->mapper[j][i - 1])
+			err_message(g, "parsing", "map must be surronded by walls", 6);
+	}
 }

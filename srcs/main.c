@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 15:03:39 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/04 12:09:10 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/07 13:16:08 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,13 @@ int	check_arg(char **argv)
 	i = 0;
 	if (!argv[1] || !ft_strlen(argv[1]))
 	{
+		ft_putendl_fd("Error", 2);
 		ft_putendl_fd("Empty argument detected", 2);
 		exit(1);
 	}
 	else if (ft_strlen(argv[1]) < 5)
 	{
+		ft_putendl_fd("Error", 2);
 		ft_putendl_fd("Bad argument detected", 2);
 		exit(1);
 	}
@@ -31,6 +33,7 @@ int	check_arg(char **argv)
 		i++;
 	if (ft_strcmp(".cub", argv[1] + i))
 	{
+		ft_putendl_fd("Error", 2);
 		ft_putendl_fd("Bad file format : '.cub' is expected", 2);
 		exit(1);
 	}
@@ -44,7 +47,7 @@ int	main(int argc, char **argv)
 	t_player	pl;
 
 	if (argc != 2)
-		return (ft_putendl_fd("Two arguments expected", 2), 1);
+		return (ft_putendl_fd("Error\nTwo arguments expected", 2), 1);
 	check_arg(argv);
 	struct_init(&g, &data, &pl);
 	parsing_the_thing(&g, argv[1]);

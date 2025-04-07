@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 17:10:29 by arotondo          #+#    #+#             */
-/*   Updated: 2025/04/03 17:42:20 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/07 13:22:31 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,14 @@ void	init_doors(t_game *g, int *size)
 		path = ft_strjoin(path, ".xpm");
 		g->d->tex_door[g->d->i_frames].img = mlx_xpm_file_to_image(g->init, \
 			path, size, size);
-		g->d->tex_door[g->d->i_frames].addr = mlx_get_data_addr(g->d->tex_door[g->d->i_frames].img, \
-			&g->d->tex_door[g->d->i_frames].bpp, &g->d->tex_door[g->d->i_frames].line_length, \
-				&g->d->tex_door[g->d->i_frames].endian);
+		if (!g->d->tex_door[g->d->i_frames].img)
+			exit_game(g, 7);
+		g->d->tex_door[g->d->i_frames].addr = mlx_get_data_addr \
+			(g->d->tex_door[g->d->i_frames].img, &g->d->tex_door \
+				[g->d->i_frames].bpp, &g->d->tex_door[g->d->i_frames] \
+					.line_length, &g->d->tex_door[g->d->i_frames].endian);
+		if (!g->d->tex_door[g->d->i_frames].addr)
+			exit_game(g, 7);
 		g->d->i_frames++;
 		free(path);
 	}

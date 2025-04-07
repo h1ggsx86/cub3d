@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 15:37:30 by arotondo          #+#    #+#             */
-/*   Updated: 2025/04/04 16:28:59 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/07 14:25:33 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,9 @@ void	parsing_the_thing(t_game *g, char *file)
 		if (g->d->map_parsed == true)
 			break ;
 	}
-	close(g->map);
 	free(line);
 	get_next_line(-1);
+	close(g->map);
 	check_map(g);
 	check_all_parsed(g);
 }
