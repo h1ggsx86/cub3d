@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 16:02:27 by arotondo          #+#    #+#             */
-/*   Updated: 2025/04/05 18:54:16 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/07 16:01:09 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ t_mimg	*init_north_texture(t_game *g)
 	n_img = NULL;
 	n_img = malloc(sizeof(t_mimg));
 	if (!n_img)
-		err_message(g, "north_texture", "memory allocation failed", 7);
 	size = 64;
+	printf("text = %s\n", g->d->text_path[NORTH]);
 	n_img->img = mlx_xpm_file_to_image(g->init, g->d->text_path[0], \
 		&size, &size);
 	if (!n_img->img)

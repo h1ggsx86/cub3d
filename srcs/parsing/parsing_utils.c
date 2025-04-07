@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 19:26:41 by arotondo          #+#    #+#             */
-/*   Updated: 2025/04/07 14:45:46 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/07 16:00:39 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,19 @@ void	check_map_closed(t_game *g, int j, int i)
 		else if (!g->d->mapper[j][i + 1] || !g->d->mapper[j][i - 1])
 			err_message(g, "parsing", "map must be surronded by walls", 6);
 	}
+}
+
+void	check_closing_door(t_game *g, char *path)
+{
+	int	fd_test;
+
+	if (!path)
+		err_message(g, "door texture", "missing file", 7);
+	fd_test = open(path, O_RDONLY, 0664);
+	if (fd_test < 0)
+	{
+		free(path);
+		err_message(g, "door texture", NULL, 7);
+	}
+	close(fd_test);
 }

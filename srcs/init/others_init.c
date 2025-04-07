@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 17:10:29 by arotondo          #+#    #+#             */
-/*   Updated: 2025/04/07 13:22:31 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/07 15:52:36 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	init_doors(t_game *g, int *size)
 		path = ft_strjoin2("./textures/close_door/frame", ret);
 		free(ret);
 		path = ft_strjoin(path, ".xpm");
+		check_closing_door(g, path);
 		g->d->tex_door[g->d->i_frames].img = mlx_xpm_file_to_image(g->init, \
 			path, size, size);
 		if (!g->d->tex_door[g->d->i_frames].img)
