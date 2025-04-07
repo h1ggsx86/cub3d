@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   door_handler.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 09:15:05 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/07 15:34:30 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/07 17:45:43 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +56,26 @@ int	dda_algo(t_game *g, t_ray *r)
 	return (EXIT_SUCCESS);
 }
 
-static int	check_collisions(t_data *d, t_ray *r)
+static int	check_collisions(t_data *d, t_ray *r, t_player p)
 {
 	int	hit;
 
 	hit = 0;
 	if (d->mapper[r->map.y][r->map.x] == 'C')
 	{
-		if (r->wall_dist < 6)
+		if (!r->side)
+		{
+			r->wall_dist = (r->side_d.x - r->delta_d.x) + 0.0001f;
+			r->wall_x = p.y + r->wall_dist * r->ray.y;
+		}
+		else
+		{
+			r->wall_dist = (r->side_d.y - r->delta_d.y) + 0.0001f;
+			r->wall_x = p.x + r->wall_dist * r->ray.x;
+		}
+		printf("wall_dist %f\n", r->wall_dist);
+		printf("int wall_dist %d\n", (int)r->wall_dist);
+		if (r->wall_dist < 10.0f)
 		{
 			d->mapper[r->map.y][r->map.x] = 'O';
 			hit = 1;
@@ -72,7 +84,7 @@ static int	check_collisions(t_data *d, t_ray *r)
 			return (hit);
 		}
 	}
-	else if (check_collisions_next(d, r, &hit))
+	else if (check_collisions_next(d, r, &hit, p))
 		return (hit);
 	return (EXIT_SUCCESS);
 }
@@ -121,7 +133,7 @@ int	ray_check_door(t_game *g)
 		{
 			if (dda_algo(g, &r))
 				break ;
-			if (check_collisions(g->d, &r))
+			if (check_collisions(g->d, &r, *g->pl))
 				return (EXIT_FAILURE);
 		}
 		x++;

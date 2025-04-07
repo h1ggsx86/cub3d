@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 18:45:27 by arotondo          #+#    #+#             */
-/*   Updated: 2025/04/07 15:32:45 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/07 17:35:40 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	render_img(t_game *g);
 
 /* door */
 int		ray_check_door(t_game *g);
-int		check_collisions_next(t_data *d, t_ray *r, int *hit);
+int		check_collisions_next(t_data *d, t_ray *r, int *hit, t_player p);
 void	handle_framerate(t_game *g, t_data *d, t_ray *r);
 
 #endif
