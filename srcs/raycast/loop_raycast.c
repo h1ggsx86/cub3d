@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 13:27:31 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/04 15:09:39 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/07 15:05:42 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ void	set_var(t_ray *r, t_player p, int x)
 		r->delta_d.y = fabs(1 / r->ray.y);
 }
 
-static void	chose_texture(t_data *d, t_ray *r, t_player p, double *wall_x)
+static void	chose_texture(t_data *d, t_ray *r, t_player p)
 {
 	if (!r->side)
 	{
 		r->wall_dist = (r->side_d.x - r->delta_d.x) + 0.0001f;
-		*wall_x = p.y + r->wall_dist * r->ray.y;
+		r->wall_x = p.y + r->wall_dist * r->ray.y;
 		if (r->ray.x > 0)
 			d->the_chosen = *d->textures[WEST];
 		else
@@ -42,7 +42,7 @@ static void	chose_texture(t_data *d, t_ray *r, t_player p, double *wall_x)
 	else
 	{
 		r->wall_dist = (r->side_d.y - r->delta_d.y) + 0.0001f;
-		*wall_x = p.x + r->wall_dist * r->ray.x;
+		r->wall_x = p.x + r->wall_dist * r->ray.x;
 		if (r->ray.y > 0)
 			d->the_chosen = *d->textures[SOUTH];
 		else
@@ -57,31 +57,26 @@ static void	draw_wall(t_game *g, t_ray *r, t_player p, int x)
 	int		y;
 	int		color;
 	double	intensity;
-	double	wall_x;
 	double	step;
 	double	tex_pos;
 
-	chose_texture(g->d, r, p, &wall_x);
-	calculate_tex(r, wall_x);
+	chose_texture(g->d, r, p);
+	calculate_tex(r, r->wall_x);
 	intensity = 1 / r->wall_dist * MULTIPLIER;
 	if (intensity > 1)
 		intensity = 1;
 	step = 1.0 * 64 / r->line_height;
 	tex_pos = (r->draw_start - WIN_HEIGHT / 2 + r->line_height / 2) * step;
 	y = 0;
-	while (y < WIN_HEIGHT)
+	while (y < r->draw_start)
+		y++;
+	while (y <= r->draw_end)
 	{
-		while (y < r->draw_start)
-			y++;
-		while (y < r->draw_end)
-		{
-			r->tex.y = (int)tex_pos;
-			tex_pos += step;
-			color = pixel_color(g->d->the_chosen, r->tex.x, r->tex.y);
-			color = apply_intensity(color, intensity);
-			put_pixel(g->d, x, y, color);
-			y++;
-		}
+		r->tex.y = (int)tex_pos;
+		tex_pos += step;
+		color = pixel_color(g->d->the_chosen, r->tex.x, r->tex.y);
+		color = apply_intensity(color, intensity);
+		put_pixel(g->d, x, y, color);
 		y++;
 	}
 }
@@ -94,9 +89,9 @@ void	door_loop(t_game *g, t_ray *r, t_player p, int x)
 	while (!r->door)
 	{
 		if (dda_algo(g, r))
-			break;
+			break ;
 		if (g->d->mapper[r->map.y][r->map.x] == '1')
-			break;
+			break ;
 		if (g->d->mapper[r->map.y][r->map.x] == 'O' || \
 			g->d->mapper[r->map.y][r->map.x] == 'C')
 		// if (g->d->mapper[r->map.y][r->map.x] == 'C')
@@ -106,7 +101,7 @@ void	door_loop(t_game *g, t_ray *r, t_player p, int x)
 		draw_door(g, r, p, x);
 }
 
-int	ray_loop(t_game *g, t_player p)
+void	ray_loop(t_game *g, t_player p)
 {
 	int		x;
 	int		hit;
@@ -123,7 +118,7 @@ int	ray_loop(t_game *g, t_player p)
 		{
 			if (dda_algo(g, &r))
 				break ;
-			if (g->d->mapper[r.map.y][r.map.x] == '1')// ||
+			if (g->d->mapper[r.map.y][r.map.x] == '1') //||
 				// g->d->mapper[r.map.y][r.map.x] == 'C')
 				hit = 1;
 		}
@@ -133,5 +128,4 @@ int	ray_loop(t_game *g, t_player p)
 	}
 	g->old_time = g->time;
 	g->time = ft_get_time();
-	return (EXIT_SUCCESS);
 }

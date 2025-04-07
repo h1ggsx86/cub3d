@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 09:15:05 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/04 17:21:30 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/07 15:27:46 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	*init_door_map(t_game *g, t_data *d)
 {
-	int	y;
-	int	x;
+	int		y;
+	int		x;
 	t_door	*door_map;
 
 	door_map = (t_door *)ft_calloc(sizeof(t_door), d->height * d->width);
@@ -56,60 +56,37 @@ int	dda_algo(t_game *g, t_ray *r)
 	return (EXIT_SUCCESS);
 }
 
-static int	check_collisions(t_game *g, t_ray *r)
+static int	check_collisions(t_data *d, t_ray *r)
 {
 	int	hit;
 
 	hit = 0;
-	if (g->d->mapper[r->map.y][r->map.x] == 'C')
+	if (d->mapper[r->map.y][r->map.x] == 'C')
 	{
-		if (r->wall_dist < 3)
+		if (r->wall_dist < 6)
 		{
-			g->d->mapper[r->map.y][r->map.x] = 'O';
+			d->mapper[r->map.y][r->map.x] = 'O';
 			hit = 1;
-			g->d->door_map[r->map.y * g->d->width + r->map.x].tex = 12;
-			g->d->door_map[r->map.y * g->d->width + r->map.x].way = -1;
+			d->door_map[r->map.y * d->width + r->map.x].tex = 12;
+			d->door_map[r->map.y * d->width + r->map.x].way = -1;
 			return (hit);
 		}
 	}
-	else if (g->d->mapper[r->map.y][r->map.x] == 'O')
-	{
-		if (r->wall_dist < 3)
-		{
-			g->d->mapper[r->map.y][r->map.x] = 'C';
-			hit = 1;
-			g->d->door_map[r->map.y * g->d->width + r->map.x].tex = 0;
-			g->d->door_map[r->map.y * g->d->width + r->map.x].way = 1;
-			return (hit);
-		}
-	}
+	else if (check_collisions_next(d, r, &hit))
+		return (hit);
 	return (EXIT_SUCCESS);
 }
-
 
 void	draw_door(t_game *g, t_ray *r, t_player p, int x)
 {
 	int		y;
 	int		color;
-	double	intensity;
-	double	step;
-	double	tex_pos;
 
-	calculate_door(r, p);
-	step = 1.0 * 64 / r->line_height;
-	tex_pos = (r->draw_start - WIN_HEIGHT / 2 + r->line_height / 2) * step;
-	intensity = 1 / r->wall_dist * MULTIPLIER;
-	if (intensity > 1)
-		intensity = 1;
-	if (g->fps == 24 && g->is_active)
-	{
-		g->d->door_map[r->map.y * g->d->width + r->map.x].tex += g->d->door_map[r->map.y * g->d->width + r->map.x].way;
-		if (g->d->door_map[r->map.y * g->d->width + r->map.x].tex < 0)
-			g->d->door_map[r->map.y * g->d->width + r->map.x].tex = 0;
-		if (g->d->door_map[r->map.y * g->d->width + r->map.x].tex > 12)
-			g->d->door_map[r->map.y * g->d->width + r->map.x].tex = 12;
-		g->is_active = false;
-	}
+	double (step) = 0.0;
+	double (tex_pos) = 0.0;
+	t_data *(d) = g->d;
+	calculate_door(r, p, &step, &tex_pos);
+	handle_framerate(g, g->d, r);
 	y = 0;
 	while (y < r->draw_start)
 		y++;
@@ -117,15 +94,16 @@ void	draw_door(t_game *g, t_ray *r, t_player p, int x)
 	{
 		r->tex.y = (int)tex_pos;
 		tex_pos += step;
-		color = pixel_color(g->d->tex_door[g->d->door_map[r->map.y * g->d->width + r->map.x].tex], r->tex.x, r->tex.y);
-		color = apply_intensity(color, intensity);
+		color = apply_intensity(pixel_color(\
+			d->tex_door[d->door_map[r->map.y * d->width + r->map.x].tex], \
+			r->tex.x, r->tex.y), r->intensity);
 		if (color != 0)
 			put_pixel(g->d, x, y, color);
 		y++;
 	}
 }
 
-static int	ray_check_door(t_game *g)
+int	ray_check_door(t_game *g)
 {
 	int			x;
 	t_ray		r;
@@ -143,16 +121,10 @@ static int	ray_check_door(t_game *g)
 		{
 			if (dda_algo(g, &r))
 				break ;
-			if (check_collisions(g, &r))
+			if (check_collisions(g->d, &r))
 				return (EXIT_FAILURE);
 		}
 		x++;
 	}
 	return (EXIT_SUCCESS);
-}
-
-void	door_input(int keycode, t_game *g)
-{
-	if (keycode == XK_e)
-		ray_check_door(g);
 }

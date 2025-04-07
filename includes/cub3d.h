@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 15:02:41 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/04 16:29:53 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/07 15:14:41 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ typedef struct	s_floor
 	int			pos;
 	double		pos_z;
 	double		row_dist;
+	double		intensity;
 	t_ivector	tile;
 	t_ivector	tex;
 	t_fvector	floor;
@@ -96,6 +97,8 @@ typedef struct s_ray
 	int			draw_end;
 	double		camera_x;
 	double		wall_dist;
+	double		wall_x;
+	double		intensity;
 	t_ivector	map;
 	t_ivector	step;
 	t_ivector	tex;

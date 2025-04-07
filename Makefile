@@ -6,7 +6,7 @@
 #    By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/24 19:27:15 by tnedel            #+#    #+#              #
-#    Updated: 2025/04/03 17:44:07 by tnedel           ###   ########.fr        #
+#    Updated: 2025/04/07 15:00:52 by tnedel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ SRC		= 	$(SRC_DIR)/init/init_game.c $(SRC_DIR)/init/init_struct.c \
 			$(SRC_DIR)/utils/put_pixel_lines.c $(SRC_DIR)/raycast/render.c \
 			$(SRC_DIR)/utils/put_pixel.c $(SRC_DIR)/raycast/math_stuff.c \
 			$(SRC_DIR)/utils/free.c $(SRC_DIR)/raycast/floor_handler.c \
-			$(SRC_DIR)/utils/get_rgb.c
+			$(SRC_DIR)/utils/get_rgb.c $(SRC_DIR)/raycast/door_helper.c
 SRC_OBJ	= $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 all: title $(NAME)

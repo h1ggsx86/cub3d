@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 16:34:30 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/04 11:40:00 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/07 15:08:51 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	calculate_tex(t_ray *r, double wall_x)
 		r->tex.x = 64 - r->tex.x - 1;
 }
 
-void	calculate_door(t_ray *r, t_player p)
+void	calculate_door(t_ray *r, t_player p, double *step, double *tex_pos)
 {
 	double	wall_x;
 
@@ -70,4 +70,9 @@ void	calculate_door(t_ray *r, t_player p)
 		wall_x = p.x + r->wall_dist * r->ray.x;
 	}
 	calculate_tex(r, wall_x);
+	*step = 1.0 * 64 / r->line_height;
+	*tex_pos = (r->draw_start - WIN_HEIGHT / 2 + r->line_height / 2) * *step;
+	r->intensity = 1 / r->wall_dist * MULTIPLIER;
+	if (r->intensity > 1)
+		r->intensity = 1;
 }
