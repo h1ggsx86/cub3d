@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/04/04 16:51:50 by arotondo         ###   ########.fr       */
+/*   Created: 2025/04/07 15:47:00 by tnedel            #+#    #+#             */
+/*   Updated: 2025/04/07 15:47:45 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../../includes/cub3d.h"
 
@@ -95,6 +94,8 @@ void	init_ray(t_ray *r)
 	r->draw_start = 0;
 	r->camera_x = 0;
 	r->wall_dist = 0;
+	r->wall_x = 0;
+	r->intensity = 1;
 	ivector_init(&r->map, 0, 0);
 	ivector_init(&r->step, 0, 0);
 	ivector_init(&r->tex, 0, 0);
