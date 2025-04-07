@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 18:26:43 by arotondo          #+#    #+#             */
-/*   Updated: 2025/04/04 11:45:30 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/07 13:20:07 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int		get_t(int trgb);
 int		get_r(int trgb);
 int		get_g(int trgb);
 int		get_b(int trgb);
-int		apply_intensity(int	color, double intensity);
+int		apply_intensity(int color, double intensity);
 
 /* free */
 void	free_img(void *init, t_mimg *img);

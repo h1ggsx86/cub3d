@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 10:30:37 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/05 17:57:16 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/07 13:26:02 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,11 @@ int	handle_no_event(t_game *g)
 	mouse_move(g);
 	render_img(g);
 	if (g->d->active_img)
-	mlx_put_image_to_window(g->init, g->win, g->d->img_player[0].img, \
-		0, 0);
-		else
-		mlx_put_image_to_window(g->init, g->win, g->d->img_player[1].img, \
+		mlx_put_image_to_window(g->init, g->win, g->d->img_player[0].img, \
 			0, 0);
+		else
+			mlx_put_image_to_window(g->init, g->win, g->d->img_player[1].img, \
+				0, 0);
 	g->fps++;
 	if (g->fps > 24)
 		g->fps = 0;

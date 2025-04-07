@@ -5,11 +5,10 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/04/05 18:50:33 by arotondo         ###   ########.fr       */
+/*   Created: 2025/04/07 13:21:28 by arotondo          #+#    #+#             */
+/*   Updated: 2025/04/07 13:21:30 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../../includes/cub3d.h"
 

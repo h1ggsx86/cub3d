@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 16:16:04 by arotondo          #+#    #+#             */
-/*   Updated: 2025/04/05 18:56:16 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/07 14:38:03 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@ char		*init_tmp(t_game *g, char *file);
 
 /* parsing_utils */
 size_t		ft_vert_len(char **tab, int row, int max);
+int			non_wall_char(int c);
+void		check_map_closed(t_game *g, int j, int i);
+
 
 /* parse_textures */
 int			texture_is_valid(t_game *g, int flag);

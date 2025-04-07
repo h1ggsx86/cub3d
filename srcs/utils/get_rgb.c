@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_rgb.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 17:37:51 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/03 17:44:48 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/07 13:20:54 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	get_b(int trgb)
 	return (trgb & 0xFF);
 }
 
-int	apply_intensity(int	color, double intensity)
+int	apply_intensity(int color, double intensity)
 {
 	int	r;
 	int	g;

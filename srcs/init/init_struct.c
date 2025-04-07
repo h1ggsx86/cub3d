@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:16:20 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/05 18:40:51 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/07 13:21:13 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	init_door_texture(t_data *data)
 		i++;
 	}
 }
+
 void	data_init2(t_data *data)
 {
 	init_door_texture(data);
@@ -93,8 +94,14 @@ void	struct_init(t_game *new, t_data *data, t_player *pl)
 	new->fps = 0;
 	key_init(new);
 	if (data_init(new->d))
+	{
+		ft_putendl_fd("Error", 2);
 		exit_game(new, 1);
+	}
 	if (color_init(new->d))
+	{
+		ft_putendl_fd("Error", 2);
 		exit_game(new, 1);
+	}
 	player_init(new->pl);
 }

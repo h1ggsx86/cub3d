@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 14:49:39 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/04 11:51:09 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/07 13:25:38 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int	mouse_move(t_game *g)
 	m.x = 0;
 	m.y = 0;
 	mlx_mouse_get_pos(g->init, g->win, &m.x, &m.y);
-	if ((m.x > g->win_width || m.x < 0) ||(m.y > g->win_height || m.y < 0))
+	if ((m.x > g->win_width || m.x < 0) || (m.y > g->win_height || m.y < 0))
 		return (EXIT_FAILURE);
 	if (m.x != g->win_width / 2)
 	{
