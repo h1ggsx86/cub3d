@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_struct_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:16:20 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/08 10:34:13 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/08 14:41:23 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ void	struct_init(t_game *new, t_data *data, t_player *pl)
 	new->old_time = 0;
 	new->color = 0x00dadada;
 	new->fps = 0;
+	new->is_active = 0;
 	key_init(new);
 	if (color_init(new->d))
 	{

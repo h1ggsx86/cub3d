@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_checks_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:48:34 by arotondo          #+#    #+#             */
-/*   Updated: 2025/04/08 10:36:47 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/08 15:26:59 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	check_map(t_game *g)
 		err_message(g, "map", "invalid", 4);
 	if (check_top_bottom(g))
 		err_message(g, "map", "invalid", 4);
-	if (check_inside(g))
+	if (check_inside(g, 0, 0))
 		err_message(g, "map", "invalid", 4);
 	g->d->map_parsed = true;
 }

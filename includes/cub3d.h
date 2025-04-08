@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 15:02:41 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/08 14:57:42 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/08 15:30:16 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,23 +74,8 @@ typedef struct s_fvector
 	double	y;
 }		t_fvector;
 
-typedef struct s_floor
-{
-	int			pos;
-	double		pos_z;
-	double		row_dist;
-	double		intensity;
-	t_ivector	tile;
-	t_ivector	tex;
-	t_fvector	floor;
-	t_fvector	f_step;
-	t_fvector	ray0;
-	t_fvector	ray1;
-}				t_floor;
-
 typedef struct s_ray
 {
-	int			door;
 	int			side;
 	int			line_height;
 	int			draw_start;
@@ -105,7 +90,6 @@ typedef struct s_ray
 	t_fvector	ray;
 	t_fvector	side_d;
 	t_fvector	delta_d;
-	t_fvector	door_side_d;
 }				t_ray;
 
 typedef struct s_color
@@ -134,17 +118,13 @@ typedef struct s_data
 	t_mimg		*img_player;
 	t_mimg		*textures[4];
 	t_mimg		the_chosen;
-	t_mimg		tex_door[13];
-	t_door		*door_map;
 	t_mimg		pov;
-	t_mimg		floor;
 	t_color		*colors;
 	int			active_img;
 	char		**mapper;
 	int			height;
 	int			tex_way;
 	size_t		width;
-	int			i_doors;
 	int			i_text;
 	int			i_colors;
 	int			i_frames;
@@ -170,8 +150,6 @@ typedef struct s_game
 {
 	int			key[6];
 	int			map;
-	int			is_active;
-	int			fps;
 	int			win_height;
 	int			win_width;
 	int			color;

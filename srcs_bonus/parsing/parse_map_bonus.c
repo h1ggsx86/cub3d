@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 16:00:46 by arotondo          #+#    #+#             */
-/*   Updated: 2025/04/08 14:08:59 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/08 15:27:59 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,17 @@ void	keep_pos_player(t_game *g, int *j, int *i)
 	g->d->mapper[*j][*i] = '0';
 }
 
-int	check_inside(t_game *g)
+int	check_inside(t_game *g, int i, int n_player)
 {
 	int (j) = 0;
-	int (n_player) = 0;
 	while (g->d->mapper[j])
 	{
-		int (i) = 0;
+		i = 0;
 		while (g->d->mapper[j][i] && g->d->mapper[j][i] != '\n')
 		{
 			if (!n_player && is_pos_player(g->d->mapper[j][i], &n_player))
 				keep_pos_player(g, &j, &i);
-			else if (is_pos_player(g->d->mapper[j][i], &n_player) \
+			if (is_pos_player(g->d->mapper[j][i], &n_player) \
 				&& n_player > 1)
 				err_message(g, "player", "only one allowed", 6);
 			else if (g->d->mapper[j][i] != '1' && g->d->mapper[j][i] != '0' && \

@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 18:26:43 by arotondo          #+#    #+#             */
-/*   Updated: 2025/04/07 13:20:07 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/08 15:06:56 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,6 @@ void	put_player_line(t_game *g, t_ivector p, int x, int y);
 void	put_line_l(t_game *g, t_ivector start, int x1, int y1);
 void	put_line_h(t_game *g, t_ivector start, int x1, int y1);
 
-/* moves input */
-int		mouse_move(t_game *g);
-void	moves_input(t_game *g);
-
 /* ft_get_time */
 long	ft_get_time(void);
 
@@ -51,7 +47,6 @@ int		apply_intensity(int color, double intensity);
 
 /* free */
 void	free_img(void *init, t_mimg *img);
-void	free_doors(void *init, t_game *g);
 void	free_incomp_text(t_game *g);
 void	free_textures(void *init, t_mimg *img, t_game *g);
 void	free_map(char **map);
