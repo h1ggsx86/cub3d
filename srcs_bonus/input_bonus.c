@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   input.c                                            :+:      :+:    :+:   */
+/*   input_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 14:49:39 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/08 09:23:54 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/08 11:18:35 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../includes_bonus/cub3d_bonus.h"
 
 void	camera_move(t_game *g, int way, double rot)
 {
@@ -41,9 +41,11 @@ void	ws_move(t_game *g, int way)
 	move_speed = frametime * MOVE_SPEED;
 	p = g->pl;
 	map = g->d->mapper;
-	if (map[(int)(p->y + (p->dir.y * move_speed * way))][(int)p->x] != '1')
+	if (map[(int)(p->y + (p->dir.y * move_speed * way))][(int)p->x] != '1' &&
+		map[(int)(p->y + (p->dir.y * move_speed * way))][(int)p->x] != 'C')
 		p->y += p->dir.y * move_speed * way;
-	if (map[(int)p->y][(int)(p->x + (p->dir.x * move_speed * way))] != '1')
+	if (map[(int)p->y][(int)(p->x + (p->dir.x * move_speed * way))] != '1' &&
+		map[(int)p->y][(int)(p->x + (p->dir.x * move_speed * way))] != 'C')
 		p->x += p->dir.x * move_speed * way;
 }
 
@@ -58,9 +60,11 @@ void	ad_move(t_game *g, int way)
 	move_speed = frametime * MOVE_SPEED;
 	p = g->pl;
 	map = g->d->mapper;
-	if (map[(int)(p->y + (p->dir.x * move_speed * way))][(int)p->x] != '1')
+	if (map[(int)(p->y + (p->dir.x * move_speed * way))][(int)p->x] != '1' &&
+		map[(int)(p->y + (p->dir.x * move_speed * way))][(int)p->x] != 'C')
 		p->y += p->dir.x * move_speed * way;
-	if (map[(int)p->y][(int)(p->x - (p->dir.y * move_speed * way))] != '1')
+	if (map[(int)p->y][(int)(p->x - (p->dir.y * move_speed * way))] != '1' &&
+		map[(int)p->y][(int)(p->x - (p->dir.y * move_speed * way))] != 'C')
 		p->x -= p->dir.y * move_speed * way;
 }
 

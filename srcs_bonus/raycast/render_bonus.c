@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   render_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 12:06:05 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/08 09:18:26 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/08 10:37:15 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../../includes_bonus/cub3d_bonus.h"
 
 static void	check_tile(t_ivector tile, t_data d, int *color)
 {
@@ -19,6 +19,8 @@ static void	check_tile(t_ivector tile, t_data d, int *color)
 		*color = d.roof_color;
 	else if (d.mapper[tile.y][tile.x] == '0')
 		*color = d.ground_color;
+	else if (d.mapper[tile.y][tile.x] == 'C' || d.mapper[tile.y][tile.x] == 'O')
+		*color = d.ground_color / 2;
 	else
 		*color = d.roof_color;
 }
@@ -75,6 +77,7 @@ void	render_pov(t_game *g)
 
 void	render_img(t_game *g)
 {
+	draw_floor(g, *g->pl);
 	ray_loop(g, *g->pl);
 	render_map(g, *g->pl, *g->d);
 	render_pov(g);

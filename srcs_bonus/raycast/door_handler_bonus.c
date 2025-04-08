@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   door_handler.c                                     :+:      :+:    :+:   */
+/*   door_handler_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 09:15:05 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/07 18:52:51 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/08 11:25:24 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../../includes_bonus/cub3d_bonus.h"
 
 void	*init_door_map(t_game *g, t_data *d)
 {

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   floor_handler.c                                    :+:      :+:    :+:   */
+/*   floor_handler_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 16:37:04 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/07 18:04:45 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/08 10:37:04 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../../includes_bonus/cub3d_bonus.h"
 
 static void	calculate_floor(t_floor *f, t_player p, int y)
 {

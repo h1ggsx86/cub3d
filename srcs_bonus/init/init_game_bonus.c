@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_game.c                                        :+:      :+:    :+:   */
+/*   init_game_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 13:21:28 by arotondo          #+#    #+#             */
-/*   Updated: 2025/04/08 09:31:21 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/08 10:34:04 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../../includes_bonus/cub3d_bonus.h"
 
 static void	p_pos_init(t_data d, t_player *p)
 {
@@ -64,16 +64,17 @@ void	game_init(t_game *g)
 	if (!g->win)
 		exit_game(g, 1);
 	init_imgs(g, g->d, size);
+	g->d->door_map = init_door_map(g, g->d);
 }
 
 void	init_imgs(t_game *g, t_data *d, int size)
 {
-	(void)size;
 	if (img_init(d->img_player, g, g->init))
 		exit_game(g, 1);
 	if (img_init(d->img_player + 1, g, g->init))
 		exit_game(g, 1);
 	p_pos_init(*g->d, g->pl);
+	init_doors(g, &size);
 	g->d->pov.img = mlx_xpm_file_to_image(g->init, \
 		"./textures/sprite1pov.xpm", &g->win_width, &g->win_height);
 	if (!g->d->pov.img)
@@ -82,6 +83,15 @@ void	init_imgs(t_game *g, t_data *d, int size)
 		&g->d->pov.bpp, &g->d->pov.line_length, \
 			&g->d->pov.endian);
 	if (!g->d->pov.addr)
+		exit_game(g, 1);
+	g->d->floor.img = mlx_xpm_file_to_image(g->init, \
+		"./textures/damier.xpm", &size, &size);
+	if (!g->d->floor.img)
+		exit_game(g, 1);
+	g->d->floor.addr = mlx_get_data_addr(g->d->floor.img, \
+		&g->d->floor.bpp, &g->d->floor.line_length, \
+			&g->d->floor.endian);
+	if (!g->d->floor.addr)
 		exit_game(g, 1);
 }
 
@@ -102,4 +112,5 @@ void	init_ray(t_ray *r)
 	fvector_init(&r->ray, 0, 0);
 	fvector_init(&r->side_d, 0, 0);
 	fvector_init(&r->delta_d, 0, 0);
+	fvector_init(&r->door_side_d, 0, 0);
 }

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   loop_game.c                                        :+:      :+:    :+:   */
+/*   loop_game_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 10:30:37 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/08 11:24:35 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/08 11:18:41 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../includes_bonus/cub3d_bonus.h"
 
 int	input_handler(int keycode, t_game *g)
 {
@@ -28,6 +28,7 @@ int	input_handler(int keycode, t_game *g)
 		g->key[D] = 1;
 	else if (keycode == XK_a)
 		g->key[A] = 1;
+	door_input(keycode, g);
 	return (EXIT_SUCCESS);
 }
 
@@ -67,12 +68,16 @@ int	handle_no_event(t_game *g)
 	else
 		mlx_put_image_to_window(g->init, g->win, g->d->img_player[1].img, \
 			0, 0);
+	g->fps++;
+	if (g->fps > 24)
+		g->fps = 0;
+	g->is_active = true;
 	return (EXIT_SUCCESS);
 }
 
 void	the_loop(t_game *g)
 {
-	mlx_mouse_hide(g->init, g->win);
+	// mlx_mouse_hide(g->init, g->win);
 	mlx_mouse_move(g->init, g->win, g->win_width / 2, g->win_height / 2);
 	mlx_loop_hook(g->init, &handle_no_event, g);
 	mlx_hook(g->win, KeyPress, KeyPressMask, &input_handler, g);

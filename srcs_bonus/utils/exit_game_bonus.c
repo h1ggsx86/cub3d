@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit_game.c                                        :+:      :+:    :+:   */
+/*   exit_game_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:31:18 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/08 09:27:03 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/08 10:37:20 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../../includes_bonus/cub3d_bonus.h"
 
 void	err_message(t_game *g, char *arg, char *mess, int ecode)
 {
@@ -34,6 +34,7 @@ void	err_message(t_game *g, char *arg, char *mess, int ecode)
 void	exit_game(t_game *g, int ecode)
 {
 	free_img(g->init, g->d->img_player);
+	free_doors(g->init, g);
 	free_map(g->d->mapper);
 	if (g->d->i_text != 4)
 		free_incomp_text(g);
