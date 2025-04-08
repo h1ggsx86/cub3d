@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 16:00:46 by arotondo          #+#    #+#             */
-/*   Updated: 2025/04/08 10:34:50 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/08 14:08:59 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,11 @@ void	keep_pos_player(t_game *g, int *j, int *i)
 
 int	check_inside(t_game *g)
 {
-	int	i;
-
 	int (j) = 0;
 	int (n_player) = 0;
 	while (g->d->mapper[j])
 	{
-		i = 0;
+		int (i) = 0;
 		while (g->d->mapper[j][i] && g->d->mapper[j][i] != '\n')
 		{
 			if (!n_player && is_pos_player(g->d->mapper[j][i], &n_player))
@@ -46,6 +44,8 @@ int	check_inside(t_game *g)
 		}
 		j++;
 	}
+	if (!n_player)
+		err_message(g, "player", "map must contains one player", 6);
 	return (0);
 }
 
@@ -59,7 +59,7 @@ int	check_top_bottom(t_game *g)
 	{
 		max_hight = ft_vert_len(g->d->mapper, i, g->d->height) - 1;
 		if (max_hight <= 0)
-			return (1);
+			break ;
 		if (i == (int)ft_strlen(g->d->mapper[max_hight]) - 1 \
 			&& g->d->mapper[max_hight][i] == '\n')
 			break ;
