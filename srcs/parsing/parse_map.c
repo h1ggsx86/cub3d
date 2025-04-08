@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 16:00:46 by arotondo          #+#    #+#             */
-/*   Updated: 2025/04/08 14:05:40 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/08 15:15:50 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int	check_top_bottom(t_game *g)
 	{
 		max_hight = ft_vert_len(g->d->mapper, i, g->d->height) - 1;
 		if (max_hight <= 0)
+			break ;
 			break ;
 		if (i == (int)ft_strlen(g->d->mapper[max_hight]) - 1 \
 			&& g->d->mapper[max_hight][i] == '\n')

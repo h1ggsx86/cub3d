@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 15:02:41 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/08 12:27:04 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/08 15:00:32 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@
 # define WIN_WIDTH 1280
 # define WIN_HEIGHT 720
 # define ROT_SPEED 0.002f
-# define MOVE_SPEED 0.005f
+# define MOVE_SPEED 0.002f
 # define MULTIPLIER 2.5f
 
 enum e_kcode

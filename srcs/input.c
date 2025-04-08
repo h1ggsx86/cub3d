@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 14:49:39 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/08 09:23:54 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/08 14:59:47 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,12 @@ void	ws_move(t_game *g, int way)
 	move_speed = frametime * MOVE_SPEED;
 	p = g->pl;
 	map = g->d->mapper;
-	if (map[(int)(p->y + (p->dir.y * move_speed * way))][(int)p->x] != '1')
-		p->y += p->dir.y * move_speed * way;
-	if (map[(int)p->y][(int)(p->x + (p->dir.x * move_speed * way))] != '1')
-		p->x += p->dir.x * move_speed * way;
+	int (new_y) = (int)(p->y + (p->dir.y * move_speed * way));
+	int (new_x) = (int)(p->x + (p->dir.x * move_speed * way));
+	if (map[new_y][(int)p->x] && map[new_y][(int)p->x] != '1')
+		p->y = p->y + (p->dir.y * move_speed * way);
+	if (map[(int)p->y][new_x] && map[(int)p->y][new_x] != '1')
+		p->x = p->x + (p->dir.x * move_speed * way);
 }
 
 void	ad_move(t_game *g, int way)
@@ -58,9 +60,11 @@ void	ad_move(t_game *g, int way)
 	move_speed = frametime * MOVE_SPEED;
 	p = g->pl;
 	map = g->d->mapper;
-	if (map[(int)(p->y + (p->dir.x * move_speed * way))][(int)p->x] != '1')
+	int (new_y) = (int)(p->y + (p->dir.x * move_speed * way));
+	int (new_x) = (int)(p->x - (p->dir.y * move_speed * way));
+	if (map[new_y][(int)p->x] != '1')
 		p->y += p->dir.x * move_speed * way;
-	if (map[(int)p->y][(int)(p->x - (p->dir.y * move_speed * way))] != '1')
+	if (map[(int)p->y][new_x] != '1')
 		p->x -= p->dir.y * move_speed * way;
 }
 
@@ -78,24 +82,4 @@ void	moves_input(t_game *g)
 		ad_move(g, 1);
 	if (g->key[A])
 		ad_move(g, -1);
-}
-
-int	mouse_move(t_game *g)
-{
-	t_ivector	m;
-
-	m.x = 0;
-	m.y = 0;
-	mlx_mouse_get_pos(g->init, g->win, &m.x, &m.y);
-	if ((m.x > g->win_width || m.x < 0) || (m.y > g->win_height || m.y < 0))
-		return (EXIT_FAILURE);
-	if (m.x != g->win_width / 2)
-	{
-		if (m.x < g->win_width / 2)
-			camera_move(g, -1, ROT_SPEED * 2.5);
-		else
-			camera_move(g, 1, ROT_SPEED * 2.5);
-		mlx_mouse_move(g->init, g->win, g->win_width / 2, g->win_height / 2);
-	}
-	return (EXIT_SUCCESS);
 }

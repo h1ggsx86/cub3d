@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 15:02:41 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/08 09:26:33 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/08 14:57:42 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@
 # define WIN_WIDTH 1280
 # define WIN_HEIGHT 720
 # define ROT_SPEED 0.002f
-# define MOVE_SPEED 0.005f
+# define MOVE_SPEED 0.002f
 # define MULTIPLIER 2.5f
 
 enum e_kcode

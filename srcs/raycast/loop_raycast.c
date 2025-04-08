@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 13:27:31 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/08 09:32:41 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/08 15:08:58 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,33 +52,31 @@ static void	chose_texture(t_data *d, t_ray *r, t_player p)
 
 static void	draw_wall(t_game *g, t_ray *r, t_player p, int x)
 {
-	int		y;
 	int		color;
-	double	intensity;
 	double	step;
 	double	tex_pos;
 
 	chose_texture(g->d, r, p);
 	calculate_tex(r, r->wall_x);
-	intensity = 1 / r->wall_dist * MULTIPLIER;
-	if (intensity > 1)
-		intensity = 1;
+	r->intensity = 1 / r->wall_dist * MULTIPLIER;
+	if (r->intensity > 1)
+		r->intensity = 1;
 	step = 1.0 * 64 / r->line_height;
 	tex_pos = (r->draw_start - WIN_HEIGHT / 2 + r->line_height / 2) * step;
-	y = -1;
+	int (y) = -1;
 	while (++y < r->draw_start)
-		put_pixel(g->d, x, y, apply_intensity(g->d->roof_color, intensity));
+		put_pixel(g->d, x, y, apply_intensity(g->d->roof_color, r->intensity));
 	while (y <= r->draw_end)
 	{
 		r->tex.y = (int)tex_pos;
 		tex_pos += step;
 		color = pixel_color(g->d->the_chosen, r->tex.x, r->tex.y);
-		color = apply_intensity(color, intensity);
-		put_pixel(g->d, x, y, color);
+		put_pixel(g->d, x, y, apply_intensity(color, r->intensity));
 		y++;
 	}
 	while (++y < WIN_HEIGHT)
-		put_pixel(g->d, x, y, apply_intensity(g->d->ground_color, intensity));
+		put_pixel(g->d, x, y, \
+			apply_intensity(g->d->ground_color, r->intensity));
 }
 
 int	dda_algo(t_game *g, t_ray *r)
