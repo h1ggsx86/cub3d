@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.h                                             :+:      :+:    :+:   */
+/*   init_bonus.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 18:33:13 by arotondo          #+#    #+#             */
-/*   Updated: 2025/04/07 18:29:51 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/08 11:45:09 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INIT_H
-# define INIT_H
+#ifndef INIT_BONUS_H
+# define INIT_BONUS_H
 
 typedef struct s_ivector	t_ivector;
 typedef struct s_fvector	t_fvector;

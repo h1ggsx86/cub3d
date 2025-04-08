@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:48:34 by arotondo          #+#    #+#             */
-/*   Updated: 2025/04/07 18:18:44 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/08 12:05:23 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,37 +28,14 @@ int	is_pos_player(int c, int *player)
 		return (0);
 }
 
-int	is_door_valid(t_game *g, int j, int i)
-{
-	if (g->d->mapper[j][i] != 'C')
-		return (0);
-	if (g->d->mapper[j][i - 1] && g->d->mapper[j][i + 1])
-	{
-		if (g->d->mapper[j][i - 1] == '1' && g->d->mapper[j][i + 1] == '1')
-		{
-			g->d->i_doors++;
-			return (0);
-		}
-	}
-	if (g->d->mapper[j - 1][i] && g->d->mapper[j + 1][i])
-	{
-		if (g->d->mapper[j - 1][i] == '1' && g->d->mapper[j + 1][i] == '1')
-		{
-			g->d->i_doors++;
-			return (0);
-		}
-	}
-	return (1);
-}
-
 void	check_map(t_game *g)
 {
 	if (check_left_right(g))
-		err_message(g, "map", "invalid", 4);
+		err_message(g, "map", "1invalid", 4);
 	if (check_top_bottom(g))
-		err_message(g, "map", "invalid", 4);
+		err_message(g, "map", "2invalid", 4);
 	if (check_inside(g))
-		err_message(g, "map", "invalid", 4);
+		err_message(g, "map", "3invalid", 4);
 	g->d->map_parsed = true;
 }
 

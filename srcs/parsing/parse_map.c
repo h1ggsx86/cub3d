@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 16:00:46 by arotondo          #+#    #+#             */
-/*   Updated: 2025/04/07 17:34:36 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/08 12:23:51 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,8 @@ int	check_inside(t_game *g)
 			else if (is_pos_player(g->d->mapper[j][i], &n_player) \
 				&& n_player > 1)
 				err_message(g, "player", "only one allowed", 6);
-			else if (g->d->mapper[j][i] != '1' && g->d->mapper[j][i] != '0' && \
-						g->d->mapper[j][i] != 'C' && g->d->mapper[j][i] != 'O')
+			else if (g->d->mapper[j][i] != '1' && g->d->mapper[j][i] != '0')
 				return (1);
-			else if (is_door_valid(g, j, i))
-				err_message(g, "door", "invalid position", 6);
 			check_map_closed(g, j, i);
 			i++;
 		}
@@ -55,18 +52,29 @@ int	check_top_bottom(t_game *g)
 	int	max_hight;
 
 	i = 0;
+	printf("width = %zu\n", g->d->width);
 	while (i < (int)g->d->width)
 	{
 		max_hight = ft_vert_len(g->d->mapper, i, g->d->height) - 1;
+		printf("max_hight at %d = %d\n", i, max_hight);
 		if (max_hight <= 0)
+		{
+			perror("HERE3");
 			return (1);
+		}
 		if (i == (int)ft_strlen(g->d->mapper[max_hight]) - 1 \
 			&& g->d->mapper[max_hight][i] == '\n')
 			break ;
 		if (g->d->mapper[0][i] && g->d->mapper[0][i] != '1')
+		{
+			perror("HERE");
 			return (1);
+		}
 		if (g->d->mapper[max_hight][i] && g->d->mapper[max_hight][i] != '1')
+		{
+			perror("HERE2");
 			return (1);
+		}
 		i++;
 	}
 	return (0);

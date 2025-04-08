@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 18:45:27 by arotondo          #+#    #+#             */
-/*   Updated: 2025/04/07 18:05:25 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/08 11:46:28 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,5 @@ int		check_collisions_next(t_data *d, t_ray *r, int *hit, t_player p);
 void	calculate_dist(t_ray *r, t_player p);
 void	calculate_tex(t_ray *r, double wall_x);
 void	calculate_door(t_ray *r, t_player p, double *step, double *tex_pos);
-
-/* floor_handler */
-void	draw_floor(t_game *g, t_player p);
 
 #endif
