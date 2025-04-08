@@ -6,7 +6,7 @@
 #    By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/24 19:27:15 by tnedel            #+#    #+#              #
-#    Updated: 2025/04/08 11:15:08 by tnedel           ###   ########.fr        #
+#    Updated: 2025/04/08 13:31:22 by tnedel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -105,7 +105,7 @@ $(BONUS_NAME): $(MLX_LIB) $(LIBFT_LIB) $(SRC_OBJ_BONUS)
 $(OBJ_BONUS_DIR)/%.o: $(SRC_BONUS_DIR)/%.c | $(OBJ_BONUS_DIR)
 		@echo -n "[BONUS] Compiling..."
 		@mkdir -p $(dir $@)
-		@$(CC) $(CFLAGS) -I $(INC_DIR) -I $(LIBFT_DIR) -I $(MLX_DIR) -O3 -c $< -o $@
+		@$(CC) $(CFLAGS) -I $(INC_BONUS_DIR) -I $(LIBFT_DIR) -I $(MLX_DIR) -O3 -c $< -o $@
 		@echo -n "$< "
 		@echo "-> \e[0;32m[OK]\e[0m"
 

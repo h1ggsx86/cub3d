@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 18:45:27 by arotondo          #+#    #+#             */
-/*   Updated: 2025/04/08 11:46:28 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/08 15:12:09 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	ray_loop(t_game *g, t_player p);
 void	set_var(t_ray *r, t_player p, int x);
 
 /* render */
-void	render_map(t_game *g, t_player p, t_data d);
 void	render_img(t_game *g);
 
 /* door_handler */

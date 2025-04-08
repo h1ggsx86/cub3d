@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 16:00:46 by arotondo          #+#    #+#             */
-/*   Updated: 2025/04/08 12:23:51 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/08 14:47:18 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,29 +52,18 @@ int	check_top_bottom(t_game *g)
 	int	max_hight;
 
 	i = 0;
-	printf("width = %zu\n", g->d->width);
 	while (i < (int)g->d->width)
 	{
 		max_hight = ft_vert_len(g->d->mapper, i, g->d->height) - 1;
-		printf("max_hight at %d = %d\n", i, max_hight);
 		if (max_hight <= 0)
-		{
-			perror("HERE3");
-			return (1);
-		}
+			break ;
 		if (i == (int)ft_strlen(g->d->mapper[max_hight]) - 1 \
 			&& g->d->mapper[max_hight][i] == '\n')
 			break ;
 		if (g->d->mapper[0][i] && g->d->mapper[0][i] != '1')
-		{
-			perror("HERE");
 			return (1);
-		}
 		if (g->d->mapper[max_hight][i] && g->d->mapper[max_hight][i] != '1')
-		{
-			perror("HERE2");
 			return (1);
-		}
 		i++;
 	}
 	return (0);
