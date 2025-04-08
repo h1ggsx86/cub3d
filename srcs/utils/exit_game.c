@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:31:18 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/08 09:27:03 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/08 15:58:37 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void	exit_game(t_game *g, int ecode)
 {
 	free_img(g->init, g->d->img_player);
 	free_map(g->d->mapper);
+	if (g->d->pov.img)
+		mlx_destroy_image(g->init, g->d->pov.img);
 	if (g->d->i_text != 4)
 		free_incomp_text(g);
 	while (g->d->i_text)

@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 16:01:40 by arotondo          #+#    #+#             */
-/*   Updated: 2025/04/07 18:13:51 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/08 15:52:26 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,13 +114,17 @@ int	is_indicator(t_game *g, char *line)
 	i = 0;
 	while (line[i] && !ft_isspace(line[i]))
 		i++;
-	if (line[i] == 'N' && !g->d->text_path[0])
+	if (line[i] == 'N' && line[i + 1] && (line[i + 1] == 'O' || \
+		!ft_isspace(line[i + 1])) && !g->d->text_path[NORTH])
 		get_textures(g, line, 78);
-	else if (line[i] == 'S' && !g->d->text_path[3])
+	else if (line[i] == 'S' && line[i + 1] && (line[i + 1] == 'O' || \
+		!ft_isspace(line[i + 1])) && !g->d->text_path[SOUTH])
 		get_textures(g, line, 83);
-	else if (line[i] == 'W' && !g->d->text_path[2])
+	else if (line[i] == 'W' && line[i + 1] && (line[i + 1] == 'E' || \
+		!ft_isspace(line[i + 1])) && !g->d->text_path[WEST])
 		get_textures(g, line, 87);
-	else if (line[i] == 'E' && !g->d->text_path[1])
+	else if (line[i] == 'E' && line[i + 1] && (line[i + 1] == 'A' || \
+		!ft_isspace(line[i + 1])) && !g->d->text_path[EAST])
 		get_textures(g, line, 69);
 	else
 	{

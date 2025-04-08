@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+         #
+#    By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/24 19:27:15 by tnedel            #+#    #+#              #
-#    Updated: 2025/04/08 15:15:11 by tnedel           ###   ########.fr        #
+#    Updated: 2025/04/08 15:44:38 by arotondo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,8 +26,8 @@ define title_var
 		@echo
 endef
 
-NAME = cub3d
-BONUS_NAME = cub3d_bonus
+NAME = cub3D
+BONUS_NAME = cub3D_bonus
 MLX_DIR = mlx-linux
 INC_DIR	= includes
 INC_BONUS_DIR	= includes_bonus
