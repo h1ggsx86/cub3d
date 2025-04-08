@@ -1,44 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   others_init.c                                      :+:      :+:    :+:   */
+/*   ft_get_time_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/02 17:10:29 by arotondo          #+#    #+#             */
-/*   Updated: 2025/04/08 09:28:18 by tnedel           ###   ########.fr       */
+/*   Created: 2025/04/01 09:20:42 by tnedel            #+#    #+#             */
+/*   Updated: 2025/04/08 10:37:45 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../../includes_bonus/cub3d_bonus.h"
 
-void	ivector_init(t_ivector *vec, int x, int y)
+long	ft_get_time(void)
 {
-	vec->x = x;
-	vec->y = y;
-}
+	struct timeval	tv;
+	suseconds_t		current_time;
 
-void	fvector_init(t_fvector *vec, double x, double y)
-{
-	vec->x = x;
-	vec->y = y;
-}
-
-void	player_init(t_player *pl)
-{
-	pl->x = 0;
-	pl->y = 0;
-	pl->dir.x = 0;
-	pl->dir.y = 0;
-	pl->view.x = 0.0f;
-	pl->view.y = 0.0f;
-}
-
-void	key_init(t_game *new)
-{
-	int	i;
-
-	i = 0;
-	while (i < 6)
-		new->key[i++] = 0;
+	gettimeofday(&tv, NULL);
+	current_time = tv.tv_sec * 1e3 + tv.tv_usec / 1e3;
+	return (current_time);
 }

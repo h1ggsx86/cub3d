@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   loop_raycast.c                                     :+:      :+:    :+:   */
+/*   loop_raycast_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 13:27:31 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/08 09:32:41 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/08 10:37:07 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../../includes_bonus/cub3d_bonus.h"
 
 void	set_var(t_ray *r, t_player p, int x)
 {
@@ -65,9 +65,9 @@ static void	draw_wall(t_game *g, t_ray *r, t_player p, int x)
 		intensity = 1;
 	step = 1.0 * 64 / r->line_height;
 	tex_pos = (r->draw_start - WIN_HEIGHT / 2 + r->line_height / 2) * step;
-	y = -1;
-	while (++y < r->draw_start)
-		put_pixel(g->d, x, y, apply_intensity(g->d->roof_color, intensity));
+	y = 0;
+	while (y < r->draw_start)
+		y++;
 	while (y <= r->draw_end)
 	{
 		r->tex.y = (int)tex_pos;
@@ -77,28 +77,25 @@ static void	draw_wall(t_game *g, t_ray *r, t_player p, int x)
 		put_pixel(g->d, x, y, color);
 		y++;
 	}
-	while (++y < WIN_HEIGHT)
-		put_pixel(g->d, x, y, apply_intensity(g->d->ground_color, intensity));
 }
 
-int	dda_algo(t_game *g, t_ray *r)
+void	door_loop(t_game *g, t_ray *r, t_player p, int x)
 {
-	if (r->side_d.x < r->side_d.y)
+	r->door = 0;
+	ivector_init(&r->map, (int)p.x, (int)p.y);
+	fvector_init(&r->side_d, r->door_side_d.x, r->door_side_d.y);
+	while (!r->door)
 	{
-		r->side_d.x += r->delta_d.x;
-		r->map.x += r->step.x;
-		r->side = 0;
+		if (dda_algo(g, r))
+			break ;
+		if (g->d->mapper[r->map.y][r->map.x] == '1')
+			break ;
+		if (g->d->mapper[r->map.y][r->map.x] == 'O' || \
+			g->d->mapper[r->map.y][r->map.x] == 'C')
+			r->door = 1;
 	}
-	else
-	{
-		r->side_d.y += r->delta_d.y;
-		r->map.y += r->step.y;
-		r->side = 1;
-	}
-	if ((r->map.y >= (int)g->d->height || r->map.x >= (int)g->d->width) || \
-		(r->map.y < 0 || r->map.x < 0))
-		return (EXIT_FAILURE);
-	return (EXIT_SUCCESS);
+	if (r->door)
+		draw_door(g, r, p, x);
 }
 
 void	ray_loop(t_game *g, t_player p)
@@ -122,6 +119,7 @@ void	ray_loop(t_game *g, t_player p)
 				hit = 1;
 		}
 		draw_wall(g, &r, p, x);
+		door_loop(g, &r, p, x);
 		x++;
 	}
 	g->old_time = g->time;

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 15:02:41 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/08 09:26:33 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/08 11:18:00 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@
 # include "../mlx-linux/mlx_int.h"
 # include "../libft/libft.h"
 
-# include "../includes/parsing.h"
-# include "../includes/utils.h"
-# include "../includes/init.h"
-# include "../includes/raycast.h"
+# include "../includes_bonus/parsing_bonus.h"
+# include "../includes_bonus/utils_bonus.h"
+# include "../includes_bonus/init_bonus.h"
+# include "../includes_bonus/raycast_bonus.h"
 
 # define MAP_WIDTH 8
 # define MAP_HEIGHT 8

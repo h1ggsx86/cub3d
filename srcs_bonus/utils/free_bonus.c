@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   free_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 16:27:34 by arotondo          #+#    #+#             */
-/*   Updated: 2025/04/08 09:27:11 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/08 10:37:33 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../../includes_bonus/cub3d_bonus.h"
 
 void	free_img(void *init, t_mimg *img)
 {
@@ -22,6 +22,25 @@ void	free_img(void *init, t_mimg *img)
 			mlx_destroy_image(init, img[1].img);
 		free(img);
 	}
+}
+
+void	free_doors(void *init, t_game *g)
+{
+	int	i;
+
+	i = 0;
+	while (i < 13)
+	{
+		if (g->d->tex_door[i].img && init)
+			mlx_destroy_image(init, g->d->tex_door[i].img);
+		i++;
+	}
+	if (g->d->floor.img)
+		mlx_destroy_image(init, g->d->floor.img);
+	if (g->d->pov.img)
+		mlx_destroy_image(init, g->d->pov.img);
+	if (g->d->door_map)
+		free(g->d->door_map);
 }
 
 void	free_incomp_text(t_game *g)
