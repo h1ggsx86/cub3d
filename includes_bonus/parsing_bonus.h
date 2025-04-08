@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 16:16:04 by arotondo          #+#    #+#             */
-/*   Updated: 2025/04/08 11:45:19 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/08 15:27:46 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ typedef struct s_player	t_player;
 typedef struct s_game	t_game;
 
 /* parsing */
+void		get_map_height(t_game *g, int i);
 void		init_my_map(t_game *g, char *file);
 void		parsing_the_thing(t_game *g, char *file);
 char		*init_tmp(t_game *g, char *file);
@@ -47,7 +48,7 @@ void		check_all_parsed(t_game *g);
 
 /* parse_map */
 void		keep_pos_player(t_game *g, int *j, int *i);
-int			check_inside(t_game *g);
+int			check_inside(t_game *g, int i, int n_player);
 int			check_left_right(t_game *g);
 int			check_top_bottom(t_game *g);
 void		parse_map(t_game *g, char *line, int *j);

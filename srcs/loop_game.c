@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 10:30:37 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/08 11:24:35 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/08 15:12:48 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,6 @@ int	close_win_pointer(t_game *g)
 
 int	handle_no_event(t_game *g)
 {
-	moves_input(g);
-	mouse_move(g);
 	render_img(g);
 	if (g->d->active_img)
 		mlx_put_image_to_window(g->init, g->win, g->d->img_player[0].img, \
@@ -72,7 +70,6 @@ int	handle_no_event(t_game *g)
 
 void	the_loop(t_game *g)
 {
-	mlx_mouse_hide(g->init, g->win);
 	mlx_mouse_move(g->init, g->win, g->win_width / 2, g->win_height / 2);
 	mlx_loop_hook(g->init, &handle_no_event, g);
 	mlx_hook(g->win, KeyPress, KeyPressMask, &input_handler, g);

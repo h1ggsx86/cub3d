@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 13:21:28 by arotondo          #+#    #+#             */
-/*   Updated: 2025/04/08 09:31:21 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/08 15:12:24 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ void	init_imgs(t_game *g, t_data *d, int size)
 
 void	init_ray(t_ray *r)
 {
-	r->door = 0;
 	r->side = 0;
 	r->line_height = 0;
 	r->draw_end = 0;
