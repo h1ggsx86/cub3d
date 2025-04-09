@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop_raycast_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 13:27:31 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/08 10:37:07 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/09 15:40:35 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ static void	chose_texture(t_data *d, t_ray *r, t_player p)
 		r->wall_dist = (r->side_d.x - r->delta_d.x) + 0.0001f;
 		r->wall_x = p.y + r->wall_dist * r->ray.y;
 		if (r->ray.x > 0)
-			d->the_chosen = *d->textures[WEST];
-		else
 			d->the_chosen = *d->textures[EAST];
+		else
+			d->the_chosen = *d->textures[WEST];
 	}
 	else
 	{
