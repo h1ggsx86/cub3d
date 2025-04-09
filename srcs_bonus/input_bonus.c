@@ -6,7 +6,7 @@
 /*   By: tnedel <tnedel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 14:49:39 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/08 15:02:37 by tnedel           ###   ########.fr       */
+/*   Updated: 2025/04/09 12:11:21 by tnedel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,11 @@ void	ws_move(t_game *g, int way)
 	map = g->d->mapper;
 	int (new_y) = (int)(p->y + (p->dir.y * move_speed * way));
 	int (new_x) = (int)(p->x + (p->dir.x * move_speed * way));
-	if (map[new_y][(int)p->x] && map[new_y][(int)p->x] != '1')
+	if (map[new_y][(int)p->x] && map[new_y][(int)p->x] != '1' && \
+		map[new_y][(int)p->x] != 'C')
 		p->y = p->y + (p->dir.y * move_speed * way);
-	if (map[(int)p->y][new_x] && map[(int)p->y][new_x] != '1')
+	if (map[(int)p->y][new_x] && map[(int)p->y][new_x] != '1' && \
+		map[(int)p->y][new_x] != 'C')
 		p->x = p->x + (p->dir.x * move_speed * way);
 }
 
@@ -62,9 +64,9 @@ void	ad_move(t_game *g, int way)
 	map = g->d->mapper;
 	int (new_y) = (int)(p->y + (p->dir.x * move_speed * way));
 	int (new_x) = (int)(p->x - (p->dir.y * move_speed * way));
-	if (map[new_y][(int)p->x] != '1')
+	if (map[new_y][(int)p->x] != '1' && map[new_y][(int)p->x] != 'C')
 		p->y += p->dir.x * move_speed * way;
-	if (map[(int)p->y][new_x] != '1')
+	if (map[(int)p->y][new_x] != '1' && map[(int)p->y][new_x] != 'C')
 		p->x -= p->dir.y * move_speed * way;
 }
 
