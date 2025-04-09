@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 16:01:40 by arotondo          #+#    #+#             */
-/*   Updated: 2025/04/08 15:51:58 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/09 15:45:44 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,8 @@ int	is_indicator(t_game *g, char *line)
 	else if (line[i] == 'E' && line[i + 1] && (line[i + 1] == 'A' || \
 		!ft_isspace(line[i + 1])) && !g->d->text_path[EAST])
 		get_textures(g, line, 69);
+	else if (line[0] == '\n')
+		return (0);
 	else
 	{
 		free(line);
