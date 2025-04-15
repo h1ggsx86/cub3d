@@ -6,7 +6,7 @@
 /*   By: arotondo <arotondo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 10:30:37 by tnedel            #+#    #+#             */
-/*   Updated: 2025/04/08 15:31:38 by arotondo         ###   ########.fr       */
+/*   Updated: 2025/04/15 16:50:35 by arotondo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ int	handle_no_event(t_game *g)
 
 void	the_loop(t_game *g)
 {
+	mlx_mouse_hide(g->init, g->win);
 	mlx_loop_hook(g->init, &handle_no_event, g);
 	mlx_hook(g->win, KeyPress, KeyPressMask, &input_handler, g);
 	mlx_hook(g->win, KeyRelease, KeyReleaseMask, &release_handler, g);
